@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../src/repositories/Auth/index.ts"],
+  "sourcesContent": ["import { Auth } from \"../../domains/model/Auth\";\r\n\r\nimport { BaseRepository } from \"../Base\";\r\n\r\nexport class AuthRepository extends BaseRepository<Auth>{\r\n    constructor(){\r\n        super(\"Auth\")\r\n    }\r\n}"],
+  "mappings": ";;;;;;;;;;;;;;;;;;AAAA;AAAA;AAAA;AAAA;AAAA;AAEA,kBAA+B;AAExB,MAAM,uBAAuB,2BAAoB;AAAA,EACpD,cAAa;AACT,UAAM,MAAM;AAAA,EAChB;AACJ;",
+  "names": []
+}

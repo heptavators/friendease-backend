@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../../src/helpers/Response/SuccessFormatter/index.ts"],
+  "sourcesContent": ["export default function SuccessFormatter(message: string, meta: object, data: Array<object>){\r\n    const response: object = {\r\n      info: {\r\n        success: true,\r\n        message: message,\r\n        meta: meta\r\n      },\r\n      data: data,\r\n    }\r\n  \r\n    return response\r\n  }"],
+  "mappings": ";;;;;;;;;;;;;;;;;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAe,SAAR,iBAAkC,SAAiB,MAAc,MAAoB;AACxF,QAAM,WAAmB;AAAA,IACvB,MAAM;AAAA,MACJ,SAAS;AAAA,MACT;AAAA,MACA;AAAA,IACF;AAAA,IACA;AAAA,EACF;AAEA,SAAO;AACT;",
+  "names": []
+}

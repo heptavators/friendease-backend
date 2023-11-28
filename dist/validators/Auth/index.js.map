@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../src/validators/Auth/index.ts"],
+  "sourcesContent": ["import Joi, { Schema, ValidationErrorItem } from 'joi';\r\n\r\nexport class Validator {\r\n    static validate<T>(data: T, schema: Schema<T>): T {\r\n        const { error } = schema.validate(data, { abortEarly: false });\r\n\r\n        if (error) {\r\n            const errors: Record<string, { message: string }> = {};\r\n\r\n            error.details.forEach((detail: ValidationErrorItem) => {\r\n                if (detail.context && detail.context.key) {\r\n                    const key = detail.context.key;\r\n\r\n                    if (!errors[key]) {\r\n                        errors[key] = { message: '' };\r\n                    }\r\n\r\n                    errors[key].message = detail.message;\r\n                }\r\n            });\r\n\r\n            throw errors;\r\n        }\r\n\r\n        return data;\r\n    }\r\n}\r\n"],
+  "mappings": ";;;;;;;;;;;;;;;;;;AAAA;AAAA;AAAA;AAAA;AAAA;AAEO,MAAM,UAAU;AAAA,EACnB,OAAO,SAAY,MAAS,QAAsB;AAC9C,UAAM,EAAE,MAAM,IAAI,OAAO,SAAS,MAAM,EAAE,YAAY,MAAM,CAAC;AAE7D,QAAI,OAAO;AACP,YAAM,SAA8C,CAAC;AAErD,YAAM,QAAQ,QAAQ,CAAC,WAAgC;AACnD,YAAI,OAAO,WAAW,OAAO,QAAQ,KAAK;AACtC,gBAAM,MAAM,OAAO,QAAQ;AAE3B,cAAI,CAAC,OAAO,GAAG,GAAG;AACd,mBAAO,GAAG,IAAI,EAAE,SAAS,GAAG;AAAA,UAChC;AAEA,iBAAO,GAAG,EAAE,UAAU,OAAO;AAAA,QACjC;AAAA,MACJ,CAAC;AAED,YAAM;AAAA,IACV;AAEA,WAAO;AAAA,EACX;AACJ;",
+  "names": []
+}

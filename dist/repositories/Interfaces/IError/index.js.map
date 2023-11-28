@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../../src/repositories/Interfaces/IError/index.ts"],
+  "sourcesContent": ["export interface IError {\r\n  message: string\r\n}"],
+  "mappings": ";;;;;;;;;;;;;;AAAA;AAAA;",
+  "names": []
+}
