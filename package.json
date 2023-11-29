@@ -4,12 +4,13 @@
   "description": "",
   "main": "index.js",
   "prisma": {
-    "seed": "ts-node --esm src/domains/Database/UserSeeder.ts"
+    "seed": "ts-node src/domains/Database/UserSeeder.mjs"
   },
   "scripts": {
     "dev": "nodemon",
     "build": "etsc",
-    "start": "node dist/index.js"
+    "start": "node dist/index.js",
+    "seed": "ts-node src/domains/Database/UserSeeder.mjs"
   },
   "author": "Harada Kumiko",
   "license": "ISC",

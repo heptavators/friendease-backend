@@ -24,12 +24,12 @@
 
 Clone this repository
 ```bash
-git clone 
+git clone https://github.com/heptavators/friendease-backend.git
 ```
 
 Open this project 
 ```bash
-cd 
+cd friendease-backend
 ```
 
 

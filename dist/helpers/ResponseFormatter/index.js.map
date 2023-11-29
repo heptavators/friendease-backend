@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../../../src/helpers/ResponseFormatter/index.ts"],
-  "sourcesContent": ["export default function ResponseFormatter(success: boolean, message: string, meta: object, data: Array<object>){\r\n    const response: object = {\r\n      info: {\r\n        success: success,\r\n        message: message,\r\n        meta: meta\r\n      },\r\n      data: data,\r\n    }\r\n  \r\n    return response\r\n  }"],
-  "mappings": ";;;;;;;;;;;;;;;;;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAe,SAAR,kBAAmC,SAAkB,SAAiB,MAAc,MAAoB;AAC3G,QAAM,WAAmB;AAAA,IACvB,MAAM;AAAA,MACJ;AAAA,MACA;AAAA,MACA;AAAA,IACF;AAAA,IACA;AAAA,EACF;AAEA,SAAO;AACT;",
-  "names": []
-}

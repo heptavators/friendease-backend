@@ -1,11 +1,11 @@
-import { PrismaClient, Auth } from '@prisma/client'
+import { PrismaClient, } from '@prisma/client'
 import { v4 as uuidv4 } from 'uuid';
 
 const prisma = new PrismaClient()
 
 async function main() {
 
-    const auths: Auth[] = [
+    const auths = [
         { 
         id: uuidv4(),
         fullname: 'user1', 
