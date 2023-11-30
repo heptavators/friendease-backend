@@ -1,37 +1,42 @@
+import { Auth as AuthService } from "../../services/Auth";
 import { AuthRepository } from "../../repositories/Auth";
-
+import { Request, Response } from "express-serve-static-core";
+import { ParsedQs } from "qs";
+import { logger } from "../../helpers/Log";
+import ErrorFormatter from "../../helpers/Response/ErrorFormatter";
+import SuccessFormatter from '../../helpers/Response/SuccessFormatter';
+import FailFormatter from '../../helpers/Response/FailFormatter';
 
 export class Auth {
-    authRepository: AuthRepository
+    authService: AuthService
 
-    constructor(){
-        this.authRepository = new AuthRepository()
+    constructor(authService: AuthService, authRepository: AuthRepository){
+        this.authService = new AuthService(authRepository)
     }
 
-    async find(fullname: string, page: number){
-        const gettingTransaction = await this.authRepository.find({
-          where: {
-            fullname: {
-              contains: fullname,
-              mode: 'insensitive'
-            },
-          },
-          skip: page > 1 ? 10 * page - 10 : 0,
-          take: 10
-        })
+
     
-        return gettingTransaction
+    async signInController(req: Request<{}, any, any, ParsedQs, Record<string, any>>, res: Response<any, Record<string, any>, number>) {
+      try {
+        const {id} = req.body
+        const result = await this.authService.SignInService(id)
+
+        if (result){
+          const response = SuccessFormatter("Data Semua Pengguna", {}, result)
+          res.status(200).send(response)
+
+        }else {
+          const response = FailFormatter("Pengguna Tidak Ditemukan");
+          res.status(404).send(response)
+
+        }
+      } catch (error: any) {
+        const response = ErrorFormatter(error);
+        logger.error(error);
+        res.status(500).send(response);
       }
 
 
-      async count(fullname: string): Promise<any>{
-        const countingTransaction = await this.authRepository.count({
-          where: {
-            fullname: {
-              contains: fullname,
-              mode: 'insensitive'
-            }
-          },
-        })
-        return countingTransaction
-      }}
+  }
+
+}

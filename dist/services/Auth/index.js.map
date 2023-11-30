@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../src/services/Auth/index.ts"],
+  "sourcesContent": ["import { AuthRepository } from \"../../repositories/Auth\";\r\n\r\n\r\nexport class Auth {\r\n    private authRepository: AuthRepository\r\n\r\n    constructor(authRepository: AuthRepository){\r\n        this.authRepository = new AuthRepository()\r\n    }\r\n\r\n    async SignInService(id: string) {\r\n        return this.authRepository.findOne(id);\r\n      }\r\n\r\n\r\n}\r\n\r\n\r\n"],
+  "mappings": ";;;;;;;;;;;;;;;;;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA,kBAA+B;AAGxB,MAAM,KAAK;AAAA,EACN;AAAA,EAER,YAAY,gBAA+B;AACvC,SAAK,iBAAiB,IAAI,2BAAe;AAAA,EAC7C;AAAA,EAEA,MAAM,cAAc,IAAY;AAC5B,WAAO,KAAK,eAAe,QAAQ,EAAE;AAAA,EACvC;AAGN;",
+  "names": []
+}

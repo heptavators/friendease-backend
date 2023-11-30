@@ -63,9 +63,9 @@ class BaseRepository {
       throw new Error(`Not found data : ${e}`);
     }
   }
-  findOne(special_id) {
+  findOne(id) {
     try {
-      return this.model.findUnique({ where: { special_id } });
+      return this.model.findUnique({ where: { id } });
     } catch (e) {
       throw new Error(`Cannot find data because : ${e}`);
     }
