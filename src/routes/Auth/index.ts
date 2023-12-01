@@ -1,9 +1,9 @@
 import express, {Request, Response, Router } from 'express';
 import { Auth as AuthController } from "../../controllers/Auth";
 import { AuthRepository } from "../../repositories/Auth";
-import { Auth as AuthService } from "../../services/Auth";
+import { AuthService } from "../../services/Auth";
 
-import SuccessFormatter from '../../helpers/Response/SuccessFormatter';
+import SuccessFormatter from '../../helpers/Response/SuccessSingularFormatter';
 import ErrorFormatter from '../../helpers/Response/ErrorFormatter';
 import FailFormatter from '../../helpers/Response/FailFormatter';
 import { logger } from '../../helpers/Log';
@@ -27,6 +27,9 @@ const authController = new AuthController(authService, authRepository);
 
 
 authRouter.post("/login", async (req, res) => authController.signInController(req, res));
+
+
+
 // router.get("/user", async function(req, res){
 //     let {name, page } = req.query as any
 //     try {

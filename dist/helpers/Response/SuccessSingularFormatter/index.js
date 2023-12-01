@@ -16,17 +16,17 @@ var __copyProps = (to, from, except, desc) => {
   return to;
 };
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
-var SuccessFormatter_exports = {};
-__export(SuccessFormatter_exports, {
+var SuccessSingularFormatter_exports = {};
+__export(SuccessSingularFormatter_exports, {
   default: () => SuccessSingularFormatter
 });
-module.exports = __toCommonJS(SuccessFormatter_exports);
-function SuccessSingularFormatter(message, meta, data) {
+module.exports = __toCommonJS(SuccessSingularFormatter_exports);
+function SuccessSingularFormatter(message, data) {
   const response = {
     info: {
       success: true,
       message,
-      meta
+      meta: null
     },
     data
   };

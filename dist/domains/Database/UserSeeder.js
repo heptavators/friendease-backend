@@ -6,10 +6,12 @@ async function main() {
   const auths = [
     {
       id: (0, import_uuid.v4)(),
-      fullname: "user1",
-      email: "user1@example.com",
+      fullname: "Farhan Rivaldy",
+      username: "farhanrivaldy",
+      email: "fariv.fariv12@gmail.com",
+      password: "password123!",
       avatar: "https://avatars.githubusercontent.com/u/42530587?v=4",
-      bio: "",
+      bio: "Tech Enthusiast | A newbie at everything",
       status: "active",
       role: "CUSTOMER"
     }

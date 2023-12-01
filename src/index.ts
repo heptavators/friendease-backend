@@ -18,6 +18,7 @@ try {
   
 
   app.listen(port, () => {
+    logger.info(process.env.SECRET_KEYS)
     logger.info("apps running on port " + port)
   });
 

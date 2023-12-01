@@ -26,6 +26,13 @@ class AuthRepository extends import_Base.BaseRepository {
   constructor() {
     super("Auth");
   }
+  async findEmail(email) {
+    try {
+      return this.model.findUnique({ where: { email } });
+    } catch (e) {
+      throw new Error(`Cannot find data because : ${e}`);
+    }
+  }
 }
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {

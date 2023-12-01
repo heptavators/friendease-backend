@@ -4,6 +4,8 @@ export class Auth {
     id: string;
     fullname: string;
     email: string;
+    username: string;
+    password: string;
     avatar: string;
     bio: string;
     status: string;
@@ -14,6 +16,8 @@ export class Auth {
         id: string,
         fullname: string,
         email: string,
+        username: string,
+        password: string,
         avatar: string,
         bio: string,
         status: string,
@@ -23,6 +27,8 @@ export class Auth {
         this.id = id;
         this.fullname = fullname;
         this.email = email;
+        this.username = username;
+        this.password = password;
         this.avatar = avatar;
         this.bio = bio;
         this.status = status;
@@ -39,6 +45,14 @@ export class Auth {
             fullname: Joi.string().required().messages({
                 'any.required': 'Nama Lengkap diperlukan',
                 'string.empty': 'Nama Lengkap tidak boleh kosong',
+            }),
+            username: Joi.string().messages({
+                'any.required': 'Username diperlukan',
+                'string.empty': 'Username tidak boleh kosong',
+            }),
+            password: Joi.string().required().messages({
+                'any.required': 'Password diperlukan',
+                'string.empty': 'Password tidak boleh kosong',
             }),
             email: Joi.string().email({ tlds: false }).required().messages({
                 'any.required': 'Alamat Email diperlukan',

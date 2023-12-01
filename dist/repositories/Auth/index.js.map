@@ -1,7 +1,7 @@
 {
   "version": 3,
   "sources": ["../../../src/repositories/Auth/index.ts"],
-  "sourcesContent": ["import { Auth } from \"../../domains/model/Auth\";\r\n\r\nimport { BaseRepository } from \"../Base\";\r\n\r\nexport class AuthRepository extends BaseRepository<Auth>{\r\n    constructor(){\r\n        super(\"Auth\")\r\n    }\r\n}"],
-  "mappings": ";;;;;;;;;;;;;;;;;;AAAA;AAAA;AAAA;AAAA;AAAA;AAEA,kBAA+B;AAExB,MAAM,uBAAuB,2BAAoB;AAAA,EACpD,cAAa;AACT,UAAM,MAAM;AAAA,EAChB;AACJ;",
+  "sourcesContent": ["import { Auth } from \"../../domains/model/Auth\";\r\n\r\nimport { BaseRepository } from \"../Base\";\r\n\r\nexport class AuthRepository extends BaseRepository<Auth>{\r\n    constructor(){\r\n        super(\"Auth\")\r\n    }\r\n\r\n    async findEmail(email: string): Promise<any>  {\r\n        try {\r\n            return this.model.findUnique({ where: { email } });\r\n          } catch (e) {\r\n            throw new Error(`Cannot find data because : ${e}`)\r\n          }\r\n      }\r\n\r\n}"],
+  "mappings": ";;;;;;;;;;;;;;;;;;AAAA;AAAA;AAAA;AAAA;AAAA;AAEA,kBAA+B;AAExB,MAAM,uBAAuB,2BAAoB;AAAA,EACpD,cAAa;AACT,UAAM,MAAM;AAAA,EAChB;AAAA,EAEA,MAAM,UAAU,OAA8B;AAC1C,QAAI;AACA,aAAO,KAAK,MAAM,WAAW,EAAE,OAAO,EAAE,MAAM,EAAE,CAAC;AAAA,IACnD,SAAS,GAAG;AACV,YAAM,IAAI,MAAM,8BAA8B,CAAC,EAAE;AAAA,IACnD;AAAA,EACJ;AAEN;",
   "names": []
 }

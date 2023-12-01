@@ -16,12 +16,12 @@ var __copyProps = (to, from, except, desc) => {
   return to;
 };
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
-var SuccessFormatter_exports = {};
-__export(SuccessFormatter_exports, {
-  default: () => SuccessSingularFormatter
+var SuccessPluralFormatter_exports = {};
+__export(SuccessPluralFormatter_exports, {
+  default: () => SuccessPluralFormatter
 });
-module.exports = __toCommonJS(SuccessFormatter_exports);
-function SuccessSingularFormatter(message, meta, data) {
+module.exports = __toCommonJS(SuccessPluralFormatter_exports);
+function SuccessPluralFormatter(message, meta, data) {
   const response = {
     info: {
       success: true,

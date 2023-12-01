@@ -36,15 +36,19 @@ class Auth {
   id;
   fullname;
   email;
+  username;
+  password;
   avatar;
   bio;
   status;
   roles;
   device_token;
-  constructor(id, fullname, email, avatar, bio, status, roles, device_token) {
+  constructor(id, fullname, email, username, password, avatar, bio, status, roles, device_token) {
     this.id = id;
     this.fullname = fullname;
     this.email = email;
+    this.username = username;
+    this.password = password;
     this.avatar = avatar;
     this.bio = bio;
     this.status = status;
@@ -60,6 +64,14 @@ class Auth {
       fullname: import_joi.default.string().required().messages({
         "any.required": "Nama Lengkap diperlukan",
         "string.empty": "Nama Lengkap tidak boleh kosong"
+      }),
+      username: import_joi.default.string().messages({
+        "any.required": "Username diperlukan",
+        "string.empty": "Username tidak boleh kosong"
+      }),
+      password: import_joi.default.string().required().messages({
+        "any.required": "Password diperlukan",
+        "string.empty": "Password tidak boleh kosong"
       }),
       email: import_joi.default.string().email({ tlds: false }).required().messages({
         "any.required": "Alamat Email diperlukan",

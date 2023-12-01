@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../../src/helpers/Response/SuccessPluralFormatter/index.ts"],
+  "sourcesContent": ["export default function SuccessPluralFormatter(message: string, meta: object, data: Array<object> | object){\r\n    const response: object = {\r\n      info: {\r\n        success: true,\r\n        message: message,\r\n        meta: meta\r\n      },\r\n      data: data,\r\n    }\r\n  \r\n    return response\r\n  }"],
+  "mappings": ";;;;;;;;;;;;;;;;;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAe,SAAR,uBAAwC,SAAiB,MAAc,MAA6B;AACvG,QAAM,WAAmB;AAAA,IACvB,MAAM;AAAA,MACJ,SAAS;AAAA,MACT;AAAA,MACA;AAAA,IACF;AAAA,IACA;AAAA,EACF;AAEA,SAAO;AACT;",
+  "names": []
+}

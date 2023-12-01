@@ -18,21 +18,33 @@ var __copyProps = (to, from, except, desc) => {
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 var Auth_exports = {};
 __export(Auth_exports, {
-  Auth: () => Auth
+  AuthService: () => AuthService
 });
 module.exports = __toCommonJS(Auth_exports);
 var import_Auth = require("../../repositories/Auth");
-class Auth {
+var import_JWT = require("../../helpers/JWT");
+class AuthService {
   authRepository;
   constructor(authRepository) {
     this.authRepository = new import_Auth.AuthRepository();
   }
-  async SignInService(id) {
-    return this.authRepository.findOne(id);
+  async SignInService(LoginRequest2) {
+    try {
+      const user = await this.authRepository.findEmail(LoginRequest2.email);
+      if (user) {
+        if (user.password != LoginRequest2.email) {
+          console.log(1);
+        }
+        const token = (0, import_JWT.GenerateJwtToken)(user);
+        return token;
+      }
+    } catch (error) {
+      throw new Error(`Something Wrong: ${error}`);
+    }
   }
 }
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
-  Auth
+  AuthService
 });
 //# sourceMappingURL=index.js.map

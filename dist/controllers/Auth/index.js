@@ -34,26 +34,34 @@ module.exports = __toCommonJS(Auth_exports);
 var import_Auth = require("../../services/Auth");
 var import_Log = require("../../helpers/Log");
 var import_ErrorFormatter = __toESM(require("../../helpers/Response/ErrorFormatter"));
-var import_SuccessFormatter = __toESM(require("../../helpers/Response/SuccessFormatter"));
+var import_SuccessSingularFormatter = __toESM(require("../../helpers/Response/SuccessSingularFormatter"));
 var import_FailFormatter = __toESM(require("../../helpers/Response/FailFormatter"));
+var import_Login = require("../../domains/web/Login");
+var import_Validator = require("../../helpers/Validator");
 class Auth {
   authService;
   constructor(authService, authRepository) {
-    this.authService = new import_Auth.Auth(authRepository);
+    this.authService = new import_Auth.AuthService(authRepository);
   }
   async signInController(req, res) {
     try {
-      const { id } = req.body;
-      const result = await this.authService.SignInService(id);
-      if (result) {
-        const response = (0, import_SuccessFormatter.default)("Data Semua Pengguna", {}, result);
-        res.status(200).send(response);
+      const data = req.body;
+      const validate = import_Validator.Validator.validate(data, import_Login.Login.getSchema());
+      if (JSON.stringify(validate) === JSON.stringify(data)) {
+        const result = await this.authService.SignInService(validate);
+        if (result) {
+          const response = (0, import_SuccessSingularFormatter.default)("Berhasil Login", { token: result });
+          res.status(200).send(response);
+        } else {
+          const response = (0, import_FailFormatter.default)("Pengguna Tidak Ditemukan");
+          res.status(404).send(response);
+        }
       } else {
-        const response = (0, import_FailFormatter.default)("Pengguna Tidak Ditemukan");
-        res.status(404).send(response);
+        const response = (0, import_ErrorFormatter.default)(JSON.stringify(validate));
+        res.status(422).json(response);
       }
     } catch (error) {
-      const response = (0, import_ErrorFormatter.default)(error);
+      const response = (0, import_ErrorFormatter.default)(error.message);
       import_Log.logger.error(error);
       res.status(500).send(response);
     }

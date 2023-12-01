@@ -5,6 +5,10 @@ var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
 var __getOwnPropNames = Object.getOwnPropertyNames;
 var __getProtoOf = Object.getPrototypeOf;
 var __hasOwnProp = Object.prototype.hasOwnProperty;
+var __export = (target, all) => {
+  for (var name in all)
+    __defProp(target, name, { get: all[name], enumerable: true });
+};
 var __copyProps = (to, from, except, desc) => {
   if (from && typeof from === "object" || typeof from === "function") {
     for (let key of __getOwnPropNames(from))
@@ -21,24 +25,30 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
   isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
   mod
 ));
-var import_express = __toESM(require("express"));
-var import_Auth = __toESM(require("./routes/Auth"));
-var import_Log = require("./helpers/Log");
-try {
-  const app = (0, import_express.default)();
-  const port = "3000";
-  app.use(import_express.default.json());
-  app.use(import_express.default.urlencoded({ extended: true }));
-  app.get("/", (req, res) => {
-    res.send("Hello World!");
-  });
-  app.use("/api", import_Auth.default);
-  app.listen(port, () => {
-    import_Log.logger.info(process.env.SECRET_KEYS);
-    import_Log.logger.info("apps running on port " + port);
-  });
-} catch (error) {
-  import_Log.logger.error("failed to running apps, error : " + error);
-  process.exit(1);
+var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
+var JWT_exports = {};
+__export(JWT_exports, {
+  GenerateJwtToken: () => GenerateJwtToken
+});
+module.exports = __toCommonJS(JWT_exports);
+var import_jsonwebtoken = __toESM(require("jsonwebtoken"));
+function GenerateJwtToken(user) {
+  const token = import_jsonwebtoken.default.sign(
+    {
+      userId: user.id,
+      fullname: user.fullname,
+      username: user.username,
+      email: user.email,
+      roles: user.roles,
+      iss: "FriendEase"
+    },
+    "process.env.SECRET_KEY",
+    { expiresIn: "1d" }
+  );
+  return token;
 }
+// Annotate the CommonJS export names for ESM import in node:
+0 && (module.exports = {
+  GenerateJwtToken
+});
 //# sourceMappingURL=index.js.map

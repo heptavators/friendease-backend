@@ -34,8 +34,10 @@ module.exports = __toCommonJS(Login_exports);
 var import_joi = __toESM(require("joi"));
 class Login {
   email;
-  constructor(email) {
+  password;
+  constructor(email, password) {
     this.email = email;
+    this.password = password;
   }
   static getSchema() {
     return import_joi.default.object({
@@ -44,9 +46,9 @@ class Login {
         "string.empty": "Alamat Email tidak boleh kosong",
         "string.email": "Alamat Email Tidak Valid"
       }),
-      fullname: import_joi.default.string().required().messages({
-        "any.required": "Nama Lengkap diperlukan",
-        "string.empty": "Nama Lengkap tidak boleh kosong"
+      password: import_joi.default.string().required().messages({
+        "any.required": "Password diperlukan",
+        "string.empty": "Password tidak boleh kosong"
       })
     });
   }

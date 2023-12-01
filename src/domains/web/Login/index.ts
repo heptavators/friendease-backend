@@ -2,10 +2,12 @@ import Joi from "joi";
 import { Validator } from "../../../helpers/Validator";
 
 export class Login {
-    email: string
+    email: string;
+    password: string;
 
-    constructor(email: string){
-        this.email = email  
+    constructor(email: string, password: string){
+        this.email = email;
+        this.password = password;
     }
     static getSchema() {
         return Joi.object({
@@ -14,9 +16,9 @@ export class Login {
                 'string.empty': 'Alamat Email tidak boleh kosong',
                 'string.email': 'Alamat Email Tidak Valid',
             }),
-            fullname: Joi.string().required().messages({
-                'any.required': 'Nama Lengkap diperlukan',
-                'string.empty': 'Nama Lengkap tidak boleh kosong',
+            password: Joi.string().required().messages({
+                'any.required': 'Password diperlukan',
+                'string.empty': 'Password tidak boleh kosong',
             }),
             
 
