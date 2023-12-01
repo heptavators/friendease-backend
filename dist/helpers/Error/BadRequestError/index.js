@@ -16,41 +16,23 @@ var __copyProps = (to, from, except, desc) => {
   return to;
 };
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
-var Validator_exports = {};
-__export(Validator_exports, {
-  ValidationException: () => ValidationException,
-  Validator: () => Validator
+var BadRequestError_exports = {};
+__export(BadRequestError_exports, {
+  BadRequestError: () => BadRequestError
 });
-module.exports = __toCommonJS(Validator_exports);
-class ValidationException extends Error {
+module.exports = __toCommonJS(BadRequestError_exports);
+class BadRequestError extends Error {
   errors;
   status;
-  constructor(errors, status = 400) {
+  constructor(errors) {
     super("Validation failed");
     this.errors = errors;
-    this.status = status;
+    this.status = 400;
     this.message = JSON.stringify(errors);
-  }
-}
-class Validator {
-  static validate(data, schema) {
-    const { error } = schema.validate(data, { abortEarly: false });
-    if (error) {
-      const errors = [];
-      error.details.forEach((detail) => {
-        if (detail.context && detail.context.key) {
-          const key = detail.context.key;
-          errors.push({ error: key, message: detail.message, code: 422 });
-        }
-      });
-      throw new ValidationException(errors);
-    }
-    return data;
   }
 }
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
-  ValidationException,
-  Validator
+  BadRequestError
 });
 //# sourceMappingURL=index.js.map

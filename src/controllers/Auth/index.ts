@@ -7,7 +7,9 @@ import ErrorFormatter from "../../helpers/Response/ErrorFormatter";
 import SuccessSingularFormatter from '../../helpers/Response/SuccessSingularFormatter';
 import FailFormatter from '../../helpers/Response/FailFormatter';
 import { Login  as LoginRequest } from '../../domains/web/Login';
-import { Validator } from '../../helpers/Validator';
+import { ValidationException, Validator } from '../../helpers/Validator';
+import ErrorInputFormatter from "../../helpers/Response/ErrorInputFormatter";
+import { BadRequestError } from "../../helpers/Error/BadRequestError";
 
 
 
@@ -22,31 +24,35 @@ export class Auth {
     
     async signInController(req: Request, res: Response) {
       try {
-
-        const data: LoginRequest = req.body as LoginRequest
-        const validate: LoginRequest = Validator.validate(data, LoginRequest.getSchema());
-          if (JSON.stringify(validate) === JSON.stringify(data)) {
-            const result = await this.authService.SignInService(validate)
-            if (result){
-              const response = SuccessSingularFormatter("Berhasil Login", {token: result})
-              res.status(200).send(response)
+        const data: LoginRequest = req.body as LoginRequest;
+        const validatedData = Validator.validate(data, LoginRequest.getSchema());
     
-            }else {
-              const response = FailFormatter("Pengguna Tidak Ditemukan");
-              res.status(404).send(response)    
-            }
-          } else {
-            const response = ErrorFormatter(JSON.stringify(validate));
-            res.status(422).json(response);
-        }
+        const result = await this.authService.SignInService(validatedData);
+        const response = SuccessSingularFormatter('Berhasil Login', { token: result });
+
+        res.status(200).send(response);
 
       } catch (error: any) {
-        const response = ErrorFormatter(error.message);
-        logger.error(error);
-        res.status(500).send(response);
-      }
+          if (error instanceof ValidationException) {
+            const formattedErrors = error.errors.map((err) => ({ error: err.error, message: err.message }));
+            const response =  (formattedErrors)
+            
+            res.status(422).send(response);
 
+          }else if (error instanceof BadRequestError){
 
-  }
+            const formattedErrors = error.errors.map((err) => ({ error: err.error, message: err.message }));
+            const response = ErrorInputFormatter(formattedErrors)
+            
+            res.status(400).send(response);
 
+          }else {
+            const response = ErrorFormatter(error)
+            logger.error(error)
+            res.status(500).send(response)
+          }
+      
+    } 
+      
+    }
 }

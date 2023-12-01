@@ -1,22 +1,32 @@
-# Docker Image
+# Use an official Node.js image as the base image
 FROM node:18.16.1 
 
-# Create app directory
-WORKDIR /usr/src/app
+# Set the working directory inside the container
+WORKDIR /app
 
-# Install app dependencies
-# A wildcard is used to ensure both package.json AND package-lock.json are copied
+# Copy package.json and package-lock.json to the working directory
 COPY package*.json ./
 
-# Install Package Manager
+# Install dependencies
 RUN npm install
 
-# Bundle app source
+# Copy the rest of the application code to the working directory
 COPY . .
 
-# Copy .env.prod file to .env
-COPY .env.prod .env
+# Build TypeScript code
+RUN npm run build
 
+# Copy environment variables file
+COPY .env .env
+
+# Install Prisma globally
+RUN npm install -g @prisma/cli
+
+# Generate Prisma client
+RUN npx prisma generate
+
+# Expose port 3000
 EXPOSE 3000
-  
-CMD ["node", "index.js"]
+
+# Specify the default command to run the application
+CMD ["npm", "start"]

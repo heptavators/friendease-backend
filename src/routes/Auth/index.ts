@@ -30,6 +30,43 @@ authRouter.post("/login", async (req, res) => authController.signInController(re
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // router.get("/user", async function(req, res){
 //     let {name, page } = req.query as any
 //     try {

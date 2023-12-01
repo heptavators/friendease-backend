@@ -1,6 +1,9 @@
 import { AuthRepository } from "../../repositories/Auth";
 import { Login  as LoginRequest } from '../../domains/web/Login';
 import { GenerateJwtToken } from "../../helpers/JWT";
+import bcryptjs from "bcryptjs"
+import { ValidationException } from "../../helpers/Validator";
+import { BadRequestError } from "../../helpers/Error/BadRequestError";
 
 export class AuthService {
     private authRepository: AuthRepository
@@ -10,19 +13,19 @@ export class AuthService {
     }
 
     async SignInService(LoginRequest: LoginRequest) {
-        try {
             const user = await this.authRepository.findEmail(LoginRequest.email)
-            if (user) {
-                if (user.password != LoginRequest.email){
-                    console.log(1)
-                }
-                const token = GenerateJwtToken(user);
-                return token;
+            if (!user) {
+                throw new ValidationException([{ error: 'email', message: 'Incorrect Email', code: 404 }]);
             }
-            
-        } catch (error) {
-            throw new Error(`Something Wrong: ${error}`);
-        }
+
+            const comparePassword = bcryptjs.compareSync(LoginRequest.password, user.password)
+            if (!comparePassword) {
+                throw new BadRequestError([{ error: 'password', message: 'Incorrect password', code: 401 }]);
+            }
+
+            const token = GenerateJwtToken(user);
+            return token;
+
       }
 
 

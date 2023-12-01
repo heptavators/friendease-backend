@@ -1,7 +1,9 @@
 "use strict";
+var __create = Object.create;
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
 var __getOwnPropNames = Object.getOwnPropertyNames;
+var __getProtoOf = Object.getPrototypeOf;
 var __hasOwnProp = Object.prototype.hasOwnProperty;
 var __export = (target, all) => {
   for (var name in all)
@@ -15,6 +17,14 @@ var __copyProps = (to, from, except, desc) => {
   }
   return to;
 };
+var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
+  // If the importer is in node compatibility mode or this is not an ESM
+  // file that has been converted to a CommonJS file using a Babel-
+  // compatible transform (i.e. "__esModule" has not been set), then set
+  // "default" to the CommonJS "module.exports" for node compatibility.
+  isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
+  mod
+));
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 var Auth_exports = {};
 __export(Auth_exports, {
@@ -23,24 +33,25 @@ __export(Auth_exports, {
 module.exports = __toCommonJS(Auth_exports);
 var import_Auth = require("../../repositories/Auth");
 var import_JWT = require("../../helpers/JWT");
+var import_bcryptjs = __toESM(require("bcryptjs"));
+var import_Validator = require("../../helpers/Validator");
+var import_BadRequestError = require("../../helpers/Error/BadRequestError");
 class AuthService {
   authRepository;
   constructor(authRepository) {
     this.authRepository = new import_Auth.AuthRepository();
   }
   async SignInService(LoginRequest2) {
-    try {
-      const user = await this.authRepository.findEmail(LoginRequest2.email);
-      if (user) {
-        if (user.password != LoginRequest2.email) {
-          console.log(1);
-        }
-        const token = (0, import_JWT.GenerateJwtToken)(user);
-        return token;
-      }
-    } catch (error) {
-      throw new Error(`Something Wrong: ${error}`);
+    const user = await this.authRepository.findEmail(LoginRequest2.email);
+    if (!user) {
+      throw new import_Validator.ValidationException([{ error: "email", message: "Incorrect Email", code: 404 }]);
     }
+    const comparePassword = import_bcryptjs.default.compareSync(LoginRequest2.password, user.password);
+    if (!comparePassword) {
+      throw new import_BadRequestError.BadRequestError([{ error: "password", message: "Incorrect password", code: 401 }]);
+    }
+    const token = (0, import_JWT.GenerateJwtToken)(user);
+    return token;
   }
 }
 // Annotate the CommonJS export names for ESM import in node:

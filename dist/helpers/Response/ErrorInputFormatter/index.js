@@ -16,19 +16,19 @@ var __copyProps = (to, from, except, desc) => {
   return to;
 };
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
-var SuccessFormatter_exports = {};
-__export(SuccessFormatter_exports, {
-  default: () => SuccessSingularFormatter
+var ErrorInputFormatter_exports = {};
+__export(ErrorInputFormatter_exports, {
+  default: () => ErrorInputFormatter
 });
-module.exports = __toCommonJS(SuccessFormatter_exports);
-function SuccessSingularFormatter(message, meta, data) {
+module.exports = __toCommonJS(ErrorInputFormatter_exports);
+function ErrorInputFormatter(message) {
   const response = {
     info: {
-      success: true,
+      success: false,
       message,
-      meta
+      meta: null
     },
-    data
+    data: null
   };
   return response;
 }

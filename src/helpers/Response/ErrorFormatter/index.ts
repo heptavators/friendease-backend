@@ -9,4 +9,4 @@ export default function ErrorFormatter(message: string){
     }
   
     return response
-  }
+}

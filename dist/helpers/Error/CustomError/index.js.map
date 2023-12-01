@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../../src/helpers/Error/CustomError/index.ts"],
+  "sourcesContent": ["export abstract class CustomError extends Error {  \r\n    abstract statusCode: number;\r\n    \r\n    constructor(message: string) {\r\n      super(message);\r\n      Object.setPrototypeOf(this, CustomError.prototype);\r\n    }\r\n  \r\n    abstract serializeError(): { message: string; field?: string }[];\r\n  }"],
+  "mappings": ";;;;;;;;;;;;;;;;;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAO,MAAe,oBAAoB,MAAM;AAAA,EAG5C,YAAY,SAAiB;AAC3B,UAAM,OAAO;AACb,WAAO,eAAe,MAAM,YAAY,SAAS;AAAA,EACnD;AAGF;",
+  "names": []
+}
