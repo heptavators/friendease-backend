@@ -1,15 +1,12 @@
-import express, {Request, Response, Router } from 'express';
+import express, { Router } from 'express';
 import { Auth as AuthController } from "../../controllers/Auth";
 import { AuthRepository } from "../../repositories/Auth";
 import { AuthService } from "../../services/Auth";
 
-import SuccessFormatter from '../../helpers/Response/SuccessSingularFormatter';
 import ErrorFormatter from '../../helpers/Response/ErrorFormatter';
 import FailFormatter from '../../helpers/Response/FailFormatter';
 import { logger } from '../../helpers/Log';
-import { Login  as LoginRequest } from '../../domains/web/Login';
 import  Multer  from 'multer';
-import { Validator } from '../../helpers/Validator';
 
 const multer = Multer({
     storage: Multer.memoryStorage(),
@@ -27,44 +24,6 @@ const authController = new AuthController(authService, authRepository);
 
 
 authRouter.post("/login", async (req, res) => authController.signInController(req, res));
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 // router.get("/user", async function(req, res){

@@ -16,11 +16,11 @@ var __copyProps = (to, from, except, desc) => {
   return to;
 };
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
-var log_exports = {};
-__export(log_exports, {
+var Log_exports = {};
+__export(Log_exports, {
   logger: () => logger
 });
-module.exports = __toCommonJS(log_exports);
+module.exports = __toCommonJS(Log_exports);
 var import_winston = require("winston");
 const logger = (0, import_winston.createLogger)({
   level: "debug",

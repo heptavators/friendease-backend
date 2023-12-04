@@ -32,11 +32,12 @@ __export(Auth_exports, {
 });
 module.exports = __toCommonJS(Auth_exports);
 var import_Auth = require("../../services/Auth");
+var import_Log = require("../../helpers/Log");
 var import_ErrorFormatter = __toESM(require("../../helpers/Response/ErrorFormatter"));
 var import_SuccessSingularFormatter = __toESM(require("../../helpers/Response/SuccessSingularFormatter"));
 var import_Login = require("../../domains/web/Login");
 var import_Validator = require("../../helpers/Validator");
-var import_BaseError = require("../../helpers/Error/BaseError");
+var import_BadRequestError = require("../../helpers/Error/BadRequestError");
 class Auth {
   authService;
   constructor(authService, authRepository) {
@@ -50,10 +51,11 @@ class Auth {
       const response = (0, import_SuccessSingularFormatter.default)("Berhasil Login", { token: result });
       return res.status(200).send(response);
     } catch (error) {
-      if (error instanceof import_BaseError.BaseError) {
-        const response2 = (0, import_ErrorFormatter.default)(error.message);
-        return res.status(error.statusCode).send(response2);
+      if (error instanceof import_BadRequestError.BadRequestError) {
+        const response2 = (0, import_ErrorFormatter.default)(error.toResponseObject());
+        return res.status(error.status).send(response2);
       }
+      import_Log.logger.error(error);
       const response = (0, import_ErrorFormatter.default)(error);
       return res.status(500).send(response);
     }

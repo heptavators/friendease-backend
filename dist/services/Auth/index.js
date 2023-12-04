@@ -34,7 +34,6 @@ module.exports = __toCommonJS(Auth_exports);
 var import_Auth = require("../../repositories/Auth");
 var import_JWT = require("../../helpers/JWT");
 var import_bcryptjs = __toESM(require("bcryptjs"));
-var import_Validator = require("../../helpers/Validator");
 var import_BadRequestError = require("../../helpers/Error/BadRequestError");
 class AuthService {
   authRepository;
@@ -44,12 +43,11 @@ class AuthService {
   async SignInService(LoginRequest2) {
     const user = await this.authRepository.findEmail(LoginRequest2.email);
     if (!user) {
-      throw new import_Validator.ValidationException([{ error: "email", message: "Incorrect Email", code: 404 }]);
+      throw new import_BadRequestError.BadRequestError([{ error: "email", message: "Email Tidak Ditemukan" }], 401);
     }
     const comparePassword = import_bcryptjs.default.compareSync(LoginRequest2.password, user.password);
     if (!comparePassword) {
-      const tolol = new import_BadRequestError.BadRequestError([{ error: "password", message: "Incorrect password" }], 401);
-      throw tolol.toResponseObject();
+      throw new import_BadRequestError.BadRequestError([{ error: "password", message: "Password Salah" }], 401);
     }
     const token = (0, import_JWT.GenerateJwtToken)(user);
     return token;

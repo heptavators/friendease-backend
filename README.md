@@ -15,10 +15,11 @@
 ## Installed Packages
 
 - express
-
 - winston
+- prisma
 
 ## Architecture
+Domain -> Repository -> Service -> Controller -> Router
  
 ## How To Run / Install 
 

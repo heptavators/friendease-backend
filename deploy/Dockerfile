@@ -13,14 +13,15 @@ RUN npm install
 # Copy the rest of the application code to the working directory
 COPY . .
 
+# Copy environment variables file
+COPY .env.example .env
+
+
 # Build TypeScript code
 RUN npm run build
 
-# Copy environment variables file
-COPY .env .env
-
 # Install Prisma globally
-RUN npm install -g @prisma/cli
+RUN npm install -g prisma
 
 # Generate Prisma client
 RUN npx prisma generate

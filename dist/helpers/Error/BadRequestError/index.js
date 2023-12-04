@@ -29,7 +29,6 @@ class BadRequestError extends Error {
     this.errors = errors;
     this.status = status;
     this.message = JSON.stringify(errors);
-    this.toResponseObject();
   }
   toResponseObject() {
     return {

@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "sources": ["../../../src/helpers/log/index.ts"],
+  "sources": ["../../../src/helpers/Log/index.ts"],
   "sourcesContent": ["import {createLogger, format, transports} from \"winston\";\n\nexport const logger = createLogger({\n    level: \"debug\",\n    format: format.json(),\n    transports: [new transports.Console()],\n});"],
   "mappings": ";;;;;;;;;;;;;;;;;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA,qBAA+C;AAExC,MAAM,aAAS,6BAAa;AAAA,EAC/B,OAAO;AAAA,EACP,QAAQ,sBAAO,KAAK;AAAA,EACpB,YAAY,CAAC,IAAI,0BAAW,QAAQ,CAAC;AACzC,CAAC;",
   "names": []
