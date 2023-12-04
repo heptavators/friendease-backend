@@ -1,7 +1,7 @@
 {
   "version": 3,
   "sources": ["../../../../src/helpers/Response/ErrorFormatter/index.ts"],
-  "sourcesContent": ["export default function ErrorFormatter(message: string){\r\n    const response: object = {\r\n      info: {\r\n        success: false,\r\n        message: message,\r\n        meta: null\r\n      },\r\n      data: null,\r\n    }\r\n  \r\n    return response\r\n}"],
-  "mappings": ";;;;;;;;;;;;;;;;;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAe,SAAR,eAAgC,SAAgB;AACnD,QAAM,WAAmB;AAAA,IACvB,MAAM;AAAA,MACJ,SAAS;AAAA,MACT;AAAA,MACA,MAAM;AAAA,IACR;AAAA,IACA,MAAM;AAAA,EACR;AAEA,SAAO;AACX;",
+  "sourcesContent": ["export default function ErrorFormatter(message: object | string){\r\n    const response: object = {\r\n      info: {\r\n        success: false,\r\n        meta: null,\r\n        message: message,\r\n      },\r\n      data: null,\r\n    }\r\n  \r\n    return response\r\n}"],
+  "mappings": ";;;;;;;;;;;;;;;;;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAe,SAAR,eAAgC,SAAyB;AAC5D,QAAM,WAAmB;AAAA,IACvB,MAAM;AAAA,MACJ,SAAS;AAAA,MACT,MAAM;AAAA,MACN;AAAA,IACF;AAAA,IACA,MAAM;AAAA,EACR;AAEA,SAAO;AACX;",
   "names": []
 }

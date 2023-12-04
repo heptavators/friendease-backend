@@ -16,20 +16,18 @@ var __copyProps = (to, from, except, desc) => {
   return to;
 };
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
-var SuccessPluralFormatter_exports = {};
-__export(SuccessPluralFormatter_exports, {
-  default: () => SuccessPluralFormatter
+var BaseError_exports = {};
+__export(BaseError_exports, {
+  BaseError: () => BaseError
 });
-module.exports = __toCommonJS(SuccessPluralFormatter_exports);
-function SuccessPluralFormatter(message, meta, data) {
-  const response = {
-    info: {
-      success: true,
-      meta,
-      message
-    },
-    data
-  };
-  return response;
+module.exports = __toCommonJS(BaseError_exports);
+class BaseError extends Error {
+  constructor(message) {
+    super(message);
+  }
 }
+// Annotate the CommonJS export names for ESM import in node:
+0 && (module.exports = {
+  BaseError
+});
 //# sourceMappingURL=index.js.map

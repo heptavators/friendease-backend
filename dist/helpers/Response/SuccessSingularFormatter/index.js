@@ -25,8 +25,8 @@ function SuccessSingularFormatter(message, data) {
   const response = {
     info: {
       success: true,
-      message,
-      meta: null
+      meta: null,
+      message
     },
     data
   };

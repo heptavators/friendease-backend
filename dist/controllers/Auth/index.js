@@ -32,13 +32,11 @@ __export(Auth_exports, {
 });
 module.exports = __toCommonJS(Auth_exports);
 var import_Auth = require("../../services/Auth");
-var import_Log = require("../../helpers/Log");
 var import_ErrorFormatter = __toESM(require("../../helpers/Response/ErrorFormatter"));
 var import_SuccessSingularFormatter = __toESM(require("../../helpers/Response/SuccessSingularFormatter"));
 var import_Login = require("../../domains/web/Login");
 var import_Validator = require("../../helpers/Validator");
-var import_ErrorInputFormatter = __toESM(require("../../helpers/Response/ErrorInputFormatter"));
-var import_BadRequestError = require("../../helpers/Error/BadRequestError");
+var import_BaseError = require("../../helpers/Error/BaseError");
 class Auth {
   authService;
   constructor(authService, authRepository) {
@@ -50,21 +48,14 @@ class Auth {
       const validatedData = import_Validator.Validator.validate(data, import_Login.Login.getSchema());
       const result = await this.authService.SignInService(validatedData);
       const response = (0, import_SuccessSingularFormatter.default)("Berhasil Login", { token: result });
-      res.status(200).send(response);
+      return res.status(200).send(response);
     } catch (error) {
-      if (error instanceof import_Validator.ValidationException) {
-        const formattedErrors = error.errors.map((err) => ({ error: err.error, message: err.message }));
-        const response = formattedErrors;
-        res.status(422).send(response);
-      } else if (error instanceof import_BadRequestError.BadRequestError) {
-        const formattedErrors = error.errors.map((err) => ({ error: err.error, message: err.message }));
-        const response = (0, import_ErrorInputFormatter.default)(formattedErrors);
-        res.status(400).send(response);
-      } else {
-        const response = (0, import_ErrorFormatter.default)(error);
-        import_Log.logger.error(error);
-        res.status(500).send(response);
+      if (error instanceof import_BaseError.BaseError) {
+        const response2 = (0, import_ErrorFormatter.default)(error.message);
+        return res.status(error.statusCode).send(response2);
       }
+      const response = (0, import_ErrorFormatter.default)(error);
+      return res.status(500).send(response);
     }
   }
 }

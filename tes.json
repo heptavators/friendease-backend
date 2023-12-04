@@ -1,0 +1,97 @@
+{
+    "info": {
+        "success": false,
+        "meta": null,
+        "message": "Incorrect Password"
+    },
+    "data": null
+}
+
+{
+    "info": {
+        "success": false,
+        "meta": null,
+        "message": "Email Not Found"
+    },
+    "data": null
+}
+
+
+{
+    "info": {
+        "success": false,
+        "meta": null,
+        "message": {
+            "errors": [
+                {
+                    "error": "email",
+                    "message": "Alamat Email diperlukan",
+                    "code": 422
+                },
+                {
+                    "error": "password",
+                    "message": "Password diperlukan",
+                    "code": 422
+                }
+            ],
+            "status": 400
+        }
+    },
+    "data": null
+}
+
+
+{
+    "info": {
+        "success": false,
+        "meta": null,
+        "message": {
+            "errors": [
+                {
+                    "error": "password",
+                    "message": "Password diperlukan",
+                    "code": 422
+                }
+            ],
+            "status": 400
+        }
+    },
+    "data": null
+}
+
+{
+    "info": {
+        "success": false,
+        "meta": null,
+        "message": {
+            "errors": [
+                {
+                    "error": "email",
+                    "message": "Incorrect Email",
+                    "code": 404
+                }
+            ],
+            "status": 400
+        }
+    },
+    "data": null
+}
+
+
+{
+    "info": {
+        "success": false,
+        "meta": null,
+        "message": {
+            "errors": [
+                {
+                    "error": "password",
+                    "message": "Incorrect password"
+                }
+            ],
+            "status": 401
+        }
+    },
+    "data": null
+}
+

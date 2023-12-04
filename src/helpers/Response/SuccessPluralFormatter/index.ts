@@ -2,8 +2,8 @@ export default function SuccessPluralFormatter(message: string, meta: object, da
     const response: object = {
       info: {
         success: true,
-        message: message,
-        meta: meta
+        meta: meta,
+        message: message
       },
       data: data,
     }

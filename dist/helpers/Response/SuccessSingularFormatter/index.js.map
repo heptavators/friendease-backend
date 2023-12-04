@@ -1,7 +1,7 @@
 {
   "version": 3,
   "sources": ["../../../../src/helpers/Response/SuccessSingularFormatter/index.ts"],
-  "sourcesContent": ["export default function SuccessSingularFormatter(message: string, data: object){\r\n    const response: object = {\r\n      info: {\r\n        success: true,\r\n        message: message,\r\n        meta: null\r\n      },\r\n      data: data,\r\n    }\r\n  \r\n    return response\r\n  }"],
-  "mappings": ";;;;;;;;;;;;;;;;;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAe,SAAR,yBAA0C,SAAiB,MAAa;AAC3E,QAAM,WAAmB;AAAA,IACvB,MAAM;AAAA,MACJ,SAAS;AAAA,MACT;AAAA,MACA,MAAM;AAAA,IACR;AAAA,IACA;AAAA,EACF;AAEA,SAAO;AACT;",
+  "sourcesContent": ["export default function SuccessSingularFormatter(message: string, data: object){\r\n    const response: object = {\r\n      info: {\r\n        success: true,\r\n        meta: null,\r\n        message: message\r\n      },\r\n      data: data,\r\n    }\r\n  \r\n    return response\r\n  }"],
+  "mappings": ";;;;;;;;;;;;;;;;;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAe,SAAR,yBAA0C,SAAiB,MAAa;AAC3E,QAAM,WAAmB;AAAA,IACvB,MAAM;AAAA,MACJ,SAAS;AAAA,MACT,MAAM;AAAA,MACN;AAAA,IACF;AAAA,IACA;AAAA,EACF;AAEA,SAAO;AACT;",
   "names": []
 }

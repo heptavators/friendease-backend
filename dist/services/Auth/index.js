@@ -48,7 +48,8 @@ class AuthService {
     }
     const comparePassword = import_bcryptjs.default.compareSync(LoginRequest2.password, user.password);
     if (!comparePassword) {
-      throw new import_BadRequestError.BadRequestError([{ error: "password", message: "Incorrect password", code: 401 }]);
+      const tolol = new import_BadRequestError.BadRequestError([{ error: "password", message: "Incorrect password" }], 401);
+      throw tolol.toResponseObject();
     }
     const token = (0, import_JWT.GenerateJwtToken)(user);
     return token;

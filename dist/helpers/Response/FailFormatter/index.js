@@ -25,8 +25,8 @@ function FailFormatter(message) {
   const response = {
     info: {
       success: false,
-      message,
-      meta: null
+      meta: null,
+      message
     },
     data: null
   };

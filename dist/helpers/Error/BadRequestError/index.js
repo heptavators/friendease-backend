@@ -24,11 +24,17 @@ module.exports = __toCommonJS(BadRequestError_exports);
 class BadRequestError extends Error {
   errors;
   status;
-  constructor(errors) {
+  constructor(errors, status) {
     super("Validation failed");
     this.errors = errors;
-    this.status = 400;
+    this.status = status;
     this.message = JSON.stringify(errors);
+    this.toResponseObject();
+  }
+  toResponseObject() {
+    return {
+      errors: this.errors.map(({ error, message }) => ({ error, message }))
+    };
   }
 }
 // Annotate the CommonJS export names for ESM import in node:

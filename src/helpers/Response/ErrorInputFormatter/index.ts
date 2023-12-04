@@ -6,8 +6,8 @@ export default function ErrorInputFormatter(message: Array<Object>) {
     const response: object = {
         info: {
           success: false,
-          message: message,
-          meta: null
+          meta: null,
+          message: message
         },
         data: null,
       }

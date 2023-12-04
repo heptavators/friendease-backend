@@ -1,7 +1,7 @@
 {
   "version": 3,
   "sources": ["../../../../src/helpers/Error/BadRequestError/index.ts"],
-  "sourcesContent": ["import { CustomError } from \"../CustomError\";\r\n\r\nexport class BadRequestError extends Error {\r\n    errors: Array<{ error: string; message: string; code: number }>;\r\n    status: number;\r\n  \r\n    constructor(errors: Array<{ error: string; message: string; code: number }>) {\r\n      super('Validation failed');\r\n      this.errors = errors;\r\n      this.status = 400;  \r\n      this.message = JSON.stringify(errors); \r\n    }\r\n}"],
-  "mappings": ";;;;;;;;;;;;;;;;;;AAAA;AAAA;AAAA;AAAA;AAAA;AAEO,MAAM,wBAAwB,MAAM;AAAA,EACvC;AAAA,EACA;AAAA,EAEA,YAAY,QAAiE;AAC3E,UAAM,mBAAmB;AACzB,SAAK,SAAS;AACd,SAAK,SAAS;AACd,SAAK,UAAU,KAAK,UAAU,MAAM;AAAA,EACtC;AACJ;",
+  "sourcesContent": ["import ErrorFormatter from \"../../Response/ErrorFormatter\";\r\n\r\nexport class BadRequestError extends Error {\r\n  errors: Array<{ error: string; message: string }>;\r\n  status: number\r\n\r\n  constructor(errors: Array<{ error: string; message: string}>, status: number) {\r\n    super('Validation failed');\r\n    this.errors = errors;\r\n    this.status = status\r\n    this.message = JSON.stringify(errors); \r\n\r\n    this.toResponseObject()\r\n\r\n  }\r\n\r\n  toResponseObject(){\r\n    return {\r\n      errors: this.errors.map(({ error, message }) => ({ error, message })),\r\n\r\n    }\r\n  }\r\n\r\n}"],
+  "mappings": ";;;;;;;;;;;;;;;;;;AAAA;AAAA;AAAA;AAAA;AAAA;AAEO,MAAM,wBAAwB,MAAM;AAAA,EACzC;AAAA,EACA;AAAA,EAEA,YAAY,QAAkD,QAAgB;AAC5E,UAAM,mBAAmB;AACzB,SAAK,SAAS;AACd,SAAK,SAAS;AACd,SAAK,UAAU,KAAK,UAAU,MAAM;AAEpC,SAAK,iBAAiB;AAAA,EAExB;AAAA,EAEA,mBAAkB;AAChB,WAAO;AAAA,MACL,QAAQ,KAAK,OAAO,IAAI,CAAC,EAAE,OAAO,QAAQ,OAAO,EAAE,OAAO,QAAQ,EAAE;AAAA,IAEtE;AAAA,EACF;AAEF;",
   "names": []
 }

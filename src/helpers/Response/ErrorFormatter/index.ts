@@ -1,9 +1,9 @@
-export default function ErrorFormatter(message: string){
+export default function ErrorFormatter(message: object | string){
     const response: object = {
       info: {
         success: false,
+        meta: null,
         message: message,
-        meta: null
       },
       data: null,
     }
