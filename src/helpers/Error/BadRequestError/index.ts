@@ -1,5 +1,3 @@
-import ErrorFormatter from "../../Response/ErrorFormatter";
-
 export class BadRequestError extends Error {
   errors: Array<{ error: string; message: string }>;
   status: number;

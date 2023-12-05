@@ -1,5 +1,6 @@
 import express from 'express';
-import  router  from './routes/Auth';
+// import  router  from './routes/Auth';
+import  product  from './routes/Product';
 import { logger } from './helpers/Log';
 
 try {
@@ -13,9 +14,10 @@ try {
     res.send('Hello World!');
   });
 
-  app.use("/api", router)
+  // app.use("/api", router)
 
-  
+  app.use("/api", product)
+
 
   app.listen(port, () => {
     logger.info(process.env.SECRET_KEYS)

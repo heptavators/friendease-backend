@@ -23,8 +23,11 @@ __export(Auth_exports, {
 module.exports = __toCommonJS(Auth_exports);
 var import_Base = require("../Base");
 class AuthRepository extends import_Base.BaseRepository {
+  getModel() {
+    throw new Error("Method not implemented.");
+  }
   constructor() {
-    super("Auth");
+    super("auth");
   }
   async findEmail(email) {
     try {

@@ -13,7 +13,7 @@ export abstract class BaseRepository<T> implements IWrite<T>, IRead<T> {
 
   async create(data: T): Promise<any> {
     try {
-      return this.model.create({data})
+      return this.model.create({ data })
     } catch (e) {
       throw new Error(`Cannot create data because : ${e}`)
     }

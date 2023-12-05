@@ -22,6 +22,12 @@ model Auth {
   role     Role    @default(CUSTOMER)
 }
 
+model Product {
+  id    String @id @unique @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name  String
+  price Int
+}
+
 enum Role {
   CUSTOMER
   ADMIN
