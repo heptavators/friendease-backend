@@ -14,7 +14,7 @@ RUN npm install
 COPY . .
 
 # Copy environment variables file
-COPY .env.example .env
+# COPY .env.example .env
 
 
 # Build TypeScript code
