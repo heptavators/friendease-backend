@@ -1,5 +1,6 @@
 import { ProductRepository } from "../../repositories/Product";
 import { ProductRequest } from '../../domains/web/Product';
+import { ProductModel } from "src/domains/model/Product";
 
 export class ProductService {
     private productRepository: ProductRepository
@@ -16,7 +17,7 @@ export class ProductService {
         return this.instance;
     }
 
-    async createProductService(productRequest: ProductRequest ){
+    async createProductService(productRequest: ProductModel ){
         const product = await this.productRepository.insertAgain(productRequest)
         return product
     }

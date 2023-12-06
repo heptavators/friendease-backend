@@ -7,6 +7,8 @@ import { logger } from "../../helpers/Log";
 import SuccessSingularFormatter from '../../helpers/Response/SuccessSingularFormatter';
 import { ProductRequest } from "../../domains/web/Product";
 import { Validator } from '../../helpers/Validator';
+import { ProductModel } from "../../domains/model/Product";
+import { v4 as uuidv4 } from 'uuid';
 
 
 export class ProductController {
@@ -20,8 +22,9 @@ export class ProductController {
         try {
             const data: ProductRequest = req.body;
             const validatedData = Validator.validate(data, ProductRequest.getSchema());
-        
-            const result = await this.productService.createProductService(validatedData)
+            
+            const product = new ProductModel(uuidv4(), validatedData.name, validatedData.price)
+            const result = await this.productService.createProductService(product)
             const response = SuccessSingularFormatter('Berhasil Buat Product Baru', result);
     
             return res.status(200).send(response);

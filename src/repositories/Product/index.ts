@@ -20,7 +20,7 @@ export class ProductRepository extends BaseRepository<ProductModel>{
           return prisma.product.create({data: productRequest})
 }
 
-async insertAgain(productRequest: any ): Promise<any>  {
+async insertAgain(productRequest: ProductModel ): Promise<any>  {
     return this.create(productRequest)
 }
 
