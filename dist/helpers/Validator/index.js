@@ -25,11 +25,16 @@ module.exports = __toCommonJS(Validator_exports);
 class ValidationException extends Error {
   errors;
   status;
-  constructor(errors, status = 400) {
+  constructor(errors, status) {
     super("Validation failed");
     this.errors = errors;
     this.status = status;
     this.message = JSON.stringify(errors);
+  }
+  toResponseObject() {
+    return {
+      errors: this.errors.map(({ error, message }) => ({ error, message }))
+    };
   }
 }
 class Validator {
@@ -40,10 +45,10 @@ class Validator {
       error.details.forEach((detail) => {
         if (detail.context && detail.context.key) {
           const key = detail.context.key;
-          errors.push({ error: key, message: detail.message, code: 422 });
+          errors.push({ error: key, message: detail.message });
         }
       });
-      throw new ValidationException(errors);
+      throw new ValidationException(errors, 422);
     }
     return data;
   }

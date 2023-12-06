@@ -19,17 +19,17 @@ export abstract class BaseRepository<T> implements IWrite<T>, IRead<T> {
     }
   }
 
-  update(special_id: string, data: T): Promise<boolean> {
+  update(id: string, data: T): Promise<boolean> {
     try {
-      return this.model.update({ where: {special_id}, data})
+      return this.model.update({ where: {id}, data})
     } catch (e) {
       throw new Error(`Cannot update data because : ${e}`)
     }
   }
   
-  delete(special_id: string): Promise<boolean> {
+  delete(id: string): Promise<boolean> {
     try {
-      return this.model.delete({where: {special_id}})
+      return this.model.delete({where: {id}})
     } catch (e) {
       throw new Error(`Cannot delete data because : ${e}`)
     }
@@ -43,7 +43,7 @@ export abstract class BaseRepository<T> implements IWrite<T>, IRead<T> {
     }
   }
 
-  count(options: object): Promise<T[]> {
+  count(options: object): Promise<number> {
     try {
       return this.model.count(options)
     } catch (e) {

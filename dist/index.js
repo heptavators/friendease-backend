@@ -22,7 +22,7 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
   mod
 ));
 var import_express = __toESM(require("express"));
-var import_Product = __toESM(require("./routes/Product"));
+var import_routes = __toESM(require("./routes"));
 var import_Log = require("./helpers/Log");
 try {
   const app = (0, import_express.default)();
@@ -32,7 +32,7 @@ try {
   app.get("/", (req, res) => {
     res.send("Hello World!");
   });
-  app.use("/api", import_Product.default);
+  app.use("/api", import_routes.default);
   app.listen(port, () => {
     import_Log.logger.info(process.env.SECRET_KEYS);
     import_Log.logger.info("apps running on port " + port);

@@ -35,16 +35,16 @@ class BaseRepository {
       throw new Error(`Cannot create data because : ${e}`);
     }
   }
-  update(special_id, data) {
+  update(id, data) {
     try {
-      return this.model.update({ where: { special_id }, data });
+      return this.model.update({ where: { id }, data });
     } catch (e) {
       throw new Error(`Cannot update data because : ${e}`);
     }
   }
-  delete(special_id) {
+  delete(id) {
     try {
-      return this.model.delete({ where: { special_id } });
+      return this.model.delete({ where: { id } });
     } catch (e) {
       throw new Error(`Cannot delete data because : ${e}`);
     }

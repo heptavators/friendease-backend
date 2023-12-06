@@ -5,7 +5,7 @@ import { logger } from "../../helpers/Log";
 import ErrorFormatter from "../../helpers/Response/ErrorFormatter";
 import SuccessSingularFormatter from '../../helpers/Response/SuccessSingularFormatter';
 import { Login  as LoginRequest } from '../../domains/web/Login';
-import { Validator } from '../../helpers/Validator';
+import { ValidationException, Validator } from '../../helpers/Validator';
 import { BadRequestError } from "../../helpers/Error/BadRequestError";
 
 export class Auth {
@@ -26,13 +26,20 @@ export class Auth {
         return res.status(200).send(response);
 
       } catch (error: any) {
-        if (error instanceof BadRequestError) {
-            const response = ErrorFormatter(error.toResponseObject())
-            return res.status(error.status).send(response);
-        }
-        logger.error(error)
-        const response = ErrorFormatter(error);
-        return res.status(500).send(response);
+        handleErrorResponse(res, error)
       } 
     }
-}
+
+  }
+
+  
+const handleErrorResponse = (res: Response, error: any) => {
+  if (error instanceof BadRequestError || error instanceof ValidationException) {
+    const response = ErrorFormatter(error.toResponseObject());
+    return res.status(error.status).send(response);
+  }
+
+  logger.error(error);
+  const response = ErrorFormatter(error);
+  return res.status(500).send(response);
+};

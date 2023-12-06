@@ -6,9 +6,8 @@ import ErrorFormatter from "../../helpers/Response/ErrorFormatter";
 import { logger } from "../../helpers/Log";
 import SuccessSingularFormatter from '../../helpers/Response/SuccessSingularFormatter';
 import { ProductRequest } from "../../domains/web/Product";
-import { Validator } from '../../helpers/Validator';
-import { ProductModel } from "../../domains/model/Product";
-import { v4 as uuidv4 } from 'uuid';
+import { ValidationException, Validator } from '../../helpers/Validator';
+import SuccessPluralFormatter from "../../helpers/Response/SuccessPluralFormatter";
 
 
 export class ProductController {
@@ -18,24 +17,78 @@ export class ProductController {
         this.productService = productService
     }
 
+
+
+    async GetAllProductController(req: Request, res: Response){
+        try {
+            const {name, page} = req.query as any
+            const limit = 4
+            
+            const {data, count} = await this.productService.getAllProductService(name, page, limit)
+
+            const totalPage = Math.ceil(count / limit);
+            const totalItems = count
+            const currentPage = page
+            const itemsPerPage = limit
+
+            const response = SuccessPluralFormatter('Data Semua Produk', {currentPage, totalPage, totalItems, itemsPerPage}, data);
+    
+            return res.status(200).send(response);
+        } catch (error) {
+            
+        }
+    }
+
+    async GetByIdProductController(req: Request, res: Response){
+        try {
+            
+        } catch (error) {
+            
+        }
+    }
+
     async CreateProductController(req: Request, res: Response){
         try {
             const data: ProductRequest = req.body;
             const validatedData = Validator.validate(data, ProductRequest.getSchema());
             
-            const product = new ProductModel(uuidv4(), validatedData.name, validatedData.price)
-            const result = await this.productService.createProductService(product)
-            const response = SuccessSingularFormatter('Berhasil Buat Product Baru', result);
+            const result = await this.productService.createProductService(validatedData)
+            const response = SuccessSingularFormatter('Berhasil Buat Produk Baru', result);
     
             return res.status(200).send(response);
-        } catch (error: any) {
-            if (error instanceof BadRequestError) {
-                const response = ErrorFormatter(error.toResponseObject())
-                return res.status(error.status).send(response);
-            }
-            logger.error(error)
-            const response = ErrorFormatter(error);
-            return res.status(500).send(response);
+        } catch (error) {
+            return handleErrorResponse(res, error);
         }
     }
+
+    async EditProductController(req: Request, res: Response){
+        try {
+            
+        } catch (error) {
+            
+        }
+    }
+
+    async DeleteProductController(req: Request, res: Response){
+        try {
+            
+        } catch (error) {
+            
+        }
+    }
+
+
 }
+
+
+const handleErrorResponse = (res: Response, error: any) => {
+    if (error instanceof BadRequestError || error instanceof ValidationException) {
+      const response = ErrorFormatter(error.toResponseObject());
+      return res.status(error.status).send(response);
+    }
+  
+    logger.error(error);
+    const response = ErrorFormatter(error);
+    return res.status(500).send(response);
+  };
+  

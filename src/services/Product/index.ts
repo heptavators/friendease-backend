@@ -1,6 +1,6 @@
 import { ProductRepository } from "../../repositories/Product";
 import { ProductRequest } from '../../domains/web/Product';
-import { ProductModel } from "src/domains/model/Product";
+import { ProductModel } from "../../domains/model/Product";
 
 export class ProductService {
     private productRepository: ProductRepository
@@ -17,8 +17,9 @@ export class ProductService {
         return this.instance;
     }
 
-    async createProductService(productRequest: ProductModel ){
-        const product = await this.productRepository.insertAgain(productRequest)
+    async createProductService(productRequest: ProductRequest ){
+        
+        const product = await this.productRepository.insert(productRequest)
         return product
     }
 
@@ -26,8 +27,27 @@ export class ProductService {
 
     }
 
-    async getAllProductService(){
-
+    async getAllProductService(name: any, page: any, limit: any){
+        const data = await this.productRepository.find({
+            where: {
+                name: {
+                  contains: name,
+                  mode: 'insensitive'
+                },
+              },
+              skip: page > 1 ? 10 * page - 10 : 0,
+              take: limit
+        
+        })
+        const count = await this.productRepository.count({
+            where: {
+                name: {
+                  contains: name,
+                  mode: 'insensitive'
+                },
+              },
+        })
+        return {data, count} ; 
     }
 
     async updateProductService(){
