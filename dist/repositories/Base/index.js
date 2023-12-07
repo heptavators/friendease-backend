@@ -65,7 +65,7 @@ class BaseRepository {
   }
   findOne(id) {
     try {
-      return this.model.findUnique({ where: { id } });
+      return this.model.findUnique({ where: id });
     } catch (e) {
       throw new Error(`Cannot find data because : ${e}`);
     }

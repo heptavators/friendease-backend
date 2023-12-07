@@ -1,6 +1,8 @@
 import { ProductRepository } from "../../repositories/Product";
-import { ProductRequest } from '../../domains/web/Product';
+import { CreateProductRequest } from '../../domains/web/Product/CreateProductRequest';
 import { ProductModel } from "../../domains/model/Product";
+import { DEFAULT_LIMIT } from "../../utils/Constant";
+import { EditProductRequest } from "../../domains/web/Product/EditProductRequest";
 
 export class ProductService {
     private productRepository: ProductRepository
@@ -17,47 +19,65 @@ export class ProductService {
         return this.instance;
     }
 
-    async createProductService(productRequest: ProductRequest ){
-        
-        const product = await this.productRepository.insert(productRequest)
+
+    private buildQueryOptions(name: any, page: any) {
+        return {
+            where: {
+                name: {
+                    contains: name,
+                    mode: 'insensitive',
+                },
+   
+            },
+            orderBy: [
+                {
+                    createdAt: 'desc', 
+                }
+            ],
+            skip: page > 1 ? 10 * page - 10 : 0,
+            take: DEFAULT_LIMIT,
+
+        };
+    }
+
+    private buildQueryCount(name: any){
+        return{
+            where: {
+                name: {
+                    contains: name,
+                    mode: 'insensitive'
+                }
+            }
+        }
+    }
+
+    async createProductService(createProductRequest: CreateProductRequest ){
+        const product = await this.productRepository.insert(createProductRequest)
         return product
     }
 
-    async getProductByIdService(){
+    async getProductByIdService(id: string){
+        const data = await this.productRepository.findOne(id);
+        return data; 
 
     }
 
-    async getAllProductService(name: any, page: any, limit: any){
-        const data = await this.productRepository.find({
-            where: {
-                name: {
-                  contains: name,
-                  mode: 'insensitive'
-                },
-              },
-              skip: page > 1 ? 10 * page - 10 : 0,
-              take: limit
-        
-        })
-        const count = await this.productRepository.count({
-            where: {
-                name: {
-                  contains: name,
-                  mode: 'insensitive'
-                },
-              },
-        })
-        return {data, count} ; 
+    async getAllProductService(name: any, page: any){
+        const options = this.buildQueryOptions(name, page);
+        const total = this.buildQueryCount(name)
+        const data = await this.productRepository.find(options);
+        const count = await this.productRepository.count(total);
+        return { data, count }; 
     }
 
-    async updateProductService(){
-
+    async editProductService(id: string, editProductRequest: EditProductRequest){
+        const product = await this.productRepository.edit(id, editProductRequest)
+        return product
     }
 
     async deleteProductService(){
 
     }
-
 
 
 

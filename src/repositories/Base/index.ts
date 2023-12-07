@@ -53,7 +53,7 @@ export abstract class BaseRepository<T> implements IWrite<T>, IRead<T> {
 
   findOne(id: string): Promise<any> {
     try {
-      return this.model.findUnique({ where: { id } });
+      return this.model.findUnique({where: id});
     } catch (e) {
       throw new Error(`Cannot find data because : ${e}`)
     }
