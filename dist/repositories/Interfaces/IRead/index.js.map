@@ -1,7 +1,7 @@
 {
   "version": 3,
   "sources": ["../../../../src/repositories/Interfaces/IRead/index.ts"],
-  "sourcesContent": ["export interface IRead<T> {\r\n  find(item: object): Promise<T[]>\r\n  findOne(id: string): Promise<T>\r\n}"],
+  "sourcesContent": ["export interface IRead<T> {\n  find(item: object): Promise<T[]>\n  findOne(id: string): Promise<T | null>;\n}"],
   "mappings": ";;;;;;;;;;;;;;AAAA;AAAA;",
   "names": []
 }

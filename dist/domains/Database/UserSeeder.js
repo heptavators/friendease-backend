@@ -31,10 +31,9 @@ __export(UserSeeder_exports, {
   UserSeeder: () => UserSeeder
 });
 module.exports = __toCommonJS(UserSeeder_exports);
-var import_client = require("@prisma/client");
 var import_uuid = require("uuid");
 var import_bcryptjs = __toESM(require("bcryptjs"), 1);
-const prisma = new import_client.PrismaClient();
+var import_Auth = require("../../domains/model/Auth");
 class UserSeeder {
   async run() {
     const auths = [
@@ -51,10 +50,9 @@ class UserSeeder {
       }
     ];
     for (const authData of auths) {
-      await prisma.auth.deleteMany({});
-      await prisma.auth.create({ data: authData });
+      await import_Auth.User.destroy({ where: {} });
+      await import_Auth.User.create({ data: authData });
     }
-    await prisma.$disconnect();
   }
 }
 // Annotate the CommonJS export names for ESM import in node:

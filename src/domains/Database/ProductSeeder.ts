@@ -1,9 +1,5 @@
-import { PrismaClient, } from '@prisma/client'
 import { v4 as uuidv4 } from 'uuid';
-
-const prisma = new PrismaClient()
-
-
+import { Product } from '../model/Product'; 
 
 export class ProductSeeder {
   async run(){
@@ -86,9 +82,8 @@ export class ProductSeeder {
     ];
 
     
-      await prisma.product.deleteMany({})
-      await prisma.product.createMany({ data: products });
-      await prisma.$disconnect()
+      await Product.destroy({ where: {} })
+      await Product.bulkCreate(products.map(product => ({...product })));
 
 
   }

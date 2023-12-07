@@ -84,10 +84,10 @@ export class ProductController {
             const data: EditProductRequest = req.body;
             const validatedData = Validator.validate(data, EditProductRequest.getSchema());
             
-            const result = await this.productService.editProductService(id, validatedData)
-            const response = SuccessSingularFormatter('Berhasil Edit Produk', result);
+            // const result = await this.productService.editProductService(id, validatedData)
+            // const response = SuccessSingularFormatter('Berhasil Edit Produk', result);
     
-            return res.status(200).send(response);
+            // return res.status(200).send(response);
         } catch (error) {
             return handleErrorResponse(res, error);
 

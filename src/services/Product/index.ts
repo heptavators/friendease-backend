@@ -3,6 +3,7 @@ import { CreateProductRequest } from '../../domains/web/Product/CreateProductReq
 import { ProductModel } from "../../domains/model/Product";
 import { DEFAULT_LIMIT } from "../../utils/Constant";
 import { EditProductRequest } from "../../domains/web/Product/EditProductRequest";
+import { Op } from "sequelize";
 
 export class ProductService {
     private productRepository: ProductRepository
@@ -20,35 +21,38 @@ export class ProductService {
     }
 
 
-    private buildQueryOptions(name: any, page: any) {
-        return {
-            where: {
-                name: {
-                    contains: name,
-                    mode: 'insensitive',
-                },
-   
-            },
-            orderBy: [
-                {
-                    createdAt: 'desc', 
-                }
-            ],
-            skip: page > 1 ? 10 * page - 10 : 0,
-            take: DEFAULT_LIMIT,
-
+    private buildQueryOptions(name: string, page: number) {
+        const options: any = {
+          order: [['createdAt', 'DESC']], 
+          offset: page && page > 1 ? 10 * page - 10 : 0,
+          limit: DEFAULT_LIMIT,
         };
-    }
+      
+        if (name) {
+          options.where = {
+            name: {
+              [Op.like]: `%${name}%`,
+            },
+          };
+        }
+      
+        return options;
+      }
 
     private buildQueryCount(name: any){
-        return{
-            where: {
-                name: {
-                    contains: name,
-                    mode: 'insensitive'
-                }
-            }
-        }
+        const options: any = {
+            order: [['createdAt', 'DESC']], 
+          };
+        
+          if (name) {
+            options.where = {
+              name: {
+                [Op.like]: `%${name}%`,
+              },
+            };
+          }
+        
+          return options;
     }
 
     async createProductService(createProductRequest: CreateProductRequest ){
@@ -57,7 +61,7 @@ export class ProductService {
     }
 
     async getProductByIdService(id: string){
-        const data = await this.productRepository.findOne(id);
+        const data = await this.productRepository.findById(id);
         return data; 
 
     }
@@ -65,15 +69,15 @@ export class ProductService {
     async getAllProductService(name: any, page: any){
         const options = this.buildQueryOptions(name, page);
         const total = this.buildQueryCount(name)
-        const data = await this.productRepository.find(options);
-        const count = await this.productRepository.count(total);
+        const data = await this.productRepository.findMany(options);
+        const count = await this.productRepository.count(total);;
         return { data, count }; 
     }
 
-    async editProductService(id: string, editProductRequest: EditProductRequest){
-        const product = await this.productRepository.edit(id, editProductRequest)
-        return product
-    }
+    // async editProductService(id: string, editProductRequest: EditProductRequest){
+    //     const product = await this.productRepository.edit(id, editProductRequest)
+    //     return product
+    // }
 
     async deleteProductService(){
 

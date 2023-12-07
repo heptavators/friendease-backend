@@ -25,8 +25,6 @@ var import_express = __toESM(require("express"));
 var import_routes = __toESM(require("./routes"));
 var import_Log = require("./helpers/Log");
 var import_Database = __toESM(require("./configs/Database"));
-var import_Product = require("./domains/model/Product");
-var import_uuid = require("uuid");
 try {
   const app = (0, import_express.default)();
   import_Database.default.sync();
@@ -45,18 +43,4 @@ try {
   import_Log.logger.error("failed to running apps, error : " + error);
   process.exit(1);
 }
-async function createProduct(data) {
-  await import_Database.default.sync();
-  const createdProduct = await import_Product.Product.create(data);
-  return createdProduct;
-}
-createProduct({
-  id: (0, import_uuid.v4)(),
-  name: "Example Product",
-  price: 19.99
-}).then((createdProduct) => {
-  console.log("Product created:", createdProduct.toJSON());
-}).catch((error) => {
-  console.error("Error:", error.message);
-});
 //# sourceMappingURL=index.js.map

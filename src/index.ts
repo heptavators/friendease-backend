@@ -2,9 +2,7 @@ import express from 'express';
 import  Router  from './routes';
 import { logger } from './helpers/Log';
 import  Database  from './configs/Database';
-import { Product } from './domains/model/Product';
 
-import { v4 as uuidv4 } from 'uuid';
 
 try {
   const app = express();
@@ -35,26 +33,26 @@ try {
 }
 
 
-async function createProduct(data: any) {
-  // ... (Your validation logic here)
+// async function createProduct(data: any) {
+//   // ... (Your validation logic here)
 
-  // Sync the model with the database
-  await Database.sync();
+//   // Sync the model with the database
+//   await Database.sync();
 
-  // Create product in the database
-  const createdProduct = await Product.create(data);
-  return createdProduct;
-}
+//   // Create product in the database
+//   const createdProduct = await Product.create(data);
+//   return createdProduct;
+// }
 
-// Example usage
-createProduct({
-  id: uuidv4(),
-  name: 'Example Product',
-  price: 19.99,
-})
-  .then((createdProduct) => {
-    console.log('Product created:', createdProduct.toJSON());
-  })
-  .catch((error) => {
-    console.error('Error:', error.message);
-  });
+// // Example usage
+// createProduct({
+//   id: uuidv4(),
+//   name: 'Example Product',
+//   price: 19.99,
+// })
+//   .then((createdProduct) => {
+//     console.log('Product created:', createdProduct.toJSON());
+//   })
+//   .catch((error) => {
+//     console.error('Error:', error.message);
+//   });
