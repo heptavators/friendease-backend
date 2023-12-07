@@ -1,4 +1,6 @@
 import Joi from 'joi';
+import { Model, DataTypes } from 'sequelize';
+import Database  from "../../../configs/Database";
 
 export class ProductModel {
     id: string;
@@ -34,3 +36,33 @@ export class ProductModel {
         });
     }
 }
+
+export class Product extends Model{
+    id!: string;
+    name!: string;
+    price!: number;
+
+}
+
+
+Product.init(
+  {
+    id: {
+      type: DataTypes.STRING,
+      defaultValue: DataTypes.STRING,
+      primaryKey: true,
+    },
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    price: {
+      type: DataTypes.FLOAT,
+      allowNull: false,
+    },
+  },
+  {
+    modelName: 'Product',
+    sequelize: Database,
+  }
+);
