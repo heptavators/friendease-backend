@@ -49,7 +49,7 @@ export class ProductController {
 
     async GetByIdProductController(req: Request, res: Response){
         try {
-            const id = req.params as any
+            const id = req.params.id as string; 
             const data = await this.productService.getProductByIdService(id);
             if (data){
                 const response = SuccessSingularFormatter('Data Produk', data);
@@ -77,26 +77,43 @@ export class ProductController {
             return handleErrorResponse(res, error);
         }
     }
-
-    async EditProductController(req: Request, res: Response){
+    async EditProductController(req: Request, res: Response) {
         try {
-            const id = req.params as any
-            const data: EditProductRequest = req.body;
-            const validatedData = Validator.validate(data, EditProductRequest.getSchema());
-            
-            // const result = await this.productService.editProductService(id, validatedData)
-            // const response = SuccessSingularFormatter('Berhasil Edit Produk', result);
-    
-            // return res.status(200).send(response);
+          const id = req.params.id as string;
+          const data: EditProductRequest = req.body;
+          const validatedData = Validator.validate(data, EditProductRequest.getSchema());
+      
+          const findData = await this.productService.getProductByIdService(id);
+      
+          if (!findData) {
+            const response = ErrorFormatter('Data Produk Tidak Ditemukan');
+            return res.status(404).send(response);
+          } else {
+            await this.productService.editProductService(id, validatedData);
+            const dataUpdate = await this.productService.getProductByIdService(id);
+        
+            const response = SuccessSingularFormatter('Berhasil Edit Produk', { dataUpdate });
+            return res.status(200).send(response);
+          }  
         } catch (error) {
-            return handleErrorResponse(res, error);
-
+          return handleErrorResponse(res, error);
         }
-    }
+      }
 
     async DeleteProductController(req: Request, res: Response){
         try {
+            const id = req.params.id as string;
+            const findData = await this.productService.getProductByIdService(id);
             
+            if(!findData){
+                const response = ErrorFormatter('Data Produk Tidak Ditemukan');
+                return res.status(404).send(response);
+            }else{
+                await this.productService.deleteProductService(id)            
+                const response = SuccessSingularFormatter('Berhasil Hapus Produk', findData);
+                return res.status(200).send(response);
+            }
+
         } catch (error) {
             return handleErrorResponse(res, error);
         }

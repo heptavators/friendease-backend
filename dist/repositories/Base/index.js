@@ -28,8 +28,7 @@ class BaseRepository {
   }
   async create(data) {
     try {
-      const instance = await this.model.create(data);
-      return instance.toJSON();
+      return await this.model.create(data);
     } catch (e) {
       throw new Error(`Cannot create data because: ${e}`);
     }
@@ -56,7 +55,7 @@ class BaseRepository {
   }
   async find(options) {
     try {
-      const instances = await this.model.findAll();
+      const instances = await this.model.findAll(options);
       return instances.map((instance) => instance.toJSON());
     } catch (e) {
       throw new Error(`Not found data: ${e}`);
@@ -71,7 +70,7 @@ class BaseRepository {
   }
   async findOne(id) {
     try {
-      const instance = await this.model.findByPk(id);
+      const instance = await this.model.findOne(id);
       return instance ? instance.toJSON() : null;
     } catch (e) {
       throw new Error(`Cannot find data because: ${e}`);

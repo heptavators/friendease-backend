@@ -1,8 +1,8 @@
 import { ProductRepository } from "../../repositories/Product";
 import { CreateProductRequest } from '../../domains/web/Product/CreateProductRequest';
-import { ProductModel } from "../../domains/model/Product";
 import { DEFAULT_LIMIT } from "../../utils/Constant";
 import { EditProductRequest } from "../../domains/web/Product/EditProductRequest";
+import { BadRequestError } from "../../helpers/Error/BadRequestError";
 import { Op } from "sequelize";
 
 export class ProductService {
@@ -31,7 +31,7 @@ export class ProductService {
         if (name) {
           options.where = {
             name: {
-              [Op.like]: `%${name}%`,
+              [Op.iLike]: `%${name}%`,
             },
           };
         }
@@ -47,7 +47,7 @@ export class ProductService {
           if (name) {
             options.where = {
               name: {
-                [Op.like]: `%${name}%`,
+                [Op.iLike]: `%${name}%`,
               },
             };
           }
@@ -56,12 +56,12 @@ export class ProductService {
     }
 
     async createProductService(createProductRequest: CreateProductRequest ){
-        const product = await this.productRepository.insert(createProductRequest)
+        const product = await this.productRepository.insertProduct(createProductRequest)
         return product
     }
 
     async getProductByIdService(id: string){
-        const data = await this.productRepository.findById(id);
+        const data = await this.productRepository.getProductById(id);
         return data; 
 
     }
@@ -69,18 +69,19 @@ export class ProductService {
     async getAllProductService(name: any, page: any){
         const options = this.buildQueryOptions(name, page);
         const total = this.buildQueryCount(name)
-        const data = await this.productRepository.findMany(options);
-        const count = await this.productRepository.count(total);;
+        const data = await this.productRepository.getAllProducts(options);
+        const count = await this.productRepository.countProduct(total);
         return { data, count }; 
     }
 
-    // async editProductService(id: string, editProductRequest: EditProductRequest){
-    //     const product = await this.productRepository.edit(id, editProductRequest)
-    //     return product
-    // }
+    async editProductService(id: string, editProductRequest: EditProductRequest){
+        const data = await this.productRepository.updateProduct(id, editProductRequest)
+        return data
+    }
 
-    async deleteProductService(){
-
+    async deleteProductService(id: string){
+      const data = await this.productRepository.deleteProduct(id)
+      return data
     }
 
 

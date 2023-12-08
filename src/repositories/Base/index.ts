@@ -1,7 +1,6 @@
+import { Model, FindOptions  } from 'sequelize';
 import { IRead } from '../Interfaces/IRead';
 import { IWrite } from '../Interfaces/IWrite';
-import { Model, FindOptions } from 'sequelize';
-import Database from '../../configs/Database'; // Import the Sequelize instance
 
 export abstract class BaseRepository<T> implements IWrite<T>, IRead<T>  {
   model: any;
@@ -9,11 +8,9 @@ export abstract class BaseRepository<T> implements IWrite<T>, IRead<T>  {
   constructor(model: Model) {
     this.model = model;
   }
-
   async create(data: any): Promise<any> {
     try {
-      const instance = await this.model.create(data);
-      return instance.toJSON();
+      return await this.model.create(data);
     } catch (e) {
       throw new Error(`Cannot create data because: ${e}`);
     }
@@ -60,7 +57,7 @@ export abstract class BaseRepository<T> implements IWrite<T>, IRead<T>  {
   
   async findOne(id: string): Promise<any> {
     try {
-      const instance = await this.model.findByPk(id);
+      const instance = await this.model.findOne(id);
       return instance ? (instance.toJSON()) : null;
     } catch (e) {
       throw new Error(`Cannot find data because: ${e}`);

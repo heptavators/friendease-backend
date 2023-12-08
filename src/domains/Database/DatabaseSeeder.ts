@@ -1,19 +1,24 @@
-// import { logger } from "../../helpers/Log/index.ts";
-// import { UserSeeder } from "./UserSeeder.js  ";
-import { ProductSeeder } from "./ProductSeeder";
+import { Request, Response } from 'express';
+import  Database  from '../../configs/Database';
+import { ProductSeeder } from './ProductSeeder';
+import { AuthSeeder } from './AuthSeeder';
 
-const runSeeder = async () => {
-    // const userSeeder = new UserSeeder();
-    const productSeeder = new ProductSeeder()
 
-    // await userSeeder.run();
-    await productSeeder.run();
+
+export async function DatabaseSeeder(req: Request, res: Response) {
+  try {
+    await Database.sync();
     
-    console.info("Done Seed Database");
-    process.exit(0);
-}
+    const authSeeder = new AuthSeeder();
+    const productSeeder = new ProductSeeder();
 
-runSeeder().catch((error) => {
-    console.error("Error Seed Database: " + error.message);
-    process.exit(0);
-});
+    await authSeeder.run();
+    await productSeeder.run();
+
+    console.info("success seed database")
+    return res.status(200).send({message: "Berhasil seed data"})
+
+  } catch (error: any) {
+    console.log("error: " + error.message)
+  } 
+}

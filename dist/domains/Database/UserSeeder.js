@@ -32,8 +32,8 @@ __export(UserSeeder_exports, {
 });
 module.exports = __toCommonJS(UserSeeder_exports);
 var import_uuid = require("uuid");
-var import_bcryptjs = __toESM(require("bcryptjs"), 1);
-var import_Auth = require("../../domains/model/Auth");
+var import_bcryptjs = __toESM(require("bcryptjs"));
+var import_Auth = require("../model/Auth");
 class UserSeeder {
   async run() {
     const auths = [
@@ -50,8 +50,8 @@ class UserSeeder {
       }
     ];
     for (const authData of auths) {
-      await import_Auth.User.destroy({ where: {} });
-      await import_Auth.User.create({ data: authData });
+      await import_Auth.Auth.destroy({ where: {} });
+      await import_Auth.Auth.create({ data: authData });
     }
   }
 }

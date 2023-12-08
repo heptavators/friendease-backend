@@ -2,21 +2,32 @@ import express from 'express';
 import  Router  from './routes';
 import { logger } from './helpers/Log';
 import  Database  from './configs/Database';
-
+import { DatabaseSeeder } from './domains/Database/DatabaseSeeder';
+import timeout from 'connect-timeout';
 
 try {
   const app = express();
   Database.sync()
   const port = "3000";
 
-  
+const checkAuthorization = (req: express.Request, res: express.Response, next: express.NextFunction) => {
+  const authHeader = req.headers.authorization;
 
+  if (!authHeader || authHeader !== 'YourValidToken') {
+    return res.status(401).json({ error: 'Unauthorized' });
+  }
+  next();
+};
+
+  app.use(timeout('10s'))
   app.use(express.json())
   app.use(express.urlencoded({extended: true}))
 
   app.get('/', (req, res) => {
     res.send('Hello World!');
   });
+
+  app.get('/seed', checkAuthorization, DatabaseSeeder)
 
   app.use("/api", Router)
 
@@ -26,33 +37,7 @@ try {
     logger.info("apps running on port " + port)
   });
 
-
-} catch (error) {
-  logger.error("failed to running apps, error : " + error);
+} catch (error: any) {
+  logger.error("failed to running apps, error : " + error.message);
   process.exit(1);
 }
-
-
-// async function createProduct(data: any) {
-//   // ... (Your validation logic here)
-
-//   // Sync the model with the database
-//   await Database.sync();
-
-//   // Create product in the database
-//   const createdProduct = await Product.create(data);
-//   return createdProduct;
-// }
-
-// // Example usage
-// createProduct({
-//   id: uuidv4(),
-//   name: 'Example Product',
-//   price: 19.99,
-// })
-//   .then((createdProduct) => {
-//     console.log('Product created:', createdProduct.toJSON());
-//   })
-//   .catch((error) => {
-//     console.error('Error:', error.message);
-//   });

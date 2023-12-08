@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from 'uuid';
-import { Product } from '../model/Product'; 
+import { ProductModel } from '../model/Product'; 
 
 export class ProductSeeder {
   async run(){
@@ -82,8 +82,8 @@ export class ProductSeeder {
     ];
 
     
-      await Product.destroy({ where: {} })
-      await Product.bulkCreate(products.map(product => ({...product })));
+      await ProductModel.destroy({ where: {} })
+      await ProductModel.bulkCreate(products.map(product => ({...product })));
 
 
   }
