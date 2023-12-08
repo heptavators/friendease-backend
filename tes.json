@@ -112,3 +112,58 @@
         }
     ]
 }
+
+
+## Error 1
+{
+    "info": {
+        "success": false,
+        "meta": null,
+        "message": {
+            "errors": [
+                {
+                    "error": "email",
+                    "message": "Email Tidak Ditemukan"
+                }
+            ]
+        }
+    },
+    "data": null
+}
+
+{
+    "info": {
+        "success": false,
+        "meta": null,
+        "message": {
+            "errors": [
+                {
+                    "error": "password",
+                    "message": "Password Salah"
+                }
+            ]
+        }
+    },
+    "data": null
+}
+
+## Error 2
+{
+    "info": {
+        "success": false,
+        "meta": null,
+        "message": {
+            "errors": [
+                {
+                    "error": "email",
+                    "message": "Alamat Email tidak boleh kosong"
+                },
+                {
+                    "error": "password",
+                    "message": "Password tidak boleh kosong"
+                }
+            ]
+        }
+    },
+    "data": null
+}
