@@ -4,36 +4,39 @@
   "description": "",
   "main": "index.js",
   "prisma": {
-    "seed": "ts-node src/domains/Database/UserSeeder.mjs"
+    "seed": "ts-node src/domains/Database/DatabaseSeeder.mjs"
   },
   "scripts": {
     "dev": "nodemon",
     "build": "etsc",
     "start": "node dist/index.js",
-    "seed": "ts-node src/domains/Database/UserSeeder.mjs"
+    "seed": "ts-node src/domains/Database/DatabaseSeeder.mjs"
   },
   "author": "Harada Kumiko",
   "license": "ISC",
   "devDependencies": {
     "@types/bcryptjs": "^2.4.6",
+    "@types/connect-timeout": "^0.0.39",
     "@types/express": "^4.17.1",
     "@types/jsonwebtoken": "^9.0.5",
     "@types/multer": "^1.4.11",
     "@types/node": "^20.10.0",
     "@types/uuid": "^9.0.7",
-    "prisma": "^5.6.0",
     "ts-node": "^10.9.1",
     "typescript": "^5.3.2"
   },
   "dependencies": {
-    "@prisma/client": "^5.6.0",
     "bcryptjs": "^2.4.3",
+    "connect-timeout": "^1.9.0",
     "esbuild": "^0.19.8",
     "esbuild-node-tsc": "^2.0.5",
     "express": "^4.17.1",
     "joi": "^17.11.0",
     "jsonwebtoken": "^9.0.2",
     "multer": "^1.4.5-lts.1",
+    "pg": "^8.11.3",
+    "sequelize": "^6.35.1",
+    "sequelize-typescript": "^2.1.6",
     "uuid": "^9.0.1",
     "winston": "^3.11.0"
   }

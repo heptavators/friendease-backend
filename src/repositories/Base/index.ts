@@ -1,61 +1,66 @@
-import { IRead } from "../Interfaces/IRead";
-import { IWrite } from "../Interfaces/IWrite";
-import { PrismaClient } from "@prisma/client";
+import { Model, FindOptions  } from 'sequelize';
+import { IRead } from '../Interfaces/IRead';
+import { IWrite } from '../Interfaces/IWrite';
 
-const prisma = new PrismaClient()
-export abstract class BaseRepository<T> implements IWrite<T>, IRead<T> {
+export abstract class BaseRepository<T> implements IWrite<T>, IRead<T>  {
+  model: any;
 
-  model: any
-
-  constructor(model: any){
-    this.model = prisma[model]
+  constructor(model: Model) {
+    this.model = model;
   }
-
-  async create(data: T): Promise<any> {
+  async create(data: any): Promise<any> {
     try {
-      return this.model.create({ data })
+      return await this.model.create(data);
     } catch (e) {
-      throw new Error(`Cannot create data because : ${e}`)
+      throw new Error(`Cannot create data because: ${e}`);
     }
   }
 
-  update(id: string, data: T): Promise<boolean> {
+  async update(id: string, data: any): Promise<boolean> {
     try {
-      return this.model.update({ where: {id}, data})
+      const [updatedRowsCount] = await this.model.update(data, {
+        where: { id },
+      });
+      return updatedRowsCount > 0;
     } catch (e) {
-      throw new Error(`Cannot update data because : ${e}`)
+      throw new Error(`Cannot update data because: ${e}`);
+    }
+  }
+
+  async delete(id: string): Promise<boolean> {
+    try {
+      const deletedRowsCount = await this.model.destroy({
+        where: { id },
+      });
+      return deletedRowsCount > 0;
+    } catch (e) {
+      throw new Error(`Cannot delete data because: ${e}`);
     }
   }
   
-  delete(id: string): Promise<boolean> {
+  async find(options: FindOptions): Promise<any> {
     try {
-      return this.model.delete({where: {id}})
+      const instances = await this.model.findAll(options);
+      return instances.map((instance: any) => instance.toJSON());
     } catch (e) {
-      throw new Error(`Cannot delete data because : ${e}`)
+      throw new Error(`Not found data: ${e}`);
     }
   }
-
-  find(options: object): Promise<T[]> {
+  
+  async count(options: FindOptions): Promise<number> {
     try {
-      return this.model.findMany(options)
+      return await this.model.count(options);
     } catch (e) {
-      throw new Error(`Not found data : ${e}`)
+      throw new Error(`Not found data: ${e}`);
     }
   }
-
-  count(options: object): Promise<number> {
+  
+  async findOne(id: string): Promise<any> {
     try {
-      return this.model.count(options)
+      const instance = await this.model.findOne(id);
+      return instance ? (instance.toJSON()) : null;
     } catch (e) {
-      throw new Error(`Not found data : ${e}`)
-    }
-  }
-
-  findOne(id: string): Promise<any> {
-    try {
-      return this.model.findUnique({ where: { id } });
-    } catch (e) {
-      throw new Error(`Cannot find data because : ${e}`)
+      throw new Error(`Cannot find data because: ${e}`);
     }
   }
 }

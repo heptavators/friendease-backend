@@ -5,6 +5,10 @@ var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
 var __getOwnPropNames = Object.getOwnPropertyNames;
 var __getProtoOf = Object.getPrototypeOf;
 var __hasOwnProp = Object.prototype.hasOwnProperty;
+var __export = (target, all) => {
+  for (var name in all)
+    __defProp(target, name, { get: all[name], enumerable: true });
+};
 var __copyProps = (to, from, except, desc) => {
   if (from && typeof from === "object" || typeof from === "function") {
     for (let key of __getOwnPropNames(from))
@@ -21,33 +25,38 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
   isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
   mod
 ));
-var import_client = require("@prisma/client");
+var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
+var UserSeeder_exports = {};
+__export(UserSeeder_exports, {
+  UserSeeder: () => UserSeeder
+});
+module.exports = __toCommonJS(UserSeeder_exports);
 var import_uuid = require("uuid");
-var import_bcryptjs = __toESM(require("bcryptjs"), 1);
-const prisma = new import_client.PrismaClient();
-async function main() {
-  const auths = [
-    {
-      id: (0, import_uuid.v4)(),
-      fullname: "Farhan Rivaldy",
-      username: "farhanrivaldy",
-      email: "fariv.fariv12@gmail.com",
-      password: import_bcryptjs.default.hashSync("password123!", 8),
-      avatar: "https://avatars.githubusercontent.com/u/42530587?v=4",
-      bio: "Tech Enthusiast | A newbie at everything",
-      status: "active",
-      role: "CUSTOMER"
+var import_bcryptjs = __toESM(require("bcryptjs"));
+var import_Auth = require("../model/Auth");
+class UserSeeder {
+  async run() {
+    const auths = [
+      {
+        id: (0, import_uuid.v4)(),
+        fullname: "Farhan Rivaldy",
+        username: "farhanrivaldy",
+        email: "fariv.fariv12@gmail.com",
+        password: import_bcryptjs.default.hashSync("password123!", 8),
+        avatar: "https://avatars.githubusercontent.com/u/42530587?v=4",
+        bio: "Tech Enthusiast | A newbie at everything",
+        status: "active",
+        role: "CUSTOMER"
+      }
+    ];
+    for (const authData of auths) {
+      await import_Auth.Auth.destroy({ where: {} });
+      await import_Auth.Auth.create({ data: authData });
     }
-  ];
-  for (const authData of auths) {
-    await prisma.auth.create({ data: authData });
   }
 }
-main().then(async () => {
-  await prisma.$disconnect();
-}).catch(async (e) => {
-  console.error(e);
-  await prisma.$disconnect();
-  process.exit(1);
+// Annotate the CommonJS export names for ESM import in node:
+0 && (module.exports = {
+  UserSeeder
 });
 //# sourceMappingURL=UserSeeder.js.map

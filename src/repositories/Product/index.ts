@@ -1,35 +1,79 @@
 import { ProductModel } from "../../domains/model/Product";
-import { ProductRequest } from '../../domains/web/Product';
-import { BaseRepository } from "../Base";
+import { CreateProductRequest } from '../../domains/web/Product/CreateProductRequest';
+import { EditProductRequest } from "../../domains/web/Product/EditProductRequest";
 import { v4 as uuidv4 } from 'uuid';
 
-import PrismaService from "../prismaService";
-
-import { PrismaClient } from "@prisma/client";
+export class ProductRepository{
 
 
-const prisma = new PrismaClient()
-
-
-
-export class ProductRepository extends BaseRepository<ProductModel>{
-    constructor(){
-        super("Product")
+    async insertProduct(createProductRequest: CreateProductRequest): Promise<any>  {
+        try {
+            const product = await ProductModel.create({
+                product_id: uuidv4(),
+                name: createProductRequest.name,
+                price: createProductRequest.price,
+              });
+          
+              return product.toJSON();
+        } catch (error) {
+            throw new Error(`Cannot insert data because : ${error}`)
+        }
     }
 
-    
-    async insert(productRequest: ProductRequest): Promise<any>  {
+    async getAllProducts(options: object): Promise<any>{
         try {
-            const product = new ProductModel(uuidv4(), productRequest.name, productRequest.price)
-            return prisma.product.create({data: product})
+            const product = await ProductModel.findAll(options)
+            return product
         } catch (error) {
             throw new Error(`Cannot find data because : ${error}`)
         }
+    }
+
+    async getProductById(id: string): Promise<any>{
+        try {
+            const product = await ProductModel.findByPk(id)
+            return product
+        } catch (error) {
+            throw new Error(`Cannot find data because : ${error}`)
+        }
+    }
+
+    async updateProduct(id: string, editProductRequest: EditProductRequest){
+        try {
+            const [updatedRowsCount] = await ProductModel.update(editProductRequest, {
+                where: {id}
+            });
+            
+              return updatedRowsCount > 0;
+            } catch (error) {
+
+            throw new Error(`Cannot update data because : ${error}`)
+        }
+    }
+
+    async deleteProduct(id: string){
+        try {
+             const data = await ProductModel.destroy({where: {
+                id: id
+             }});
+            
+              return data;
+            } catch (error) {
+
+            throw new Error(`Cannot update data because : ${error}`)
+        }
+    }
+
+    async countProduct(options: object): Promise<any>{
+        try {
+            const data = await ProductModel.count(options)
+            return data
+        } catch (error) {
+            throw new Error(`Cannot count data because : ${error}`)
+
+        }
+    }
+
 }
 
-async insertAgain(productRequest: ProductModel ): Promise<any>  {
-    return this.create(productRequest)
-}
  
-
-}

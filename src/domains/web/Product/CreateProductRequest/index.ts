@@ -1,6 +1,6 @@
 import Joi from 'joi';
 
-export class ProductRequest {
+export class CreateProductRequest {
     name: string;
     price: number;
 
