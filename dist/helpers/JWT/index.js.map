@@ -1,7 +1,7 @@
 {
   "version": 3,
   "sources": ["../../../src/helpers/JWT/index.ts"],
-  "sourcesContent": ["import jwt from 'jsonwebtoken';\r\nimport { Auth } from '../../domains/model/Auth';\r\n\r\n\r\nexport function GenerateJwtToken(user: Auth): string {\r\n    // Logic to generate JWT token\r\n    const token = jwt.sign({ \r\n      userId: user.id,\r\n      fullname: user.fullname,\r\n      username: user.username,\r\n      email: user.email,\r\n      roles: user.roles,\r\n      iss: \"FriendEase\" \r\n    }, 'process.env.SECRET_KEY', \r\n    { expiresIn: '1d' });\r\n    return token;\r\n  }"],
-  "mappings": ";;;;;;;;;;;;;;;;;;;;;;;;;;;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA,0BAAgB;AAIT,SAAS,iBAAiB,MAAoB;AAEjD,QAAM,QAAQ,oBAAAA,QAAI;AAAA,IAAK;AAAA,MACrB,QAAQ,KAAK;AAAA,MACb,UAAU,KAAK;AAAA,MACf,UAAU,KAAK;AAAA,MACf,OAAO,KAAK;AAAA,MACZ,OAAO,KAAK;AAAA,MACZ,KAAK;AAAA,IACP;AAAA,IAAG;AAAA,IACH,EAAE,WAAW,KAAK;AAAA,EAAC;AACnB,SAAO;AACT;",
+  "sourcesContent": ["import jwt from 'jsonwebtoken';\nimport { AuthModel } from '../../domains/model/Auth';\n\n\nexport function GenerateJwtToken(user: AuthModel): string {\n    // Logic to generate JWT token\n    const token = jwt.sign({ \n      userId: user.id,\n      fullname: user.fullname,\n      username: user.username,\n      email: user.email,\n      roles: user.roles,\n      iss: \"FriendEase\" \n    }, 'process.env.SECRET_KEY', \n    { expiresIn: '1d' }\n    );\n    return token;\n  }"],
+  "mappings": ";;;;;;;;;;;;;;;;;;;;;;;;;;;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA,0BAAgB;AAIT,SAAS,iBAAiB,MAAyB;AAEtD,QAAM,QAAQ,oBAAAA,QAAI;AAAA,IAAK;AAAA,MACrB,QAAQ,KAAK;AAAA,MACb,UAAU,KAAK;AAAA,MACf,UAAU,KAAK;AAAA,MACf,OAAO,KAAK;AAAA,MACZ,OAAO,KAAK;AAAA,MACZ,KAAK;AAAA,IACP;AAAA,IAAG;AAAA,IACH,EAAE,WAAW,KAAK;AAAA,EAClB;AACA,SAAO;AACT;",
   "names": ["jwt"]
 }

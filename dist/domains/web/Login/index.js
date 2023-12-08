@@ -28,11 +28,11 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 var Login_exports = {};
 __export(Login_exports, {
-  Login: () => Login
+  LoginRequest: () => LoginRequest
 });
 module.exports = __toCommonJS(Login_exports);
 var import_joi = __toESM(require("joi"));
-class Login {
+class LoginRequest {
   email;
   password;
   constructor(email, password) {
@@ -55,6 +55,6 @@ class Login {
 }
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
-  Login
+  LoginRequest
 });
 //# sourceMappingURL=index.js.map

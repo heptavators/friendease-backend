@@ -17,7 +17,7 @@ export class AuthSeeder {
       avatar: "https://avatars.githubusercontent.com/u/42530587?v=4",
       bio: "Tech Enthusiast | A newbie at everything",
       status: "active",
-      role: "CUSTOMER",
+      roles: "CUSTOMER",
       device_token: ""
     },
     { 
@@ -29,7 +29,7 @@ export class AuthSeeder {
       avatar: "https://avatars.githubusercontent.com/u/42530587?v=4",
       bio: "Tech Enthusiast | A newbie at everything",
       status: "active",
-      role: "ADMIN",
+      roles: "ADMIN",
       device_token: ""
   },
 
@@ -42,7 +42,7 @@ export class AuthSeeder {
     avatar: "https://avatars.githubusercontent.com/u/42530587?v=4",
     bio: "Tech Enthusiast | A newbie at everything",
     status: "active",
-    role: "TALENT",
+    roles: "TALENT",
     device_token: ""
   },
   ];

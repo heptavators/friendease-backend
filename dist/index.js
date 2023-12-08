@@ -38,6 +38,17 @@ try {
     }
     next();
   };
+  const payload = {
+    message: {
+      token: "token"
+    },
+    notification: {
+      title: "FCM IS COOL !",
+      body: "Notification has been received",
+      content_available: "true",
+      image: "https://i.ytimg.com/vi/iosNuIdQoy8/maxresdefault.jpg"
+    }
+  };
   app.use((0, import_connect_timeout.default)("10s"));
   app.use(import_express.default.json());
   app.use(import_express.default.urlencoded({ extended: true }));

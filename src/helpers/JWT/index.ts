@@ -1,8 +1,8 @@
 import jwt from 'jsonwebtoken';
-import { Auth } from '../../domains/model/Auth';
+import { AuthModel } from '../../domains/model/Auth';
 
 
-export function GenerateJwtToken(user: Auth): string {
+export function GenerateJwtToken(user: AuthModel): string {
     // Logic to generate JWT token
     const token = jwt.sign({ 
       userId: user.id,
@@ -12,6 +12,7 @@ export function GenerateJwtToken(user: Auth): string {
       roles: user.roles,
       iss: "FriendEase" 
     }, 'process.env.SECRET_KEY', 
-    { expiresIn: '1d' });
+    { expiresIn: '1d' }
+    );
     return token;
   }

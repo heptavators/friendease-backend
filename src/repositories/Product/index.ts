@@ -9,7 +9,7 @@ export class ProductRepository{
     async insertProduct(createProductRequest: CreateProductRequest): Promise<any>  {
         try {
             const product = await ProductModel.create({
-                product_id: uuidv4(),
+                id: uuidv4(),
                 name: createProductRequest.name,
                 price: createProductRequest.price,
               });

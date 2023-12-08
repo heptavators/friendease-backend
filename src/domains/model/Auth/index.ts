@@ -35,28 +35,29 @@ AuthModel.init(
       },
       username: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
         unique: true
       },
       password: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
       },
       avatar: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
       },
       bio: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
       },
       status: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
       },
       roles: {
         type: DataTypes.ENUM,
-        values: ['CUSTOMER', 'ADMIN', 'TALENT']
+        values: ['CUSTOMER', 'ADMIN', 'TALENT'],
+        defaultValue: "CUSTOMER"
     },
       device_token: {
         type: DataTypes.STRING,

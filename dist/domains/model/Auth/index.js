@@ -64,28 +64,29 @@ AuthModel.init(
     },
     username: {
       type: import_sequelize.DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
       unique: true
     },
     password: {
       type: import_sequelize.DataTypes.STRING,
-      allowNull: false
+      allowNull: true
     },
     avatar: {
       type: import_sequelize.DataTypes.STRING,
-      allowNull: false
+      allowNull: true
     },
     bio: {
       type: import_sequelize.DataTypes.STRING,
-      allowNull: false
+      allowNull: true
     },
     status: {
       type: import_sequelize.DataTypes.STRING,
-      allowNull: false
+      allowNull: true
     },
     roles: {
       type: import_sequelize.DataTypes.ENUM,
-      values: ["CUSTOMER", "ADMIN", "TALENT"]
+      values: ["CUSTOMER", "ADMIN", "TALENT"],
+      defaultValue: "CUSTOMER"
     },
     device_token: {
       type: import_sequelize.DataTypes.STRING,

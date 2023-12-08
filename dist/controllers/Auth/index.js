@@ -34,20 +34,41 @@ module.exports = __toCommonJS(Auth_exports);
 var import_Log = require("../../helpers/Log");
 var import_ErrorFormatter = __toESM(require("../../helpers/Response/ErrorFormatter"));
 var import_SuccessSingularFormatter = __toESM(require("../../helpers/Response/SuccessSingularFormatter"));
-var import_Login = require("../../domains/web/Login");
+var import_LoginRequest = require("../../domains/web/Login/LoginRequest");
 var import_Validator = require("../../helpers/Validator");
 var import_BadRequestError = require("../../helpers/Error/BadRequestError");
+var import_RegisterRequest = require("../../domains/web/Login/RegisterRequest");
 class Auth {
   authService;
   constructor(authService) {
     this.authService = authService;
   }
-  async signInController(req, res) {
+  async LoginController(req, res) {
     try {
       const data = req.body;
-      const validatedData = import_Validator.Validator.validate(data, import_Login.Login.getSchema());
+      const validatedData = import_Validator.Validator.validate(data, import_LoginRequest.LoginRequest.getSchema());
       const result = await this.authService.SignInService(validatedData);
       const response = (0, import_SuccessSingularFormatter.default)("Berhasil Login", { token: result });
+      return res.status(200).send(response);
+    } catch (error) {
+      handleErrorResponse(res, error);
+    }
+  }
+  async ProfileController(req, res) {
+    try {
+      const result = await this.authService.GetProfileService("");
+      const response = (0, import_SuccessSingularFormatter.default)("Berhasil Login", { token: result });
+      return res.status(200).send(response);
+    } catch (error) {
+      handleErrorResponse(res, error);
+    }
+  }
+  async RegisterController(req, res) {
+    try {
+      const data = req.body;
+      const validatedData = import_Validator.Validator.validate(data, import_RegisterRequest.RegisterRequest.getSchema());
+      const result = await this.authService.RegisterService(validatedData);
+      const response = (0, import_SuccessSingularFormatter.default)("Berhasil Register Akun", { data: result });
       return res.status(200).send(response);
     } catch (error) {
       handleErrorResponse(res, error);

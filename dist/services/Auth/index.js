@@ -46,18 +46,39 @@ class AuthService {
     }
     return this.instance;
   }
-  async SignInService(LoginRequest2) {
-    const findUser = await this.authRepository.findEmail(LoginRequest2.email);
+  async SignInService(loginRequest) {
+    const findUser = await this.authRepository.findEmail(loginRequest.email);
     if (!findUser) {
       throw new import_BadRequestError.BadRequestError([{ error: "email", message: "Email Tidak Ditemukan" }], 401);
     }
     const user = findUser.toJSON();
-    const comparePassword = import_bcryptjs.default.compareSync(LoginRequest2.password, user.password);
+    const comparePassword = import_bcryptjs.default.compareSync(loginRequest.password, user.password);
     if (!comparePassword) {
       throw new import_BadRequestError.BadRequestError([{ error: "password", message: "Password Salah" }], 401);
     }
     const token = (0, import_JWT.GenerateJwtToken)(user);
     return token;
+  }
+  async RegisterService(registerRequest) {
+    const existingUser = await this.authRepository.findEmail(registerRequest.email);
+    if (existingUser) {
+      throw new import_BadRequestError.BadRequestError([{ error: "email", message: "Email already exists" }], 401);
+    }
+    const hashedPassword = await import_bcryptjs.default.hash(registerRequest.password, 10);
+    const data = {
+      fullname: registerRequest.fullname,
+      email: registerRequest.email,
+      password: hashedPassword
+    };
+    const newUser = await this.authRepository.createUser(data);
+    return newUser;
+  }
+  async GetProfileService(id) {
+    const findUser = await this.authRepository.getProfileById(id);
+    if (!findUser) {
+      throw new import_BadRequestError.BadRequestError([{ error: "email", message: "Email Tidak Ditemukan" }], 401);
+    }
+    return findUser;
   }
 }
 // Annotate the CommonJS export names for ESM import in node:
