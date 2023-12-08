@@ -31,7 +31,6 @@ __export(Auth_exports, {
   Auth: () => Auth
 });
 module.exports = __toCommonJS(Auth_exports);
-var import_Auth = require("../../services/Auth");
 var import_Log = require("../../helpers/Log");
 var import_ErrorFormatter = __toESM(require("../../helpers/Response/ErrorFormatter"));
 var import_SuccessSingularFormatter = __toESM(require("../../helpers/Response/SuccessSingularFormatter"));
@@ -40,8 +39,8 @@ var import_Validator = require("../../helpers/Validator");
 var import_BadRequestError = require("../../helpers/Error/BadRequestError");
 class Auth {
   authService;
-  constructor(authService, authRepository) {
-    this.authService = new import_Auth.AuthService(authRepository);
+  constructor(authService) {
+    this.authService = authService;
   }
   async signInController(req, res) {
     try {

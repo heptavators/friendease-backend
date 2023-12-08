@@ -1,22 +1,32 @@
 import { AuthRepository } from "../../repositories/Auth";
 import { Login  as LoginRequest } from '../../domains/web/Login';
-import { GenerateJwtToken } from "../../helpers/JWT";
-import bcryptjs from "bcryptjs"
-import { ValidationException } from "../../helpers/Validator";
 import { BadRequestError } from "../../helpers/Error/BadRequestError";
+import { GenerateJwtToken } from "../../helpers/JWT";
+import bcryptjs from "bcryptjs";
 
 export class AuthService {
     private authRepository: AuthRepository
+    private static instance: AuthService
 
-    constructor(authRepository: AuthRepository){
-        this.authRepository = new AuthRepository()
+    private constructor(authRepository: AuthRepository) {
+        this.authRepository = authRepository;
     }
 
+    static getInstance(authRepository: AuthRepository): AuthService {
+        if (!this.instance) {
+            this.instance = new AuthService(authRepository);
+        }
+        return this.instance;
+    }
+
+
     async SignInService(LoginRequest: LoginRequest) {
-            const user = await this.authRepository.findEmail(LoginRequest.email)
-            if (!user) {
-                throw new BadRequestError([{ error: 'email', message: 'Email Tidak Ditemukan' }], 401);
+            const findUser = await this.authRepository.findEmail(LoginRequest.email);
+            if (!findUser) {
+                    throw new BadRequestError([{ error: 'email', message: 'Email Tidak Ditemukan' }], 401);
             }
+
+            const user = findUser.toJSON();
 
             const comparePassword = bcryptjs.compareSync(LoginRequest.password, user.password)
             if (!comparePassword) {
@@ -25,8 +35,7 @@ export class AuthService {
 
             const token = GenerateJwtToken(user);
             return token;
-
-      }
+    }
 
 
 

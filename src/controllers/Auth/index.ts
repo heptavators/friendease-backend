@@ -1,5 +1,4 @@
 import { AuthService } from "../../services/Auth";
-import { AuthRepository } from "../../repositories/Auth";
 import { Request, Response } from "express-serve-static-core";
 import { logger } from "../../helpers/Log";
 import ErrorFormatter from "../../helpers/Response/ErrorFormatter";
@@ -11,16 +10,24 @@ import { BadRequestError } from "../../helpers/Error/BadRequestError";
 export class Auth {
     authService: AuthService
 
-    constructor(authService: AuthService, authRepository: AuthRepository){
-        this.authService = new AuthService(authRepository)
+    constructor(authService: AuthService){
+        this.authService = authService
     }
 
     async signInController(req: Request, res: Response) {
       try {
         const data: LoginRequest = req.body as LoginRequest;
         const validatedData = Validator.validate(data, LoginRequest.getSchema());
-    
         const result = await this.authService.SignInService(validatedData);
+
+        // const comparePassword = bcryptjs.compareSync(validatedData.password, result.password)
+        // console.log(result.password)
+        // if (!comparePassword) {
+        //     throw new BadRequestError([{ error: 'password', message: 'Password Salah' }], 401);
+        // }
+
+        // return user
+
         const response = SuccessSingularFormatter('Berhasil Login', { token: result });
 
         return res.status(200).send(response);

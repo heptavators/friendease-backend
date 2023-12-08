@@ -31,20 +31,27 @@ __export(Auth_exports, {
   AuthService: () => AuthService
 });
 module.exports = __toCommonJS(Auth_exports);
-var import_Auth = require("../../repositories/Auth");
+var import_BadRequestError = require("../../helpers/Error/BadRequestError");
 var import_JWT = require("../../helpers/JWT");
 var import_bcryptjs = __toESM(require("bcryptjs"));
-var import_BadRequestError = require("../../helpers/Error/BadRequestError");
 class AuthService {
   authRepository;
+  static instance;
   constructor(authRepository) {
-    this.authRepository = new import_Auth.AuthRepository();
+    this.authRepository = authRepository;
+  }
+  static getInstance(authRepository) {
+    if (!this.instance) {
+      this.instance = new AuthService(authRepository);
+    }
+    return this.instance;
   }
   async SignInService(LoginRequest2) {
-    const user = await this.authRepository.findEmail(LoginRequest2.email);
-    if (!user) {
+    const findUser = await this.authRepository.findEmail(LoginRequest2.email);
+    if (!findUser) {
       throw new import_BadRequestError.BadRequestError([{ error: "email", message: "Email Tidak Ditemukan" }], 401);
     }
+    const user = findUser.toJSON();
     const comparePassword = import_bcryptjs.default.compareSync(LoginRequest2.password, user.password);
     if (!comparePassword) {
       throw new import_BadRequestError.BadRequestError([{ error: "password", message: "Password Salah" }], 401);

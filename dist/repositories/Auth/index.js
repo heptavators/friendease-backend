@@ -21,17 +21,12 @@ __export(Auth_exports, {
   AuthRepository: () => AuthRepository
 });
 module.exports = __toCommonJS(Auth_exports);
-var import_Base = require("../Base");
-class AuthRepository extends import_Base.BaseRepository {
-  getModel() {
-    throw new Error("Method not implemented.");
-  }
-  constructor() {
-    super("auth");
-  }
+var import_Auth = require("../../domains/model/Auth");
+class AuthRepository {
   async findEmail(email) {
     try {
-      return this.model.findUnique({ where: { email } });
+      const data = await import_Auth.AuthModel.findOne({ where: { email } });
+      return data;
     } catch (e) {
       throw new Error(`Cannot find data because : ${e}`);
     }

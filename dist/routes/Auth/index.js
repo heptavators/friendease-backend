@@ -47,7 +47,7 @@ const multer = (0, import_multer.default)({
 });
 const authRouter = (0, import_express.Router)();
 const authRepository = new import_Auth2.AuthRepository();
-const authService = new import_Auth3.AuthService(authRepository);
+const authService = import_Auth3.AuthService.getInstance(authRepository);
 const authController = new import_Auth.Auth(authService, authRepository);
 authRouter.post("/login", async (req, res) => authController.signInController(req, res));
 authRouter.post("/image", multer.single("image"), async function(req, res) {

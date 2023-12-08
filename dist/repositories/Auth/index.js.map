@@ -1,7 +1,7 @@
 {
   "version": 3,
   "sources": ["../../../src/repositories/Auth/index.ts"],
-  "sourcesContent": ["import { Prisma } from \"@prisma/client\";\r\nimport { Auth } from \"../../domains/model/Auth\";\r\n\r\nimport { BaseRepository } from \"../Base\";\r\n\r\nexport class AuthRepository extends BaseRepository<Auth>{\r\n    getModel(): Prisma.ModelName {\r\n      throw new Error(\"Method not implemented.\");\r\n    }\r\n    constructor(){\r\n        super(\"auth\")\r\n    }\r\n\r\n    async findEmail(email: string): Promise<any>  {\r\n        try {\r\n            return this.model.findUnique({ where: { email } });\r\n          } catch (e) {\r\n            throw new Error(`Cannot find data because : ${e}`)\r\n          }\r\n      }\r\n\r\n}"],
-  "mappings": ";;;;;;;;;;;;;;;;;;AAAA;AAAA;AAAA;AAAA;AAAA;AAGA,kBAA+B;AAExB,MAAM,uBAAuB,2BAAoB;AAAA,EACpD,WAA6B;AAC3B,UAAM,IAAI,MAAM,yBAAyB;AAAA,EAC3C;AAAA,EACA,cAAa;AACT,UAAM,MAAM;AAAA,EAChB;AAAA,EAEA,MAAM,UAAU,OAA8B;AAC1C,QAAI;AACA,aAAO,KAAK,MAAM,WAAW,EAAE,OAAO,EAAE,MAAM,EAAE,CAAC;AAAA,IACnD,SAAS,GAAG;AACV,YAAM,IAAI,MAAM,8BAA8B,CAAC,EAAE;AAAA,IACnD;AAAA,EACJ;AAEN;",
+  "sourcesContent": ["import { AuthModel } from \"../../domains/model/Auth\";\r\n\r\nexport class AuthRepository{\r\n\r\n    async findEmail(email: string): Promise<any>  {\r\n        try {\r\n            const data = await AuthModel.findOne({ where: { email } });\r\n            return data;\r\n          } catch (e) {\r\n            throw new Error(`Cannot find data because : ${e}`)\r\n          }\r\n      }\r\n\r\n}"],
+  "mappings": ";;;;;;;;;;;;;;;;;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA,kBAA0B;AAEnB,MAAM,eAAc;AAAA,EAEvB,MAAM,UAAU,OAA8B;AAC1C,QAAI;AACA,YAAM,OAAO,MAAM,sBAAU,QAAQ,EAAE,OAAO,EAAE,MAAM,EAAE,CAAC;AACzD,aAAO;AAAA,IACT,SAAS,GAAG;AACV,YAAM,IAAI,MAAM,8BAA8B,CAAC,EAAE;AAAA,IACnD;AAAA,EACJ;AAEN;",
   "names": []
 }

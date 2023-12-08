@@ -11,6 +11,27 @@
 			"item": [
 				{
 					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var res =  pm.response.json();\r",
+									"pm.environment.set('authToken', res.data.token);                                "
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"variable_key\", \"variable_value\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -51,7 +72,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"name\": \"Mouse\",\r\n    \"price\": 850000\r\n}",
+									"raw": "{\r\n    \"name\": \"Mouse\",\r\n    \"price\": \"850000\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -77,7 +98,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{url}}/api/product?page=1",
+									"raw": "{{url}}/api/product",
 									"host": [
 										"{{url}}"
 									],
@@ -93,16 +114,150 @@
 										},
 										{
 											"key": "page",
-											"value": "1"
+											"value": "2",
+											"disabled": true
 										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Product By ID",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/product/b417e572-8b61-4039-a992-328cd26af5f6",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"product",
+										"b417e572-8b61-4039-a992-328cd26af5f6"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": "mou",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Edit Product By ID",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Masya Allah\",\r\n    \"price\": 850000\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/product/b417e572-8b61-4039-a992-328cd26af5f6",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"product",
+										"b417e572-8b61-4039-a992-328cd26af5f6"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": "mou",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Product By ID",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/product/b417e572-8b61-4039-a992-328cd26af5f6",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"product",
+										"b417e572-8b61-4039-a992-328cd26af5f6"
 									]
 								}
 							},
 							"response": []
 						}
 					]
+				},
+				{
+					"name": "Running Migration and Seeder From HTTP",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "YourValidToken",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/seed",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"seed"
+							]
+						}
+					},
+					"response": []
 				}
 			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{authToken}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
 		}
 	]
 }
