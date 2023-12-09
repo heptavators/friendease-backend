@@ -3,6 +3,7 @@ version: "3.8"
 services:
   postgres-database:
     image: postgres:14-alpine
+    restart: always
     ports:
       - 5432:5432
     volumes:
@@ -15,14 +16,12 @@ services:
   friendease-apps:
     image: haradakumiko/friendease-backend:latest
     container_name: friendease-backend
+    restart: always
     ports:
       - "3000:3000/tcp"
     environment:
-      - DATABASE_URL=postgres://postgres:postgres@postgres-database:5432/friendease
+      - DATABASE_CONNECTION=postgres-database
       - SECRET_KEYS=X-FRI3ND3@S3-7!
       - HASH_SALT=H3PT4V4T0R5@404
     depends_on:
       - postgres-database
-    # command: >
-    #   sh -c "npx prisma migrate dev &&  
-    #          npx prisma db seed"
