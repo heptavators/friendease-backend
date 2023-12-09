@@ -16,15 +16,8 @@ COPY . .
 # Copy environment variables file
 # COPY .env.example .env
 
-
 # Build TypeScript code
 RUN npm run build
-
-# Install Prisma globally
-RUN npm install -g prisma
-
-# Generate Prisma client
-RUN npx prisma generate
 
 # Expose port 3000
 EXPOSE 3000
