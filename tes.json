@@ -1,0 +1,169 @@
+## Response Auth
+{
+    "info": {
+        "success": true,
+        "meta": null,
+        "message": "Berhasil Login"
+    },
+    "data": {
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJkN2M2YWU4Yy00YTA4LTQwZjAtODRmMi01YjAwMDQwMjljOTgiLCJmdWxsbmFtZSI6IkZhcmhhbiBSaXZhbGR5IiwidXNlcm5hbWUiOiJmYXJoYW5yaXZhbGR5IiwiZW1haWwiOiJmYXJpdi5mYXJpdjEyQGdtYWlsLmNvbSIsInJvbGVzIjpudWxsLCJpc3MiOiJGcmllbmRFYXNlIiwiaWF0IjoxNzAyMDM1NDQwLCJleHAiOjE3MDIxMjE4NDB9.mPVZ7OSKRPJwkwnVbve4nz6NvmMRg1QugL81BBQYvmE"
+    }
+}
+
+
+## Response Singular
+{
+    "info": {
+        "success": true,
+        "meta": null,
+        "message": "Data Produk"
+    },
+    "data": {
+        "id": "8e72de6d-4f58-4d54-aec4-1568ad366d60",
+        "name": "Keyboard Gaming",
+        "price": 700000,
+        "createdAt": "2023-12-08T09:49:48.298Z",
+        "updatedAt": "2023-12-08T09:49:48.298Z"
+    }
+}
+
+## Response Plural
+{
+    "info": {
+        "success": true,
+        "meta": {
+            "currentPage": 1,
+            "totalPage": 2,
+            "totalItems": 14,
+            "itemsPerPage": 10
+        },
+        "message": "Data Semua Produk"
+    },
+    "data": [
+        {
+            "id": "8e72de6d-4f58-4d54-aec4-1568ad366d60",
+            "name": "Keyboard Gaming",
+            "price": 700000,
+            "createdAt": "2023-12-08T09:49:48.298Z",
+            "updatedAt": "2023-12-08T09:49:48.298Z"
+        },
+        {
+            "id": "e76bd0b3-93e9-4d99-aae0-a3471d5d7ba4",
+            "name": "Mouse",
+            "price": 700000,
+            "createdAt": "2023-12-08T09:49:48.298Z",
+            "updatedAt": "2023-12-08T09:49:48.298Z"
+        },
+        {
+            "id": "091a4c7a-e34e-4fed-bcaf-0aeb93cc96ef",
+            "name": "Monitor",
+            "price": 700000,
+            "createdAt": "2023-12-08T09:49:48.298Z",
+            "updatedAt": "2023-12-08T09:49:48.298Z"
+        },
+        {
+            "id": "1c5e957b-dd39-422c-b541-8951ffacd259",
+            "name": "Printer",
+            "price": 700000,
+            "createdAt": "2023-12-08T09:49:48.298Z",
+            "updatedAt": "2023-12-08T09:49:48.298Z"
+        },
+        {
+            "id": "4201848a-1c26-4b1d-8655-e77625896cdb",
+            "name": "Microphone",
+            "price": 700000,
+            "createdAt": "2023-12-08T09:49:48.298Z",
+            "updatedAt": "2023-12-08T09:49:48.298Z"
+        },
+        {
+            "id": "dd7cb4fe-2b90-4e57-b18e-ad5f1c6d98a0",
+            "name": "PC Gaming",
+            "price": 700000,
+            "createdAt": "2023-12-08T09:49:48.298Z",
+            "updatedAt": "2023-12-08T09:49:48.298Z"
+        },
+        {
+            "id": "d588784a-b012-44a4-b21a-18986f805fc1",
+            "name": "Webcam",
+            "price": 700000,
+            "createdAt": "2023-12-08T09:49:48.298Z",
+            "updatedAt": "2023-12-08T09:49:48.298Z"
+        },
+        {
+            "id": "25da81ee-a8ca-4611-9140-f9569bca6e85",
+            "name": "Scanner",
+            "price": 700000,
+            "createdAt": "2023-12-08T09:49:48.298Z",
+            "updatedAt": "2023-12-08T09:49:48.298Z"
+        },
+        {
+            "id": "2f448e49-423c-4f7b-8a36-6c2b3285e562",
+            "name": "Printer",
+            "price": 700000,
+            "createdAt": "2023-12-08T09:49:48.298Z",
+            "updatedAt": "2023-12-08T09:49:48.298Z"
+        },
+        {
+            "id": "c6dd5c7f-e54f-4e32-b58e-c4e16cb87644",
+            "name": "SSD",
+            "price": 700000,
+            "createdAt": "2023-12-08T09:49:48.298Z",
+            "updatedAt": "2023-12-08T09:49:48.298Z"
+        }
+    ]
+}
+
+
+## Error 1
+{
+    "info": {
+        "success": false,
+        "meta": null,
+        "message": {
+            "errors": [
+                {
+                    "error": "email",
+                    "message": "Email Tidak Ditemukan"
+                }
+            ]
+        }
+    },
+    "data": null
+}
+
+{
+    "info": {
+        "success": false,
+        "meta": null,
+        "message": {
+            "errors": [
+                {
+                    "error": "password",
+                    "message": "Password Salah"
+                }
+            ]
+        }
+    },
+    "data": null
+}
+
+## Error 2
+{
+    "info": {
+        "success": false,
+        "meta": null,
+        "message": {
+            "errors": [
+                {
+                    "error": "email",
+                    "message": "Alamat Email tidak boleh kosong"
+                },
+                {
+                    "error": "password",
+                    "message": "Password tidak boleh kosong"
+                }
+            ]
+        }
+    },
+    "data": null
+}

@@ -28,69 +28,78 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 var Auth_exports = {};
 __export(Auth_exports, {
-  Auth: () => Auth
+  AuthModel: () => AuthModel
 });
 module.exports = __toCommonJS(Auth_exports);
-var import_joi = __toESM(require("joi"));
-class Auth {
+var import_sequelize = require("sequelize");
+var import_Database = __toESM(require("../../../configs/Database"));
+class AuthModel extends import_sequelize.Model {
   id;
   fullname;
   email;
+  username;
+  password;
   avatar;
   bio;
   status;
   roles;
   device_token;
-  constructor(id, fullname, email, avatar, bio, status, roles, device_token) {
-    this.id = id;
-    this.fullname = fullname;
-    this.email = email;
-    this.avatar = avatar;
-    this.bio = bio;
-    this.status = status;
-    this.roles = roles;
-    this.device_token = device_token;
-  }
-  static getSchema() {
-    return import_joi.default.object({
-      id: import_joi.default.string().required().messages({
-        "any.required": "ID diperlukan",
-        "string.empty": "ID tidak boleh kosong"
-      }),
-      fullname: import_joi.default.string().required().messages({
-        "any.required": "Nama Lengkap diperlukan",
-        "string.empty": "Nama Lengkap tidak boleh kosong"
-      }),
-      email: import_joi.default.string().email({ tlds: false }).required().messages({
-        "any.required": "Alamat Email diperlukan",
-        "string.empty": "Alamat Email tidak boleh kosong",
-        "string.email": "Alamat Email Tidak Valid"
-      }),
-      avatar: import_joi.default.string().required().messages({
-        "any.required": "Avatar diperlukan",
-        "string.empty": "Avatar tidak boleh kosong"
-      }),
-      bio: import_joi.default.string().required().messages({
-        "any.required": "Bio diperlukan",
-        "string.empty": "Bio tidak boleh kosong"
-      }),
-      status: import_joi.default.string().required().messages({
-        "any.required": "Status diperlukan",
-        "string.empty": "Status tidak boleh kosong"
-      }),
-      roles: import_joi.default.string().required().messages({
-        "any.required": "Roles diperlukan",
-        "string.empty": "Roles tidak boleh kosong"
-      }),
-      device_token: import_joi.default.string().required().messages({
-        "any.required": "Device Token diperlukan",
-        "string.empty": "Device Token tidak boleh kosong"
-      })
-    });
-  }
 }
+AuthModel.init(
+  {
+    id: {
+      type: import_sequelize.DataTypes.STRING,
+      defaultValue: import_sequelize.DataTypes.STRING,
+      primaryKey: true,
+      unique: true
+    },
+    fullname: {
+      type: import_sequelize.DataTypes.STRING,
+      allowNull: false
+    },
+    email: {
+      type: import_sequelize.DataTypes.STRING,
+      allowNull: false,
+      unique: true
+    },
+    username: {
+      type: import_sequelize.DataTypes.STRING,
+      allowNull: true,
+      unique: true
+    },
+    password: {
+      type: import_sequelize.DataTypes.STRING,
+      allowNull: true
+    },
+    avatar: {
+      type: import_sequelize.DataTypes.STRING,
+      allowNull: true
+    },
+    bio: {
+      type: import_sequelize.DataTypes.STRING,
+      allowNull: true
+    },
+    status: {
+      type: import_sequelize.DataTypes.STRING,
+      allowNull: true
+    },
+    roles: {
+      type: import_sequelize.DataTypes.ENUM,
+      values: ["CUSTOMER", "ADMIN", "TALENT"],
+      defaultValue: "CUSTOMER"
+    },
+    device_token: {
+      type: import_sequelize.DataTypes.STRING,
+      allowNull: true
+    }
+  },
+  {
+    modelName: "Auth",
+    sequelize: import_Database.default
+  }
+);
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
-  Auth
+  AuthModel
 });
 //# sourceMappingURL=index.js.map

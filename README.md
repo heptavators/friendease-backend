@@ -15,10 +15,11 @@
 ## Installed Packages
 
 - express
-
 - winston
+- prisma
 
 ## Architecture
+Domain -> Repository -> Service -> Controller -> Router
  
 ## How To Run / Install 
 
@@ -32,5 +33,10 @@ Open this project
 cd friendease-backend
 ```
 
+npx prisma migrate dev
+npx prisma db seed
+
+docker build -t haradakumiko/friendease-backend --no-cache -f deploy/Dockerfile .
 
 
+npx prisma format -> after write in schema.prisma

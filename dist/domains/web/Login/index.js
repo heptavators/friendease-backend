@@ -28,14 +28,16 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 var Login_exports = {};
 __export(Login_exports, {
-  Login: () => Login
+  LoginRequest: () => LoginRequest
 });
 module.exports = __toCommonJS(Login_exports);
 var import_joi = __toESM(require("joi"));
-class Login {
+class LoginRequest {
   email;
-  constructor(email) {
+  password;
+  constructor(email, password) {
     this.email = email;
+    this.password = password;
   }
   static getSchema() {
     return import_joi.default.object({
@@ -44,15 +46,15 @@ class Login {
         "string.empty": "Alamat Email tidak boleh kosong",
         "string.email": "Alamat Email Tidak Valid"
       }),
-      fullname: import_joi.default.string().required().messages({
-        "any.required": "Nama Lengkap diperlukan",
-        "string.empty": "Nama Lengkap tidak boleh kosong"
+      password: import_joi.default.string().required().messages({
+        "any.required": "Password diperlukan",
+        "string.empty": "Password tidak boleh kosong"
       })
     });
   }
 }
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
-  Login
+  LoginRequest
 });
 //# sourceMappingURL=index.js.map

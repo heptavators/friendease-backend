@@ -21,10 +21,38 @@ __export(Auth_exports, {
   AuthRepository: () => AuthRepository
 });
 module.exports = __toCommonJS(Auth_exports);
-var import_Base = require("../Base");
-class AuthRepository extends import_Base.BaseRepository {
-  constructor() {
-    super("Auth");
+var import_Auth = require("../../domains/model/Auth");
+var import_uuid = require("uuid");
+class AuthRepository {
+  async findEmail(email) {
+    try {
+      const data = await import_Auth.AuthModel.findOne({ where: { email } });
+      return data;
+    } catch (e) {
+      throw new Error(`Cannot find data because : ${e}`);
+    }
+  }
+  async getProfileById(id) {
+    try {
+      const data = await import_Auth.AuthModel.findByPk(id);
+      return data;
+    } catch (error) {
+      throw new Error(`Cannot find data because : ${error}`);
+    }
+  }
+  async createUser(registerRequest) {
+    try {
+      console.log("this is repositiory: " + registerRequest.password);
+      const newUser = await import_Auth.AuthModel.create({
+        id: (0, import_uuid.v4)(),
+        fullname: registerRequest.fullname,
+        email: registerRequest.email,
+        password: registerRequest.password
+      });
+      return newUser;
+    } catch (error) {
+      throw new Error(`Cannot create data because : ${error}`);
+    }
   }
 }
 // Annotate the CommonJS export names for ESM import in node:

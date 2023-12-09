@@ -1,7 +1,9 @@
 "use strict";
+var __create = Object.create;
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
 var __getOwnPropNames = Object.getOwnPropertyNames;
+var __getProtoOf = Object.getPrototypeOf;
 var __hasOwnProp = Object.prototype.hasOwnProperty;
 var __export = (target, all) => {
   for (var name in all)
@@ -15,43 +17,73 @@ var __copyProps = (to, from, except, desc) => {
   }
   return to;
 };
+var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
+  // If the importer is in node compatibility mode or this is not an ESM
+  // file that has been converted to a CommonJS file using a Babel-
+  // compatible transform (i.e. "__esModule" has not been set), then set
+  // "default" to the CommonJS "module.exports" for node compatibility.
+  isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
+  mod
+));
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 var Auth_exports = {};
 __export(Auth_exports, {
   Auth: () => Auth
 });
 module.exports = __toCommonJS(Auth_exports);
-var import_Auth = require("../../repositories/Auth");
+var import_Log = require("../../helpers/Log");
+var import_ErrorFormatter = __toESM(require("../../helpers/Response/ErrorFormatter"));
+var import_SuccessSingularFormatter = __toESM(require("../../helpers/Response/SuccessSingularFormatter"));
+var import_LoginRequest = require("../../domains/web/Login/LoginRequest");
+var import_Validator = require("../../helpers/Validator");
+var import_BadRequestError = require("../../helpers/Error/BadRequestError");
+var import_RegisterRequest = require("../../domains/web/Login/RegisterRequest");
 class Auth {
-  authRepository;
-  constructor() {
-    this.authRepository = new import_Auth.AuthRepository();
+  authService;
+  constructor(authService) {
+    this.authService = authService;
   }
-  async find(fullname, page) {
-    const gettingTransaction = await this.authRepository.find({
-      where: {
-        fullname: {
-          contains: fullname,
-          mode: "insensitive"
-        }
-      },
-      skip: page > 1 ? 10 * page - 10 : 0,
-      take: 10
-    });
-    return gettingTransaction;
+  async LoginController(req, res) {
+    try {
+      const data = req.body;
+      const validatedData = import_Validator.Validator.validate(data, import_LoginRequest.LoginRequest.getSchema());
+      const result = await this.authService.SignInService(validatedData);
+      const response = (0, import_SuccessSingularFormatter.default)("Berhasil Login", { token: result });
+      return res.status(200).send(response);
+    } catch (error) {
+      handleErrorResponse(res, error);
+    }
   }
-  async count(fullname) {
-    const countingTransaction = await this.authRepository.count({
-      where: {
-        fullname: {
-          contains: fullname,
-          mode: "insensitive"
-        }
-      }
-    });
-    return countingTransaction;
+  async ProfileController(req, res) {
+    try {
+      const result = await this.authService.GetProfileService(req.userId);
+      const response = (0, import_SuccessSingularFormatter.default)("Profile User", result);
+      return res.status(200).send(response);
+    } catch (error) {
+      handleErrorResponse(res, error);
+    }
+  }
+  async RegisterController(req, res) {
+    try {
+      const data = req.body;
+      const validatedData = import_Validator.Validator.validate(data, import_RegisterRequest.RegisterRequest.getSchema());
+      const result = await this.authService.RegisterService(validatedData);
+      const response = (0, import_SuccessSingularFormatter.default)("Berhasil Register Akun", result);
+      return res.status(200).send(response);
+    } catch (error) {
+      handleErrorResponse(res, error);
+    }
   }
 }
+const handleErrorResponse = (res, error) => {
+  if (error instanceof import_BadRequestError.BadRequestError || error instanceof import_Validator.ValidationException) {
+    const response2 = (0, import_ErrorFormatter.default)(error.toResponseObject());
+    return res.status(error.status).send(response2);
+  }
+  import_Log.logger.error(error);
+  const response = (0, import_ErrorFormatter.default)(error);
+  return res.status(500).send(response);
+};
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
   Auth

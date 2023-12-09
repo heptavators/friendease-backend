@@ -22,22 +22,47 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
   mod
 ));
 var import_express = __toESM(require("express"));
-var import_Auth = __toESM(require("./routes/Auth"));
+var import_routes = __toESM(require("./routes"));
 var import_Log = require("./helpers/Log");
+var import_Database = __toESM(require("./configs/Database"));
+var import_DatabaseSeeder = require("./domains/Database/DatabaseSeeder");
+var import_connect_timeout = __toESM(require("connect-timeout"));
 try {
   const app = (0, import_express.default)();
+  import_Database.default.sync();
   const port = "3000";
+  const checkAuthorization = (req, res, next) => {
+    const authHeader = req.headers.authorization;
+    if (!authHeader || authHeader !== "YourValidToken") {
+      return res.status(401).json({ error: "Unauthorized" });
+    }
+    next();
+  };
+  const payload = {
+    message: {
+      token: "token"
+    },
+    notification: {
+      title: "FCM IS COOL !",
+      body: "Notification has been received",
+      content_available: "true",
+      image: "https://i.ytimg.com/vi/iosNuIdQoy8/maxresdefault.jpg"
+    }
+  };
+  app.use((0, import_connect_timeout.default)("10s"));
   app.use(import_express.default.json());
   app.use(import_express.default.urlencoded({ extended: true }));
   app.get("/", (req, res) => {
     res.send("Hello World!");
   });
-  app.use("/api", import_Auth.default);
+  app.get("/seed", checkAuthorization, import_DatabaseSeeder.DatabaseSeeder);
+  app.use("/api", import_routes.default);
   app.listen(port, () => {
+    import_Log.logger.info(process.env.SECRET_KEYS);
     import_Log.logger.info("apps running on port " + port);
   });
 } catch (error) {
-  import_Log.logger.error("failed to running apps, error : " + error);
+  import_Log.logger.error("failed to running apps, error : " + error.message);
   process.exit(1);
 }
 //# sourceMappingURL=index.js.map
