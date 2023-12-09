@@ -22,9 +22,17 @@ export class AuthRepository{
         }
     }
 
+    async getNotificationById(id: string): Promise<any>{
+        try {
+            const data = await AuthModel.findByPk(id, {include: ["notifications"]})
+            return data
+        } catch (error) {
+            throw new Error(`Cannot find data because : ${error}`)
+        }
+    }
+
     async createUser(registerRequest : RegisterRequest): Promise<any>{
         try {
-            console.log("this is repositiory: " + registerRequest.password)
             const newUser = await AuthModel.create({
                 id: uuidv4(),
                 fullname: registerRequest.fullname,

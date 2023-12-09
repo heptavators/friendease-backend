@@ -2,7 +2,6 @@ import { ProductRepository } from "../../repositories/Product";
 import { CreateProductRequest } from '../../domains/web/Product/CreateProductRequest';
 import { DEFAULT_LIMIT } from "../../utils/Constant";
 import { EditProductRequest } from "../../domains/web/Product/EditProductRequest";
-import { BadRequestError } from "../../helpers/Error/BadRequestError";
 import { Op } from "sequelize";
 
 export class ProductService {

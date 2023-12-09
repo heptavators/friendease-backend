@@ -40,9 +40,16 @@ class AuthRepository {
       throw new Error(`Cannot find data because : ${error}`);
     }
   }
+  async getNotificationById(id) {
+    try {
+      const data = await import_Auth.AuthModel.findByPk(id, { include: ["notifications"] });
+      return data;
+    } catch (error) {
+      throw new Error(`Cannot find data because : ${error}`);
+    }
+  }
   async createUser(registerRequest) {
     try {
-      console.log("this is repositiory: " + registerRequest.password);
       const newUser = await import_Auth.AuthModel.create({
         id: (0, import_uuid.v4)(),
         fullname: registerRequest.fullname,

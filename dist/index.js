@@ -29,7 +29,7 @@ var import_DatabaseSeeder = require("./domains/seeder/DatabaseSeeder");
 var import_connect_timeout = __toESM(require("connect-timeout"));
 try {
   const app = (0, import_express.default)();
-  import_Database.default.sync();
+  import_Database.default.sync({ force: true });
   const port = "3000";
   const checkAuthorization = (req, res, next) => {
     const authHeader = req.headers.authorization;

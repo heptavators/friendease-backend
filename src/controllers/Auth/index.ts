@@ -8,7 +8,7 @@ import { ValidationException, Validator } from '../../helpers/Validator';
 import { BadRequestError } from "../../helpers/Error/BadRequestError";
 import { RegisterRequest } from "../../domains/web/Login/RegisterRequest";
 
-export class Auth {
+export class AuthController {
     authService: AuthService
 
     constructor(authService: AuthService){
@@ -43,6 +43,7 @@ export class Auth {
         handleErrorResponse(res, error)
       } 
     }
+
 
     async RegisterController(req: Request, res: Response){
       try {

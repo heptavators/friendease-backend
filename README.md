@@ -16,12 +16,16 @@
 
 - express
 - winston
-- prisma
+- sequelize
+- joi
+- uuid
+- jsonwebtoken
+- bcryptjs
 
 ## Architecture
 Domain -> Repository -> Service -> Controller -> Router
  
-## How To Run / Install 
+## How To Run / Install On Your Local Machine
 
 Clone this repository
 ```bash
@@ -33,7 +37,17 @@ Open this project
 cd friendease-backend
 ```
 
-
+Containerization this project using Docker
+```bash
 docker build -t haradakumiko/friendease-backend --no-cache -f deploy/Dockerfile .
+```
 
+Open the deploy directory 
+```bash
+cd deploy
+```
+
+Running this project
+```bash
 docker compose up -d
+```

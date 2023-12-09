@@ -28,7 +28,7 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 var Auth_exports = {};
 __export(Auth_exports, {
-  Auth: () => Auth
+  AuthController: () => AuthController
 });
 module.exports = __toCommonJS(Auth_exports);
 var import_Log = require("../../helpers/Log");
@@ -38,7 +38,7 @@ var import_LoginRequest = require("../../domains/web/Login/LoginRequest");
 var import_Validator = require("../../helpers/Validator");
 var import_BadRequestError = require("../../helpers/Error/BadRequestError");
 var import_RegisterRequest = require("../../domains/web/Login/RegisterRequest");
-class Auth {
+class AuthController {
   authService;
   constructor(authService) {
     this.authService = authService;
@@ -87,6 +87,6 @@ const handleErrorResponse = (res, error) => {
 };
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
-  Auth
+  AuthController
 });
 //# sourceMappingURL=index.js.map

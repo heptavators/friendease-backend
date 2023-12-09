@@ -113,6 +113,35 @@
 			]
 		},
 		{
+			"name": "Notification",
+			"item": [
+				{
+					"name": "All Request",
+					"item": [
+						{
+							"name": "Get Notification",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/notification/user",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"notification",
+										"user"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
 			"name": "Testing",
 			"item": [
 				{

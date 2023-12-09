@@ -8,7 +8,7 @@ import {SendNotification} from './utils/Notification';
 
 try {
   const app = express();
-  Database.sync()
+  Database.sync({ force: true })
   const port = "3000";
 
 const checkAuthorization = (req: express.Request, res: express.Response, next: express.NextFunction) => {

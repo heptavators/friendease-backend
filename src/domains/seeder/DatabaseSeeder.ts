@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import  Database  from '../../configs/Database';
 import { ProductSeeder } from './ProductSeeder';
 import { AuthSeeder } from './AuthSeeder';
+import { NotificationSeeder } from './NotificationSeeder';
 
 
 
@@ -9,10 +10,12 @@ export async function DatabaseSeeder(req: Request, res: Response) {
   try {
     await Database.sync();
     
-    const authSeeder = new AuthSeeder();
     const productSeeder = new ProductSeeder();
+    const authSeeder = new AuthSeeder();
+    const notificationSeeder = new NotificationSeeder()
 
     await authSeeder.run();
+    await notificationSeeder.run();
     await productSeeder.run();
 
     console.info("success seed database")

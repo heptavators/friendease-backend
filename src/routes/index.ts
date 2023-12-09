@@ -1,9 +1,11 @@
-import  authRouter  from './Auth';
-import  productRouter  from './Product';
+import  AuthRouter  from './Auth';
+import  ProductRouter  from './Product';
+import  NotificationRouter  from './Notification';
 
 const Router = [
-    authRouter,
-    productRouter
+    AuthRouter,
+    ProductRouter,
+    NotificationRouter
 ]
 
 export default Router;
