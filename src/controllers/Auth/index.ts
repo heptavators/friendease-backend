@@ -32,7 +32,8 @@ export class Auth {
 
     async ProfileController(req: Request, res: Response) {
       try {
-        const result = await this.authService.GetProfileService(req.userId);
+        console.log(req.body.userId)
+        const result = await this.authService.GetProfileService(req.body.userId.userId);
 
         const response = SuccessSingularFormatter('Profile User', result);
 

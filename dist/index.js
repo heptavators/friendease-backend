@@ -25,7 +25,7 @@ var import_express = __toESM(require("express"));
 var import_routes = __toESM(require("./routes"));
 var import_Log = require("./helpers/Log");
 var import_Database = __toESM(require("./configs/Database"));
-var import_DatabaseSeeder = require("./domains/Database/DatabaseSeeder");
+var import_DatabaseSeeder = require("./domains/seeder/DatabaseSeeder");
 var import_connect_timeout = __toESM(require("connect-timeout"));
 try {
   const app = (0, import_express.default)();

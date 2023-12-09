@@ -2,7 +2,7 @@ import express from 'express';
 import  Router  from './routes';
 import { logger } from './helpers/Log';
 import  Database  from './configs/Database';
-import { DatabaseSeeder } from './domains/Database/DatabaseSeeder';
+import { DatabaseSeeder } from './domains/seeder/DatabaseSeeder';
 import timeout from 'connect-timeout';
 import {SendNotification} from './utils/Notification';
 
