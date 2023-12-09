@@ -56,8 +56,8 @@ class Auth {
   }
   async ProfileController(req, res) {
     try {
-      const result = await this.authService.GetProfileService("");
-      const response = (0, import_SuccessSingularFormatter.default)("Berhasil Login", { token: result });
+      const result = await this.authService.GetProfileService(req.userId);
+      const response = (0, import_SuccessSingularFormatter.default)("Profile User", result);
       return res.status(200).send(response);
     } catch (error) {
       handleErrorResponse(res, error);
@@ -68,7 +68,7 @@ class Auth {
       const data = req.body;
       const validatedData = import_Validator.Validator.validate(data, import_RegisterRequest.RegisterRequest.getSchema());
       const result = await this.authService.RegisterService(validatedData);
-      const response = (0, import_SuccessSingularFormatter.default)("Berhasil Register Akun", { data: result });
+      const response = (0, import_SuccessSingularFormatter.default)("Berhasil Register Akun", result);
       return res.status(200).send(response);
     } catch (error) {
       handleErrorResponse(res, error);

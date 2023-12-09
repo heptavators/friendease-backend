@@ -12,7 +12,6 @@ export default function middlewareAuth(req: Request, res: Response, next: NextFu
             const token = bearer[1];
             const decoded = jwt.verify(token, "process.env.SECRET_KEY", signOptions) 
             req.userId = decoded.userId
-
             next();
 
         } catch (error: any) {

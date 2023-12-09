@@ -32,9 +32,9 @@ export class Auth {
 
     async ProfileController(req: Request, res: Response) {
       try {
-        const result = await this.authService.GetProfileService("");
+        const result = await this.authService.GetProfileService(req.userId);
 
-        const response = SuccessSingularFormatter('Berhasil Login', { token: result });
+        const response = SuccessSingularFormatter('Profile User', result);
 
         return res.status(200).send(response);
 
@@ -49,7 +49,7 @@ export class Auth {
         const validatedData = Validator.validate(data, RegisterRequest.getSchema());
         const result = await this.authService.RegisterService(validatedData);
 
-        const response = SuccessSingularFormatter('Berhasil Register Akun', { data: result });
+        const response = SuccessSingularFormatter('Berhasil Register Akun', result );
 
         return res.status(200).send(response);
 
