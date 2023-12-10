@@ -59,8 +59,8 @@ export class ProductService {
         return product
     }
 
-    async getProductByIdService(id: string){
-        const data = await this.productRepository.getProductById(id);
+    async getProductByIdService(productId: string){
+        const data = await this.productRepository.getProductById(productId);
         return data; 
 
     }
@@ -73,13 +73,13 @@ export class ProductService {
         return { data, count }; 
     }
 
-    async editProductService(id: string, editProductRequest: EditProductRequest){
-        const data = await this.productRepository.updateProduct(id, editProductRequest)
+    async editProductService(productId: string, editProductRequest: EditProductRequest){
+        const data = await this.productRepository.updateProduct(productId, editProductRequest)
         return data
     }
 
-    async deleteProductService(id: string){
-      const data = await this.productRepository.deleteProduct(id)
+    async deleteProductService(productId: string){
+      const data = await this.productRepository.deleteProduct(productId)
       return data
     }
 

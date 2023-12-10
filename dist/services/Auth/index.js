@@ -66,15 +66,14 @@ class AuthService {
     }
     const hashedPassword = await import_bcryptjs.default.hash(registerRequest.password, 10);
     const data = {
-      fullname: registerRequest.fullname,
       email: registerRequest.email,
       password: hashedPassword
     };
     const newUser = await this.authRepository.createUser(data);
     return newUser;
   }
-  async GetProfileService(id) {
-    const findUser = await this.authRepository.getProfileById(id);
+  async GetProfileService(authId) {
+    const findUser = await this.authRepository.getProfileById(authId);
     if (!findUser) {
       throw new import_BadRequestError.BadRequestError([{ error: "email", message: "Email Tidak Ditemukan" }], 401);
     }

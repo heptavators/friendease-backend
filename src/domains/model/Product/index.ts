@@ -2,7 +2,7 @@ import { Model, DataTypes } from 'sequelize';
 import Database  from "../../../configs/Database";
 
 export class ProductModel extends Model{
-    id!: string;
+    productId!: string;
     name!: string;
     price!: number;
 
@@ -11,9 +11,9 @@ export class ProductModel extends Model{
 
 ProductModel.init(
   {
-    id: {
-      type: DataTypes.STRING,
-      defaultValue: DataTypes.STRING,
+    productId: {
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUID,
       primaryKey: true,
       unique: true
     },

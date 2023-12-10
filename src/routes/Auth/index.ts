@@ -7,7 +7,7 @@ import ErrorFormatter from '../../helpers/Response/ErrorFormatter';
 import FailFormatter from '../../helpers/Response/FailFormatter';
 import { logger } from '../../helpers/Log';
 import  Multer  from 'multer';
-import middlewareAuth from '../../middlewares/JWT';
+import MiddlewareAuth from '../../middlewares/MiddlewareAuth';
 
 const multer = Multer({
     storage: Multer.memoryStorage(),
@@ -25,8 +25,8 @@ const authController = new AuthController(authService);
 
 
 authRouter.post("/auth/login", async (req, res) => authController.LoginController(req, res));
-authRouter.post("/auth/register", middlewareAuth, async (req, res) => authController.RegisterController(req, res));
-authRouter.get("/auth/profile", middlewareAuth, async (req, res) => authController.ProfileController(req, res));
+authRouter.post("/auth/register", async (req, res) => authController.RegisterController(req, res));
+authRouter.get("/auth/profile", MiddlewareAuth, async (req, res) => authController.ProfileController(req, res));
 
 
 authRouter.post("/image", multer.single("image"), async function(req, res) {

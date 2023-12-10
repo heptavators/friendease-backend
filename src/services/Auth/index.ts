@@ -45,22 +45,20 @@ export class AuthService {
           throw new BadRequestError([{ error: 'email', message: 'Email already exists' }], 401);
         }
   
-        // Hash the password using bcryptjs
         const hashedPassword = await bcryptjs.hash(registerRequest.password, 10);
         
         const data = {
-            fullname: registerRequest.fullname,
             email: registerRequest.email,
             password: hashedPassword,
         }
-        // Create a new user with the hashed password
+
         const newUser = await this.authRepository.createUser(data);
   
         return newUser;
-}
+    }
 
-    async GetProfileService(id: string){
-        const findUser = await this.authRepository.getProfileById(id);
+    async GetProfileService(authId: string){
+        const findUser = await this.authRepository.getProfileById(authId);
         if (!findUser) {
                 throw new BadRequestError([{ error: 'email', message: 'Email Tidak Ditemukan' }], 401);
         }

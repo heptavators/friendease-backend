@@ -5,7 +5,7 @@ import { AuthModel } from '../../domains/model/Auth';
 export function GenerateJwtToken(user: AuthModel): string {
     // Logic to generate JWT token
     const token = jwt.sign({ 
-      userId: user.id,
+      authId: user.authId,
       fullname: user.fullname,
       username: user.username,
       email: user.email,

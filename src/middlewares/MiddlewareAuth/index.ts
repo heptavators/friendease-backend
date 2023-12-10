@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 import * as jwt from "jsonwebtoken"
 import type { JwtPayload } from "jsonwebtoken"
 
-export default function middlewareAuth(req: Request, res: Response, next: NextFunction) {
+export default function MiddlewareAuth(req: Request, res: Response, next: NextFunction) {
     const bearerHeader = req.headers['authorization'];
     const signOptions = { maxAge: "1d" };
 
@@ -11,7 +11,7 @@ export default function middlewareAuth(req: Request, res: Response, next: NextFu
             const bearer = bearerHeader.split(' ');
             const token = bearer[1];
             const decoded = jwt.verify(token, "process.env.SECRET_KEY", signOptions) 
-            req.body.userId = decoded
+            req.authId = decoded.authId
             next();
 
         } catch (error: any) {

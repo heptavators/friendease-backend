@@ -1,11 +1,9 @@
 import { Model, DataTypes } from 'sequelize';
 import Database  from "../../../configs/Database";
-import { AuthModel } from '../Auth';
-
 
 
 export class NotificationModel extends Model{
-    id!: string;
+    notificationId!: string;
     icon!: string;
     title!: string;
     body!: string;
@@ -17,9 +15,9 @@ export class NotificationModel extends Model{
 
 NotificationModel.init(
   {
-    id: {
-      type: DataTypes.STRING,
-      defaultValue: DataTypes.STRING,
+    notificationId: {
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUID,
       primaryKey: true,
       unique: true,
     },
@@ -27,7 +25,7 @@ NotificationModel.init(
         type: DataTypes.STRING,
         allowNull: false,
     },
-    auth_id: {
+    authId: {
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -51,16 +49,16 @@ NotificationModel.init(
     indexes: [
       {
         unique: false,
-        fields: ["auth_id"]
+        fields: ["authId"]
       }
     ]
   }
 );
 
 
-//relationship
-AuthModel.hasMany(NotificationModel, {as: "notifications", onDelete: 'CASCADE', foreignKey: 'auth_id'})
-NotificationModel.belongsTo(AuthModel, {
-    foreignKey: "auth_id",
-    as: "auth"
-});
+// //relationship
+// AuthModel.hasMany(NotificationModel, {as: "notifications", onDelete: 'CASCADE', foreignKey: 'authId'})
+// NotificationModel.belongsTo(AuthModel, {
+//     foreignKey: "authId",
+//     as: "auth"
+// });

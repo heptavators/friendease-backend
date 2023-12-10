@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import  Database  from '../../configs/Database';
 import { ProductSeeder } from './ProductSeeder';
+import { LocationSeeder } from './LocationSeeder';
 import { AuthSeeder } from './AuthSeeder';
 import { NotificationSeeder } from './NotificationSeeder';
 
@@ -11,9 +12,12 @@ export async function DatabaseSeeder(req: Request, res: Response) {
     await Database.sync();
     
     const productSeeder = new ProductSeeder();
+    const locationSeeder = new LocationSeeder();
     const authSeeder = new AuthSeeder();
-    const notificationSeeder = new NotificationSeeder()
+    const notificationSeeder = new NotificationSeeder();
 
+
+    await locationSeeder.run();
     await authSeeder.run();
     await notificationSeeder.run();
     await productSeeder.run();

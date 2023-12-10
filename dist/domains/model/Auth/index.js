@@ -34,7 +34,8 @@ module.exports = __toCommonJS(Auth_exports);
 var import_sequelize = require("sequelize");
 var import_Database = __toESM(require("../../../configs/Database"));
 class AuthModel extends import_sequelize.Model {
-  id;
+  authId;
+  locationId;
   fullname;
   email;
   username;
@@ -47,15 +48,19 @@ class AuthModel extends import_sequelize.Model {
 }
 AuthModel.init(
   {
-    id: {
-      type: import_sequelize.DataTypes.STRING,
-      defaultValue: import_sequelize.DataTypes.STRING,
+    authId: {
+      type: import_sequelize.DataTypes.UUID,
+      defaultValue: import_sequelize.DataTypes.UUID,
       primaryKey: true,
       unique: true
     },
+    locationId: {
+      type: import_sequelize.DataTypes.UUID,
+      allowNull: false
+    },
     fullname: {
       type: import_sequelize.DataTypes.STRING,
-      allowNull: false
+      allowNull: true
     },
     email: {
       type: import_sequelize.DataTypes.STRING,
@@ -69,7 +74,7 @@ AuthModel.init(
     },
     password: {
       type: import_sequelize.DataTypes.STRING,
-      allowNull: true
+      allowNull: false
     },
     avatar: {
       type: import_sequelize.DataTypes.STRING,

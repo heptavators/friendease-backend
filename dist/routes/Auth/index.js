@@ -39,7 +39,7 @@ var import_ErrorFormatter = __toESM(require("../../helpers/Response/ErrorFormatt
 var import_FailFormatter = __toESM(require("../../helpers/Response/FailFormatter"));
 var import_Log = require("../../helpers/Log");
 var import_multer = __toESM(require("multer"));
-var import_JWT = __toESM(require("../../middlewares/JWT"));
+var import_MiddlewareAuth = __toESM(require("../../middlewares/MiddlewareAuth"));
 const multer = (0, import_multer.default)({
   storage: import_multer.default.memoryStorage(),
   limits: {
@@ -51,8 +51,8 @@ const authRepository = new import_Auth2.AuthRepository();
 const authService = import_Auth3.AuthService.getInstance(authRepository);
 const authController = new import_Auth.AuthController(authService);
 authRouter.post("/auth/login", async (req, res) => authController.LoginController(req, res));
-authRouter.post("/auth/register", import_JWT.default, async (req, res) => authController.RegisterController(req, res));
-authRouter.get("/auth/profile", import_JWT.default, async (req, res) => authController.ProfileController(req, res));
+authRouter.post("/auth/register", async (req, res) => authController.RegisterController(req, res));
+authRouter.get("/auth/profile", import_MiddlewareAuth.default, async (req, res) => authController.ProfileController(req, res));
 authRouter.post("/image", multer.single("image"), async function(req, res) {
   try {
     console.log(req.file);

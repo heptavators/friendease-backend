@@ -35,7 +35,7 @@ var import_jsonwebtoken = __toESM(require("jsonwebtoken"));
 function GenerateJwtToken(user) {
   const token = import_jsonwebtoken.default.sign(
     {
-      userId: user.id,
+      authId: user.authId,
       fullname: user.fullname,
       username: user.username,
       email: user.email,

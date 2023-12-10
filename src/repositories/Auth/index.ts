@@ -1,6 +1,7 @@
 import { RegisterRequest } from "../../domains/web/Login/RegisterRequest";
 import { AuthModel } from "../../domains/model/Auth";
 import { v4 as uuidv4 } from 'uuid';
+import { addAttribute } from "sequelize-typescript";
 
 export class AuthRepository{
 
@@ -13,32 +14,35 @@ export class AuthRepository{
           }
       }
 
-      async getProfileById(id: string): Promise<any>{
+      async getProfileById(authId: string): Promise<any>{
         try {
-            const data = await AuthModel.findByPk(id)
+            const data = await AuthModel.findByPk(authId, {attributes: {
+                exclude: ['password'],
+                include: ['locations']
+        }})
             return data
         } catch (error) {
             throw new Error(`Cannot find data because : ${error}`)
         }
     }
 
-    async getNotificationById(id: string): Promise<any>{
-        try {
-            const data = await AuthModel.findByPk(id, {include: ["notifications"]})
-            return data
-        } catch (error) {
-            throw new Error(`Cannot find data because : ${error}`)
-        }
-    }
+    // async getNotificationById(id: string): Promise<any>{
+    //     try {
+    //         const data = await AuthModel.findByPk(id, {include: ["notifications"]})
+    //         return data
+    //     } catch (error) {
+    //         throw new Error(`Cannot find data because : ${error}`)
+    //     }
+    // }
 
     async createUser(registerRequest : RegisterRequest): Promise<any>{
         try {
             const newUser = await AuthModel.create({
-                id: uuidv4(),
-                fullname: registerRequest.fullname,
+                authId: uuidv4(),
                 email: registerRequest.email,
                 password: registerRequest.password
-            });
+            }, 
+        );
             return newUser;
         } catch (error) {
             throw new Error(`Cannot create data because : ${error}`)

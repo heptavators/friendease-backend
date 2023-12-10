@@ -32,30 +32,34 @@ class AuthRepository {
       throw new Error(`Cannot find data because : ${e}`);
     }
   }
-  async getProfileById(id) {
+  async getProfileById(authId) {
     try {
-      const data = await import_Auth.AuthModel.findByPk(id);
+      const data = await import_Auth.AuthModel.findByPk(authId, { attributes: {
+        exclude: ["password"],
+        include: ["locations"]
+      } });
       return data;
     } catch (error) {
       throw new Error(`Cannot find data because : ${error}`);
     }
   }
-  async getNotificationById(id) {
-    try {
-      const data = await import_Auth.AuthModel.findByPk(id, { include: ["notifications"] });
-      return data;
-    } catch (error) {
-      throw new Error(`Cannot find data because : ${error}`);
-    }
-  }
+  // async getNotificationById(id: string): Promise<any>{
+  //     try {
+  //         const data = await AuthModel.findByPk(id, {include: ["notifications"]})
+  //         return data
+  //     } catch (error) {
+  //         throw new Error(`Cannot find data because : ${error}`)
+  //     }
+  // }
   async createUser(registerRequest) {
     try {
-      const newUser = await import_Auth.AuthModel.create({
-        id: (0, import_uuid.v4)(),
-        fullname: registerRequest.fullname,
-        email: registerRequest.email,
-        password: registerRequest.password
-      });
+      const newUser = await import_Auth.AuthModel.create(
+        {
+          authId: (0, import_uuid.v4)(),
+          email: registerRequest.email,
+          password: registerRequest.password
+        }
+      );
       return newUser;
     } catch (error) {
       throw new Error(`Cannot create data because : ${error}`);

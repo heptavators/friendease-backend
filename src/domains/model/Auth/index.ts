@@ -1,8 +1,10 @@
 import { DataTypes, Model } from 'sequelize';
 import Database  from "../../../configs/Database";
+import { LocationModel } from '../Location';
 
 export class AuthModel extends Model {
-    id!: string;
+    authId!: string;
+    locationId!: string;
     fullname!: string;
     email!: string;
     username!: string;
@@ -15,18 +17,21 @@ export class AuthModel extends Model {
 }
 
 
-
 AuthModel.init(
     {
-      id: {
-        type: DataTypes.STRING,
-        defaultValue: DataTypes.STRING,
+      authId: {
+        type: DataTypes.UUID,
+        defaultValue: DataTypes.UUID,
         primaryKey: true,
         unique: true
       },
+      locationId: {
+        type: DataTypes.UUID,
+        allowNull: false,
+      },
       fullname: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
       },
       email: {
         type: DataTypes.STRING,
@@ -40,7 +45,7 @@ AuthModel.init(
       },
       password: {
         type: DataTypes.STRING,
-        allowNull: true,
+        allowNull: false,
       },
       avatar: {
         type: DataTypes.STRING,
@@ -69,3 +74,5 @@ AuthModel.init(
       sequelize: Database,
     }
   );
+
+

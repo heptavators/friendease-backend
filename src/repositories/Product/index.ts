@@ -9,7 +9,7 @@ export class ProductRepository{
     async insertProduct(createProductRequest: CreateProductRequest): Promise<any>  {
         try {
             const product = await ProductModel.create({
-                id: uuidv4(),
+                productId: uuidv4(),
                 name: createProductRequest.name,
                 price: createProductRequest.price,
               });
@@ -29,19 +29,19 @@ export class ProductRepository{
         }
     }
 
-    async getProductById(id: string): Promise<any>{
+    async getProductById(productId: string): Promise<any>{
         try {
-            const product = await ProductModel.findByPk(id)
+            const product = await ProductModel.findByPk(productId)
             return product
         } catch (error) {
             throw new Error(`Cannot find data because : ${error}`)
         }
     }
 
-    async updateProduct(id: string, editProductRequest: EditProductRequest){
+    async updateProduct(productId: string, editProductRequest: EditProductRequest){
         try {
             const [updatedRowsCount] = await ProductModel.update(editProductRequest, {
-                where: {id}
+                where: {productId}
             });
             
               return updatedRowsCount > 0;
@@ -51,10 +51,10 @@ export class ProductRepository{
         }
     }
 
-    async deleteProduct(id: string){
+    async deleteProduct(productId: string){
         try {
              const data = await ProductModel.destroy({where: {
-                id: id
+                productId: productId
              }});
             
               return data;
