@@ -1,6 +1,7 @@
 import { AuthModel } from "../../domains/model/Auth";
 import { TalentModel } from "../../domains/model/Talent";
 import { LocationModel } from "../../domains/model/Location";
+import { HighlightModel } from "../../domains/model/Highlight";
 
 
 export class TalentRepository{
@@ -20,12 +21,16 @@ export class TalentRepository{
                             },
                         ],
                         attributes: {
-                            exclude: ['password'],
+                            exclude: ['password', 'createdAt', 'updatedAt', "locationId"],
                         },
                     },
-                    'highlights',
+                    {
+                        model: HighlightModel,
+                        as: 'highlights',
+                        attributes: ["highlightId", "highlightURL"]
+                    }
                 ],
-                attributes: { exclude: ['authId'] },
+                attributes: { exclude: ['authId', 'createdAt', 'updatedAt'] },
             });
     
             return talents
