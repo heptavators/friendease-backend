@@ -16,10 +16,10 @@ export class AuthRepository{
 
       async getProfileById(authId: string): Promise<any>{
         try {
-            const data = await AuthModel.findByPk(authId, {attributes: {
-                exclude: ['password'],
-                include: ['locations']
-        }})
+            const data = await AuthModel.findByPk(authId, {
+                include: ['location'],
+                attributes: { exclude: ['password', 'locationId'] },
+            })
             return data
         } catch (error) {
             throw new Error(`Cannot find data because : ${error}`)

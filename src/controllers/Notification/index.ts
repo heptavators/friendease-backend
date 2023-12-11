@@ -30,6 +30,7 @@ export class NotificationController {
           handleErrorResponse(res, error)
         } 
       }
+      
 
 
     async CreateNotificationController(req: Request, res: Response){

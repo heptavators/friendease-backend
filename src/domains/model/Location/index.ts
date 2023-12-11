@@ -36,5 +36,5 @@ LocationModel.init(
   }
 );
 
-// LocationModel.belongsTo(AuthModel, {as: 'locations', foreignKey: "locationId"})
-AuthModel.belongsTo(LocationModel, { as: 'locations', foreignKey: 'locationId' })
+LocationModel.hasOne(AuthModel, {as: 'auths', foreignKey: "locationId"})
+AuthModel.belongsTo(LocationModel, { as: 'location', foreignKey: 'locationId' })

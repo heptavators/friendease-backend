@@ -34,10 +34,10 @@ class AuthRepository {
   }
   async getProfileById(authId) {
     try {
-      const data = await import_Auth.AuthModel.findByPk(authId, { attributes: {
-        exclude: ["password"],
-        include: ["locations"]
-      } });
+      const data = await import_Auth.AuthModel.findByPk(authId, {
+        include: ["location"],
+        attributes: { exclude: ["password", "locationId"] }
+      });
       return data;
     } catch (error) {
       throw new Error(`Cannot find data because : ${error}`);
