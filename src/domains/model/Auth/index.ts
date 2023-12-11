@@ -1,6 +1,7 @@
 import { DataTypes, Model } from 'sequelize';
 import Database  from "../../../configs/Database";
 import { LocationModel } from '../Location';
+import { TalentModel } from '../Talent';
 
 export class AuthModel extends Model {
     authId!: string;

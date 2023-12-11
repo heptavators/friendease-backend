@@ -45,3 +45,6 @@ HighlightModel.init(
     ]
   }
 );
+
+TalentModel.hasMany(HighlightModel, { as: 'highlights', foreignKey: 'talentId' });
+HighlightModel.belongsTo(TalentModel, { foreignKey: 'talentId' }); 

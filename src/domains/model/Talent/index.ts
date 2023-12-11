@@ -40,3 +40,8 @@ TalentModel.init(
     sequelize: Database,
   }
 );
+
+AuthModel.hasOne(TalentModel, {as: 'talent', foreignKey: "authId"})
+TalentModel.belongsTo(AuthModel, {as: 'auth', foreignKey: 'authId'})
+
+

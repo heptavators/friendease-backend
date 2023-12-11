@@ -167,3 +167,447 @@
     },
     "data": null
 }
+
+
+##list talent
+{
+    "info": {
+        "success": true,
+        "meta": {},
+        "message": "Data Semua Talent"
+    },
+    "data": [
+        {
+            "talentId": "dc8a0ff0-1d0e-414a-9f37-ebe70fae5fc4",
+            "verified_status": "VERIFIED",
+            "rating": null,
+            "createdAt": "2023-12-11T04:55:10.362Z",
+            "updatedAt": "2023-12-11T04:55:10.362Z",
+            "auth": {
+                "authId": "d1f83072-c6d6-4626-9981-5df048799758",
+                "locationId": "d62abf30-cb6f-4690-aee9-a7dd9be70aeb",
+                "fullname": "Fujikawa Chiai",
+                "username": "fujikawachiai",
+                "email": "fujikawachiai@gmail.com",
+                "avatar": "https://avatars.githubusercontent.com/u/42530587?v=4",
+                "bio": "Tech Enthusiast | A newbie at everything",
+                "bod": "1995-06-06",
+                "gender": "FEMALE",
+                "status": "ACTIVE",
+                "roles": "TALENT",
+                "device_token": "eXSkKORYvcTeeLjwQU_QrF:APA91bE_gjfNHVeSeoyj_t2ybY16fYRXB35lausR-NXiRMKovaj--ijah2hfoTBq4cv5BVMAlwasWENL8Egym8A0I_HkoBN0ksvcLaVXG__biHheAZmLSyVQdakhN1IduUiJyU7U21Qq",
+                "createdAt": "2023-12-11T04:55:10.356Z",
+                "updatedAt": "2023-12-11T04:55:10.356Z",
+                "location": {
+                    "locationId": "d62abf30-cb6f-4690-aee9-a7dd9be70aeb",
+                    "province": "Kalimantan Timur",
+                    "city": "Balikpapan"
+                }
+            },
+            "highlights": [
+                {
+                    "highlightId": "dfcc40ba-2466-4013-a9e4-60442805fd1e",
+                    "talentId": "dc8a0ff0-1d0e-414a-9f37-ebe70fae5fc4",
+                    "highlightURL": "https://i.pinimg.com/564x/e8/0b/f4/e80bf43ad9490efa8afdfc6b952aa7d5.jpg",
+                    "highlightNameFile": "https://storage.googleapis.com/payroll_anggi/ABSEN-64c89bf5395a8d082f894723-f1cba4cbe148f090bb941690872092070.png",
+                    "createdAt": "2023-12-11T04:55:10.368Z",
+                    "updatedAt": "2023-12-11T04:55:10.368Z"
+                },
+                {
+                    "highlightId": "1a600453-375b-4b19-b36c-7a8d1e0960f1",
+                    "talentId": "dc8a0ff0-1d0e-414a-9f37-ebe70fae5fc4",
+                    "highlightURL": "https://i.pinimg.com/564x/e8/0b/f4/e80bf43ad9490efa8afdfc6b952aa7d5.jpg",
+                    "highlightNameFile": "https://storage.googleapis.com/payroll_anggi/ABSEN-64c89bf5395a8d082f894723-f1cba4cbe148f090bb941690872092070.png",
+                    "createdAt": "2023-12-11T04:55:10.368Z",
+                    "updatedAt": "2023-12-11T04:55:10.368Z"
+                },
+                {
+                    "highlightId": "dae677f5-3051-4585-a401-e245155a095d",
+                    "talentId": "dc8a0ff0-1d0e-414a-9f37-ebe70fae5fc4",
+                    "highlightURL": "https://i.pinimg.com/564x/e8/0b/f4/e80bf43ad9490efa8afdfc6b952aa7d5.jpg",
+                    "highlightNameFile": "https://storage.googleapis.com/payroll_anggi/ABSEN-64c89bf5395a8d082f894723-f1cba4cbe148f090bb941690872092070.png",
+                    "createdAt": "2023-12-11T04:55:10.368Z",
+                    "updatedAt": "2023-12-11T04:55:10.368Z"
+                }
+            ]
+        },
+        {
+            "talentId": "6b908512-a145-4e3b-b072-96af84b00d87",
+            "verified_status": "VERIFIED",
+            "rating": null,
+            "createdAt": "2023-12-11T04:55:10.362Z",
+            "updatedAt": "2023-12-11T04:55:10.362Z",
+            "auth": {
+                "authId": "821b35f9-5ee0-425a-ba7a-59ecbc5ffe6e",
+                "locationId": "d62abf30-cb6f-4690-aee9-a7dd9be70aeb",
+                "fullname": "Raon Lee",
+                "username": "raon_lee",
+                "email": "raonlee@gmail.com",
+                "avatar": "https://avatars.githubusercontent.com/u/42530587?v=4",
+                "bio": "Tech Enthusiast | A newbie at everything",
+                "bod": "1991-06-10",
+                "gender": "FEMALE",
+                "status": "ACTIVE",
+                "roles": "TALENT",
+                "device_token": "eXSkKORYvcTeeLjwQU_QrF:APA91bE_gjfNHVeSeoyj_t2ybY16fYRXB35lausR-NXiRMKovaj--ijah2hfoTBq4cv5BVMAlwasWENL8Egym8A0I_HkoBN0ksvcLaVXG__biHheAZmLSyVQdakhN1IduUiJyU7U21Qq",
+                "createdAt": "2023-12-11T04:55:10.356Z",
+                "updatedAt": "2023-12-11T04:55:10.356Z",
+                "location": {
+                    "locationId": "d62abf30-cb6f-4690-aee9-a7dd9be70aeb",
+                    "province": "Kalimantan Timur",
+                    "city": "Balikpapan"
+                }
+            },
+            "highlights": [
+                {
+                    "highlightId": "805d35a0-7aa1-4d3a-b02f-71f3706e6681",
+                    "talentId": "6b908512-a145-4e3b-b072-96af84b00d87",
+                    "highlightURL": "https://i.pinimg.com/564x/e8/0b/f4/e80bf43ad9490efa8afdfc6b952aa7d5.jpg",
+                    "highlightNameFile": "https://storage.googleapis.com/payroll_anggi/ABSEN-64c89bf5395a8d082f894723-f1cba4cbe148f090bb941690872092070.png",
+                    "createdAt": "2023-12-11T04:55:10.368Z",
+                    "updatedAt": "2023-12-11T04:55:10.368Z"
+                },
+                {
+                    "highlightId": "d1d34edd-d907-4d53-85d1-9870bd6da564",
+                    "talentId": "6b908512-a145-4e3b-b072-96af84b00d87",
+                    "highlightURL": "https://i.pinimg.com/564x/e8/0b/f4/e80bf43ad9490efa8afdfc6b952aa7d5.jpg",
+                    "highlightNameFile": "https://storage.googleapis.com/payroll_anggi/ABSEN-64c89bf5395a8d082f894723-f1cba4cbe148f090bb941690872092070.png",
+                    "createdAt": "2023-12-11T04:55:10.368Z",
+                    "updatedAt": "2023-12-11T04:55:10.368Z"
+                },
+                {
+                    "highlightId": "4aad7943-49fc-435a-87a3-55884403ee7a",
+                    "talentId": "6b908512-a145-4e3b-b072-96af84b00d87",
+                    "highlightURL": "https://i.pinimg.com/564x/e8/0b/f4/e80bf43ad9490efa8afdfc6b952aa7d5.jpg",
+                    "highlightNameFile": "https://storage.googleapis.com/payroll_anggi/ABSEN-64c89bf5395a8d082f894723-f1cba4cbe148f090bb941690872092070.png",
+                    "createdAt": "2023-12-11T04:55:10.368Z",
+                    "updatedAt": "2023-12-11T04:55:10.368Z"
+                }
+            ]
+        },
+        {
+            "talentId": "c1124cfc-3f62-4f9a-8182-2819d0624da5",
+            "verified_status": "VERIFIED",
+            "rating": null,
+            "createdAt": "2023-12-11T04:55:10.362Z",
+            "updatedAt": "2023-12-11T04:55:10.362Z",
+            "auth": {
+                "authId": "636ba364-904b-4133-9cb6-dbb1185b8611",
+                "locationId": "d62abf30-cb6f-4690-aee9-a7dd9be70aeb",
+                "fullname": "Aria Ghora Prabono",
+                "username": "aria_ghora",
+                "email": "ariaghora@gmail.com",
+                "avatar": "https://avatars.githubusercontent.com/u/42530587?v=4",
+                "bio": "Tech Enthusiast | A newbie at everything",
+                "bod": "1991-09-05",
+                "gender": "MALE",
+                "status": "ACTIVE",
+                "roles": "TALENT",
+                "device_token": "eXSkKORYvcTeeLjwQU_QrF:APA91bE_gjfNHVeSeoyj_t2ybY16fYRXB35lausR-NXiRMKovaj--ijah2hfoTBq4cv5BVMAlwasWENL8Egym8A0I_HkoBN0ksvcLaVXG__biHheAZmLSyVQdakhN1IduUiJyU7U21Qq",
+                "createdAt": "2023-12-11T04:55:10.356Z",
+                "updatedAt": "2023-12-11T04:55:10.356Z",
+                "location": {
+                    "locationId": "d62abf30-cb6f-4690-aee9-a7dd9be70aeb",
+                    "province": "Kalimantan Timur",
+                    "city": "Balikpapan"
+                }
+            },
+            "highlights": [
+                {
+                    "highlightId": "f685c0f7-58cc-4dfa-bf83-ad32197bfae1",
+                    "talentId": "c1124cfc-3f62-4f9a-8182-2819d0624da5",
+                    "highlightURL": "https://i.pinimg.com/564x/e8/0b/f4/e80bf43ad9490efa8afdfc6b952aa7d5.jpg",
+                    "highlightNameFile": "https://storage.googleapis.com/payroll_anggi/ABSEN-64c89bf5395a8d082f894723-f1cba4cbe148f090bb941690872092070.png",
+                    "createdAt": "2023-12-11T04:55:10.368Z",
+                    "updatedAt": "2023-12-11T04:55:10.368Z"
+                },
+                {
+                    "highlightId": "eaa9eabc-fdea-443d-8401-c7453fde57d5",
+                    "talentId": "c1124cfc-3f62-4f9a-8182-2819d0624da5",
+                    "highlightURL": "https://i.pinimg.com/564x/e8/0b/f4/e80bf43ad9490efa8afdfc6b952aa7d5.jpg",
+                    "highlightNameFile": "https://storage.googleapis.com/payroll_anggi/ABSEN-64c89bf5395a8d082f894723-f1cba4cbe148f090bb941690872092070.png",
+                    "createdAt": "2023-12-11T04:55:10.368Z",
+                    "updatedAt": "2023-12-11T04:55:10.368Z"
+                },
+                {
+                    "highlightId": "f63b68bd-3519-4d60-949d-8a7852271d95",
+                    "talentId": "c1124cfc-3f62-4f9a-8182-2819d0624da5",
+                    "highlightURL": "https://i.pinimg.com/564x/e8/0b/f4/e80bf43ad9490efa8afdfc6b952aa7d5.jpg",
+                    "highlightNameFile": "https://storage.googleapis.com/payroll_anggi/ABSEN-64c89bf5395a8d082f894723-f1cba4cbe148f090bb941690872092070.png",
+                    "createdAt": "2023-12-11T04:55:10.368Z",
+                    "updatedAt": "2023-12-11T04:55:10.368Z"
+                }
+            ]
+        },
+        {
+            "talentId": "4b00656e-374f-4b99-ae45-e079bac5f3ee",
+            "verified_status": "VERIFIED",
+            "rating": null,
+            "createdAt": "2023-12-11T04:55:10.362Z",
+            "updatedAt": "2023-12-11T04:55:10.362Z",
+            "auth": {
+                "authId": "d720cbef-4f9a-4376-905f-b0dc1a6b3d3d",
+                "locationId": "d62abf30-cb6f-4690-aee9-a7dd9be70aeb",
+                "fullname": "Nurvirta Monarizqa",
+                "username": "nmonarizqa",
+                "email": "nmonarizqa@gmail.com",
+                "avatar": "https://avatars.githubusercontent.com/u/42530587?v=4",
+                "bio": "Tech Enthusiast | A newbie at everything",
+                "bod": "1991-09-05",
+                "gender": "FEMALE",
+                "status": "ACTIVE",
+                "roles": "TALENT",
+                "device_token": "eXSkKORYvcTeeLjwQU_QrF:APA91bE_gjfNHVeSeoyj_t2ybY16fYRXB35lausR-NXiRMKovaj--ijah2hfoTBq4cv5BVMAlwasWENL8Egym8A0I_HkoBN0ksvcLaVXG__biHheAZmLSyVQdakhN1IduUiJyU7U21Qq",
+                "createdAt": "2023-12-11T04:55:10.356Z",
+                "updatedAt": "2023-12-11T04:55:10.356Z",
+                "location": {
+                    "locationId": "d62abf30-cb6f-4690-aee9-a7dd9be70aeb",
+                    "province": "Kalimantan Timur",
+                    "city": "Balikpapan"
+                }
+            },
+            "highlights": [
+                {
+                    "highlightId": "ab0343cd-e8f9-4c75-a9b4-a70cf4e76d5d",
+                    "talentId": "4b00656e-374f-4b99-ae45-e079bac5f3ee",
+                    "highlightURL": "https://i.pinimg.com/564x/e8/0b/f4/e80bf43ad9490efa8afdfc6b952aa7d5.jpg",
+                    "highlightNameFile": "https://storage.googleapis.com/payroll_anggi/ABSEN-64c89bf5395a8d082f894723-f1cba4cbe148f090bb941690872092070.png",
+                    "createdAt": "2023-12-11T04:55:10.368Z",
+                    "updatedAt": "2023-12-11T04:55:10.368Z"
+                },
+                {
+                    "highlightId": "2b2436a2-527f-4d90-a8f7-49a47d3a5238",
+                    "talentId": "4b00656e-374f-4b99-ae45-e079bac5f3ee",
+                    "highlightURL": "https://i.pinimg.com/564x/e8/0b/f4/e80bf43ad9490efa8afdfc6b952aa7d5.jpg",
+                    "highlightNameFile": "https://storage.googleapis.com/payroll_anggi/ABSEN-64c89bf5395a8d082f894723-f1cba4cbe148f090bb941690872092070.png",
+                    "createdAt": "2023-12-11T04:55:10.368Z",
+                    "updatedAt": "2023-12-11T04:55:10.368Z"
+                },
+                {
+                    "highlightId": "6b8a8c2a-69d0-4518-a5d0-abc7d1438136",
+                    "talentId": "4b00656e-374f-4b99-ae45-e079bac5f3ee",
+                    "highlightURL": "https://i.pinimg.com/564x/e8/0b/f4/e80bf43ad9490efa8afdfc6b952aa7d5.jpg",
+                    "highlightNameFile": "https://storage.googleapis.com/payroll_anggi/ABSEN-64c89bf5395a8d082f894723-f1cba4cbe148f090bb941690872092070.png",
+                    "createdAt": "2023-12-11T04:55:10.368Z",
+                    "updatedAt": "2023-12-11T04:55:10.368Z"
+                }
+            ]
+        },
+        {
+            "talentId": "ac56a04d-aa98-4591-8e8c-2b188040c114",
+            "verified_status": "UNVERIFIED",
+            "rating": null,
+            "createdAt": "2023-12-11T04:55:10.362Z",
+            "updatedAt": "2023-12-11T04:55:10.362Z",
+            "auth": {
+                "authId": "f6c44ee6-b695-4c00-901f-60efb44b45a1",
+                "locationId": "d62abf30-cb6f-4690-aee9-a7dd9be70aeb",
+                "fullname": "Asmara Tamara Liranda",
+                "username": "tamaraliranda",
+                "email": "tamaraliranda@gmail.com",
+                "avatar": "https://avatars.githubusercontent.com/u/42530587?v=4",
+                "bio": "Tech Enthusiast | A newbie at everything",
+                "bod": "1992-03-31",
+                "gender": "FEMALE",
+                "status": "ACTIVE",
+                "roles": "TALENT",
+                "device_token": "eXSkKORYvcTeeLjwQU_QrF:APA91bE_gjfNHVeSeoyj_t2ybY16fYRXB35lausR-NXiRMKovaj--ijah2hfoTBq4cv5BVMAlwasWENL8Egym8A0I_HkoBN0ksvcLaVXG__biHheAZmLSyVQdakhN1IduUiJyU7U21Qq",
+                "createdAt": "2023-12-11T04:55:10.356Z",
+                "updatedAt": "2023-12-11T04:55:10.356Z",
+                "location": {
+                    "locationId": "d62abf30-cb6f-4690-aee9-a7dd9be70aeb",
+                    "province": "Kalimantan Timur",
+                    "city": "Balikpapan"
+                }
+            },
+            "highlights": [
+                {
+                    "highlightId": "20438aa0-9528-4786-bc97-4bfcf3270bff",
+                    "talentId": "ac56a04d-aa98-4591-8e8c-2b188040c114",
+                    "highlightURL": "https://i.pinimg.com/564x/e8/0b/f4/e80bf43ad9490efa8afdfc6b952aa7d5.jpg",
+                    "highlightNameFile": "https://storage.googleapis.com/payroll_anggi/ABSEN-64c89bf5395a8d082f894723-f1cba4cbe148f090bb941690872092070.png",
+                    "createdAt": "2023-12-11T04:55:10.368Z",
+                    "updatedAt": "2023-12-11T04:55:10.368Z"
+                },
+                {
+                    "highlightId": "4773cc90-8bc7-402d-8e1d-b95b16978d0f",
+                    "talentId": "ac56a04d-aa98-4591-8e8c-2b188040c114",
+                    "highlightURL": "https://i.pinimg.com/564x/e8/0b/f4/e80bf43ad9490efa8afdfc6b952aa7d5.jpg",
+                    "highlightNameFile": "https://storage.googleapis.com/payroll_anggi/ABSEN-64c89bf5395a8d082f894723-f1cba4cbe148f090bb941690872092070.png",
+                    "createdAt": "2023-12-11T04:55:10.368Z",
+                    "updatedAt": "2023-12-11T04:55:10.368Z"
+                },
+                {
+                    "highlightId": "17a2aade-90f3-4b98-bba9-150d7a1e7101",
+                    "talentId": "ac56a04d-aa98-4591-8e8c-2b188040c114",
+                    "highlightURL": "https://i.pinimg.com/564x/e8/0b/f4/e80bf43ad9490efa8afdfc6b952aa7d5.jpg",
+                    "highlightNameFile": "https://storage.googleapis.com/payroll_anggi/ABSEN-64c89bf5395a8d082f894723-f1cba4cbe148f090bb941690872092070.png",
+                    "createdAt": "2023-12-11T04:55:10.368Z",
+                    "updatedAt": "2023-12-11T04:55:10.368Z"
+                }
+            ]
+        },
+        {
+            "talentId": "89341cbe-65d3-46bd-b905-32becfbbf0a4",
+            "verified_status": "UNVERIFIED",
+            "rating": null,
+            "createdAt": "2023-12-11T04:55:10.362Z",
+            "updatedAt": "2023-12-11T04:55:10.362Z",
+            "auth": {
+                "authId": "3105781b-bd78-47b7-a36c-0e9e1e15ec73",
+                "locationId": "d62abf30-cb6f-4690-aee9-a7dd9be70aeb",
+                "fullname": "Muhammad Taufik",
+                "username": "thisistaufik",
+                "email": "mtaufik212@gmail.com",
+                "avatar": "https://avatars.githubusercontent.com/u/42530587?v=4",
+                "bio": "Tech Enthusiast | A newbie at everything",
+                "bod": "2003-11-10",
+                "gender": "MALE",
+                "status": "ACTIVE",
+                "roles": "TALENT",
+                "device_token": "eXSkKORYvcTeeLjwQU_QrF:APA91bE_gjfNHVeSeoyj_t2ybY16fYRXB35lausR-NXiRMKovaj--ijah2hfoTBq4cv5BVMAlwasWENL8Egym8A0I_HkoBN0ksvcLaVXG__biHheAZmLSyVQdakhN1IduUiJyU7U21Qq",
+                "createdAt": "2023-12-11T04:55:10.356Z",
+                "updatedAt": "2023-12-11T04:55:10.356Z",
+                "location": {
+                    "locationId": "d62abf30-cb6f-4690-aee9-a7dd9be70aeb",
+                    "province": "Kalimantan Timur",
+                    "city": "Balikpapan"
+                }
+            },
+            "highlights": [
+                {
+                    "highlightId": "84bf61ba-04b5-459f-9459-5183b37a5c4e",
+                    "talentId": "89341cbe-65d3-46bd-b905-32becfbbf0a4",
+                    "highlightURL": "https://i.pinimg.com/564x/e8/0b/f4/e80bf43ad9490efa8afdfc6b952aa7d5.jpg",
+                    "highlightNameFile": "https://storage.googleapis.com/payroll_anggi/ABSEN-64c89bf5395a8d082f894723-f1cba4cbe148f090bb941690872092070.png",
+                    "createdAt": "2023-12-11T04:55:10.368Z",
+                    "updatedAt": "2023-12-11T04:55:10.368Z"
+                },
+                {
+                    "highlightId": "f7718da9-94f0-4ab9-8ac2-70c27f1d1ea7",
+                    "talentId": "89341cbe-65d3-46bd-b905-32becfbbf0a4",
+                    "highlightURL": "https://i.pinimg.com/564x/e8/0b/f4/e80bf43ad9490efa8afdfc6b952aa7d5.jpg",
+                    "highlightNameFile": "https://storage.googleapis.com/payroll_anggi/ABSEN-64c89bf5395a8d082f894723-f1cba4cbe148f090bb941690872092070.png",
+                    "createdAt": "2023-12-11T04:55:10.368Z",
+                    "updatedAt": "2023-12-11T04:55:10.368Z"
+                },
+                {
+                    "highlightId": "8d9b94ec-0c5d-49b1-9aa2-75139d837d6e",
+                    "talentId": "89341cbe-65d3-46bd-b905-32becfbbf0a4",
+                    "highlightURL": "https://i.pinimg.com/564x/e8/0b/f4/e80bf43ad9490efa8afdfc6b952aa7d5.jpg",
+                    "highlightNameFile": "https://storage.googleapis.com/payroll_anggi/ABSEN-64c89bf5395a8d082f894723-f1cba4cbe148f090bb941690872092070.png",
+                    "createdAt": "2023-12-11T04:55:10.368Z",
+                    "updatedAt": "2023-12-11T04:55:10.368Z"
+                }
+            ]
+        },
+        {
+            "talentId": "7f2f85fb-b6ed-4707-8763-2cc67c398b30",
+            "verified_status": "UNVERIFIED",
+            "rating": null,
+            "createdAt": "2023-12-11T04:55:10.362Z",
+            "updatedAt": "2023-12-11T04:55:10.362Z",
+            "auth": {
+                "authId": "6a17fc03-6c40-4946-8b7c-ba8ccb470fed",
+                "locationId": "d62abf30-cb6f-4690-aee9-a7dd9be70aeb",
+                "fullname": "Fauzi Maulana Rahmad Yahya",
+                "username": "fauzimaulana",
+                "email": "fauzimaulana@gmail.com",
+                "avatar": "https://avatars.githubusercontent.com/u/42530587?v=4",
+                "bio": "Tech Enthusiast | A newbie at everything",
+                "bod": "1987-01-15",
+                "gender": "MALE",
+                "status": "ACTIVE",
+                "roles": "TALENT",
+                "device_token": "eXSkKORYvcTeeLjwQU_QrF:APA91bE_gjfNHVeSeoyj_t2ybY16fYRXB35lausR-NXiRMKovaj--ijah2hfoTBq4cv5BVMAlwasWENL8Egym8A0I_HkoBN0ksvcLaVXG__biHheAZmLSyVQdakhN1IduUiJyU7U21Qq",
+                "createdAt": "2023-12-11T04:55:10.356Z",
+                "updatedAt": "2023-12-11T04:55:10.356Z",
+                "location": {
+                    "locationId": "d62abf30-cb6f-4690-aee9-a7dd9be70aeb",
+                    "province": "Kalimantan Timur",
+                    "city": "Balikpapan"
+                }
+            },
+            "highlights": [
+                {
+                    "highlightId": "dab3a04e-0113-4fe8-a14e-ddc341216c27",
+                    "talentId": "7f2f85fb-b6ed-4707-8763-2cc67c398b30",
+                    "highlightURL": "https://i.pinimg.com/564x/e8/0b/f4/e80bf43ad9490efa8afdfc6b952aa7d5.jpg",
+                    "highlightNameFile": "https://storage.googleapis.com/payroll_anggi/ABSEN-64c89bf5395a8d082f894723-f1cba4cbe148f090bb941690872092070.png",
+                    "createdAt": "2023-12-11T04:55:10.368Z",
+                    "updatedAt": "2023-12-11T04:55:10.368Z"
+                },
+                {
+                    "highlightId": "fcfb3830-b0eb-43ce-862f-95e83adc80f8",
+                    "talentId": "7f2f85fb-b6ed-4707-8763-2cc67c398b30",
+                    "highlightURL": "https://i.pinimg.com/564x/e8/0b/f4/e80bf43ad9490efa8afdfc6b952aa7d5.jpg",
+                    "highlightNameFile": "https://storage.googleapis.com/payroll_anggi/ABSEN-64c89bf5395a8d082f894723-f1cba4cbe148f090bb941690872092070.png",
+                    "createdAt": "2023-12-11T04:55:10.368Z",
+                    "updatedAt": "2023-12-11T04:55:10.368Z"
+                },
+                {
+                    "highlightId": "86763bef-c6bd-49fb-ae8e-6245269f7b97",
+                    "talentId": "7f2f85fb-b6ed-4707-8763-2cc67c398b30",
+                    "highlightURL": "https://i.pinimg.com/564x/e8/0b/f4/e80bf43ad9490efa8afdfc6b952aa7d5.jpg",
+                    "highlightNameFile": "https://storage.googleapis.com/payroll_anggi/ABSEN-64c89bf5395a8d082f894723-f1cba4cbe148f090bb941690872092070.png",
+                    "createdAt": "2023-12-11T04:55:10.368Z",
+                    "updatedAt": "2023-12-11T04:55:10.368Z"
+                }
+            ]
+        },
+        {
+            "talentId": "f0b8710a-7edd-4e67-a0fa-b3754bfd8576",
+            "verified_status": "UNVERIFIED",
+            "rating": null,
+            "createdAt": "2023-12-11T04:55:10.362Z",
+            "updatedAt": "2023-12-11T04:55:10.362Z",
+            "auth": {
+                "authId": "2db05355-7785-487c-9112-4309dc9a846c",
+                "locationId": "d62abf30-cb6f-4690-aee9-a7dd9be70aeb",
+                "fullname": "Ayu Donna",
+                "username": "ayudonna",
+                "email": "ayudonna@gmail.com",
+                "avatar": "https://avatars.githubusercontent.com/u/42530587?v=4",
+                "bio": "Tech Enthusiast | A newbie at everything",
+                "bod": "2001-06-10",
+                "gender": "FEMALE",
+                "status": "ACTIVE",
+                "roles": "TALENT",
+                "device_token": "eXSkKORYvcTeeLjwQU_QrF:APA91bE_gjfNHVeSeoyj_t2ybY16fYRXB35lausR-NXiRMKovaj--ijah2hfoTBq4cv5BVMAlwasWENL8Egym8A0I_HkoBN0ksvcLaVXG__biHheAZmLSyVQdakhN1IduUiJyU7U21Qq",
+                "createdAt": "2023-12-11T04:55:10.356Z",
+                "updatedAt": "2023-12-11T04:55:10.356Z",
+                "location": {
+                    "locationId": "d62abf30-cb6f-4690-aee9-a7dd9be70aeb",
+                    "province": "Kalimantan Timur",
+                    "city": "Balikpapan"
+                }
+            },
+            "highlights": [
+                {
+                    "highlightId": "8c0180dd-95a1-4445-8c0e-b19b12548bbd",
+                    "talentId": "f0b8710a-7edd-4e67-a0fa-b3754bfd8576",
+                    "highlightURL": "https://i.pinimg.com/564x/e8/0b/f4/e80bf43ad9490efa8afdfc6b952aa7d5.jpg",
+                    "highlightNameFile": "https://storage.googleapis.com/payroll_anggi/ABSEN-64c89bf5395a8d082f894723-f1cba4cbe148f090bb941690872092070.png",
+                    "createdAt": "2023-12-11T04:55:10.368Z",
+                    "updatedAt": "2023-12-11T04:55:10.368Z"
+                },
+                {
+                    "highlightId": "4b2f067c-ffc9-4929-bc94-56d7deed96e5",
+                    "talentId": "f0b8710a-7edd-4e67-a0fa-b3754bfd8576",
+                    "highlightURL": "https://i.pinimg.com/564x/e8/0b/f4/e80bf43ad9490efa8afdfc6b952aa7d5.jpg",
+                    "highlightNameFile": "https://storage.googleapis.com/payroll_anggi/ABSEN-64c89bf5395a8d082f894723-f1cba4cbe148f090bb941690872092070.png",
+                    "createdAt": "2023-12-11T04:55:10.368Z",
+                    "updatedAt": "2023-12-11T04:55:10.368Z"
+                },
+                {
+                    "highlightId": "8b53fc23-f633-43c5-b1b1-761b2fb2daf9",
+                    "talentId": "f0b8710a-7edd-4e67-a0fa-b3754bfd8576",
+                    "highlightURL": "https://i.pinimg.com/564x/e8/0b/f4/e80bf43ad9490efa8afdfc6b952aa7d5.jpg",
+                    "highlightNameFile": "https://storage.googleapis.com/payroll_anggi/ABSEN-64c89bf5395a8d082f894723-f1cba4cbe148f090bb941690872092070.png",
+                    "createdAt": "2023-12-11T04:55:10.368Z",
+                    "updatedAt": "2023-12-11T04:55:10.368Z"
+                }
+            ]
+        }
+    ]
+}
