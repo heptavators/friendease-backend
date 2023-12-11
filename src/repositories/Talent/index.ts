@@ -21,7 +21,7 @@ export class TalentRepository{
                             },
                         ],
                         attributes: {
-                            exclude: ['password', 'createdAt', 'updatedAt', "locationId"],
+                            exclude: ['email', 'bio', 'bod', 'gender', 'status', 'roles', 'device_token', 'password', 'createdAt', 'updatedAt', "locationId"],
                         },
                     },
                     {
