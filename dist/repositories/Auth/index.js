@@ -36,7 +36,7 @@ class AuthRepository {
     try {
       const data = await import_Auth.AuthModel.findByPk(authId, {
         include: ["location"],
-        attributes: { exclude: ["password", "locationId"] }
+        attributes: { exclude: ["password", "locationId", "createdAt", "updatedAt", "device_token"] }
       });
       return data;
     } catch (error) {

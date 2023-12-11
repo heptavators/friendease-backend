@@ -39,6 +39,19 @@ export class TalentRepository{
         }
     }
 
+    async getTalentById(talentId: string): Promise<any>{
+        try {
+            const talent = await TalentModel.findByPk(talentId, {
+                attributes: {
+                    exclude: ['createdAt', 'updatedAt']
+                }
+            })
+            return talent
+        } catch (error) {
+            throw new Error(`Cannot find data because : ${error}`)
+        }
+    }
+
 
 }
 

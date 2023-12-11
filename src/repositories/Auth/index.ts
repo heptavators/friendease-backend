@@ -1,7 +1,6 @@
 import { RegisterRequest } from "../../domains/web/Login/RegisterRequest";
 import { AuthModel } from "../../domains/model/Auth";
 import { v4 as uuidv4 } from 'uuid';
-import { addAttribute } from "sequelize-typescript";
 
 export class AuthRepository{
 
@@ -18,7 +17,7 @@ export class AuthRepository{
         try {
             const data = await AuthModel.findByPk(authId, {
                 include: ['location'],
-                attributes: { exclude: ['password', 'locationId'] },
+                attributes: { exclude: ['password', 'locationId', 'createdAt', 'updatedAt', 'device_token'] },
             })
             return data
         } catch (error) {

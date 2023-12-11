@@ -11,6 +11,7 @@ export class AuthModel extends Model {
     email!: string;
     password!: string;
     avatar!: string;
+    phone_number!: string;
     bio!: string;
     bod!: Date;
     gender!: string;
@@ -52,6 +53,10 @@ AuthModel.init(
         allowNull: false,
       },
       avatar: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
+      phone_number: {
         type: DataTypes.STRING,
         allowNull: true,
       },

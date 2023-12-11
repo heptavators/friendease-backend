@@ -41,6 +41,7 @@ class AuthModel extends import_sequelize.Model {
   email;
   password;
   avatar;
+  phone_number;
   bio;
   bod;
   gender;
@@ -79,6 +80,10 @@ AuthModel.init(
       allowNull: false
     },
     avatar: {
+      type: import_sequelize.DataTypes.STRING,
+      allowNull: true
+    },
+    phone_number: {
       type: import_sequelize.DataTypes.STRING,
       allowNull: true
     },
