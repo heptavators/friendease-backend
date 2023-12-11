@@ -1,42 +1,47 @@
 import { Model, DataTypes } from 'sequelize';
 import Database  from "../../../configs/Database";
-import { AuthModel } from '../Auth';
+import { TalentModel } from '../Talent';
 
 
 
 export class HighlightModel extends Model{
+    highlightId!: string;
     talentId!: string;
-    profession!: string;
-    verifiedStatus!: string;
-    rating!: number;
+    highlightURL!: string;
+    highlightNameFile!: string;
 }
 
 
 
 HighlightModel.init(
   {
-    talentId: {
+    highlightId: {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUID,
       primaryKey: true,
       unique: true,
     },
-    profession: {
+    talentId: {
+      type: DataTypes.UUID,
+      allowNull: false,
+    },
+    highlightURL: {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    verifiedStatus: {
-        type: DataTypes.ENUM,
-        values: ['VERIFIED', 'UNVERIFIED'],
-        defaultValue: "UNVERIFIED"
-    },
-    rating: {
-      type: DataTypes.FLOAT(5, 1),
-      allowNull: true,
-    }
+    highlightNameFile: {
+      type: DataTypes.STRING,
+      allowNull: false,
+  },
   },
   {
     modelName: 'Highlight',
     sequelize: Database,
+    indexes: [
+      {
+        unique: false,
+        fields: ["talentId"]
+      }
+    ]
   }
 );
