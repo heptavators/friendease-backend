@@ -37,11 +37,13 @@ class AuthModel extends import_sequelize.Model {
   authId;
   locationId;
   fullname;
-  email;
   username;
+  email;
   password;
   avatar;
   bio;
+  bod;
+  gender;
   status;
   roles;
   device_token;
@@ -62,14 +64,14 @@ AuthModel.init(
       type: import_sequelize.DataTypes.STRING,
       allowNull: true
     },
-    email: {
-      type: import_sequelize.DataTypes.STRING,
-      allowNull: false,
-      unique: true
-    },
     username: {
       type: import_sequelize.DataTypes.STRING,
       allowNull: true,
+      unique: true
+    },
+    email: {
+      type: import_sequelize.DataTypes.STRING,
+      allowNull: false,
       unique: true
     },
     password: {
@@ -84,9 +86,19 @@ AuthModel.init(
       type: import_sequelize.DataTypes.STRING,
       allowNull: true
     },
-    status: {
-      type: import_sequelize.DataTypes.STRING,
+    bod: {
+      type: import_sequelize.DataTypes.DATEONLY,
       allowNull: true
+    },
+    gender: {
+      type: import_sequelize.DataTypes.ENUM,
+      values: ["FEMALE", "MALE", ""],
+      defaultValue: ""
+    },
+    status: {
+      type: import_sequelize.DataTypes.ENUM,
+      values: ["INACTIVE", "ACTIVE"],
+      defaultValue: "ACTIVE"
     },
     roles: {
       type: import_sequelize.DataTypes.ENUM,

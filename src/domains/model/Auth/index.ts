@@ -6,11 +6,13 @@ export class AuthModel extends Model {
     authId!: string;
     locationId!: string;
     fullname!: string;
-    email!: string;
     username!: string;
+    email!: string;
     password!: string;
     avatar!: string;
     bio!: string;
+    bod!: Date;
+    gender!: string;
     status!: string;
     roles!: string;
     device_token!: string;
@@ -33,16 +35,17 @@ AuthModel.init(
         type: DataTypes.STRING,
         allowNull: true,
       },
-      email: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        unique: true
-      },
       username: {
         type: DataTypes.STRING,
         allowNull: true,
         unique: true
       },
+      email: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique: true
+      },
+
       password: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -55,9 +58,19 @@ AuthModel.init(
         type: DataTypes.STRING,
         allowNull: true,
       },
-      status: {
-        type: DataTypes.STRING,
+      bod: {
+        type: DataTypes.DATEONLY,
         allowNull: true,
+      },
+      gender: {
+        type: DataTypes.ENUM,
+        values: ['FEMALE', 'MALE', ''],
+        defaultValue: ""
+    },
+      status: {
+        type: DataTypes.ENUM,
+        values: ['INACTIVE', 'ACTIVE'],
+        defaultValue: "ACTIVE"
       },
       roles: {
         type: DataTypes.ENUM,
