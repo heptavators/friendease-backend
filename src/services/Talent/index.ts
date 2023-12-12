@@ -1,6 +1,11 @@
 import { HighlightRepository } from "../../repositories/Highlight";
 import { AuthRepository } from "../../repositories/Auth";
 import { TalentRepository } from "../../repositories/Talent";
+import { DEFAULT_LIMIT } from "../../utils/Constant";
+import { Op } from "sequelize";
+import { HighlightModel } from "../../domains/model/Highlight";
+import { AuthModel } from "../../domains/model/Auth";
+import { LocationModel } from "../../domains/model/Location";
 
 export class TalentService {
     private talentRepository: TalentRepository;
@@ -20,15 +25,76 @@ export class TalentService {
         }
         return this.instance;
     }
-
-
+    private buildQueryOptions(fullname: string, page: number) {
+        const options: any = {
+            include: [
+                {
+                    model: AuthModel,
+                    as: 'auth',
+                    include: [
+                        {
+                            model: LocationModel,
+                            attributes: ['locationId', 'province', 'city'],
+                            as: 'location'
+                        },
+                    ],
+                    where: {},
+                    attributes: {
+                        exclude: ['email', 'bio', 'bod', 'gender', 'status', 'roles', 'device_token', 'password', 'createdAt', 'updatedAt', 'locationId'],
+                    },
+                },
+                {
+                    model: HighlightModel,
+                    as: 'highlights',
+                    attributes: ['highlightId', 'highlightURL']
+                }
+            ],
+            attributes: { exclude: ['authId', 'createdAt', 'updatedAt'] },
+            order: [['createdAt', 'DESC']],
+            offset: page && page > 1 ? 10 * page - 10 : 0,
+            limit: DEFAULT_LIMIT,
+        };
     
-    async getAllTalentService(){
+        // if (fullname) {
+        //     options.include[0].where.fullname = {
+        //         [Op.iLike]: `%${fullname}%`,
+        //     };
+        // }
+    
+        return options;
+    }
+    
+    private buildQueryCount(fullname: any) {
+        const options: any = {
+            include: [
+                {
+                    model: AuthModel,
+                    as: 'auth',
+                    where: {},
+                },
+            ],
+            attributes: ['talentId'],
+        };
+    
+        if (fullname) {
+            options.include[0].where.fullname = {
+                [Op.iLike]: `%${fullname}%`,
+            };
+        }
+    
+        return options;
+    }
+    
+    async getAllTalentService(fullname: any, page: any){
 
-        const data = await this.talentRepository.getAllTalents()
-
-        // const count = await this.productRepository.countProduct(total);
-        return data; 
+        const options = this.buildQueryOptions(fullname, page);
+        const total = this.buildQueryCount(fullname)
+        const data = await this.talentRepository.getAllTalents(fullname)
+        // const count = await this.talentRepository.countTalent(this.buildQueryCount(name));
+        return {
+            data, 
+            // count
+        }; 
     }
 
     async getTalentByIdService(talentId: string){

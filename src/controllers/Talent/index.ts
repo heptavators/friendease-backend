@@ -23,11 +23,12 @@ export class TalentController {
 
     async GetAllTalentController(req: Request, res: Response){
         try {
-            // const {name, page} = req.query as any
-            // const limit = DEFAULT_LIMIT
+            const {fullname, page} = req.query as any
+            const limit = DEFAULT_LIMIT
             
-            const data = await this.talentService.getAllTalentService()
+            const {data} = await this.talentService.getAllTalentService(fullname, page)
             if (data.length != 0) {
+
                 // const meta = {
                 //     currentPage: page || 1 ,
                 //     totalPage: Math.ceil(count / limit),

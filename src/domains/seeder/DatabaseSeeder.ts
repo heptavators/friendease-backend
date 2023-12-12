@@ -6,6 +6,7 @@ import { AuthSeeder } from './AuthSeeder';
 import { NotificationSeeder } from './NotificationSeeder';
 import { TalentSeeder } from './TalentSeeder';
 import { HighlightSeeder } from './HighlightSeeder';
+import { TagSeeder } from './TagSeeder';
 
 
 
@@ -19,6 +20,7 @@ export async function DatabaseSeeder(req: Request, res: Response) {
     const talentSeeder = new TalentSeeder();
     const notificationSeeder = new NotificationSeeder();
     const highlightSeeder = new HighlightSeeder()
+    const tagSeeder = new TagSeeder();
 
     await productSeeder.run();
     await locationSeeder.run();
@@ -26,6 +28,7 @@ export async function DatabaseSeeder(req: Request, res: Response) {
     await talentSeeder.run();
     await notificationSeeder.run();
     await highlightSeeder.run();
+    await tagSeeder.run();
 
     console.info("success seed database")
     return res.status(200).send({message: "Berhasil seed data"})

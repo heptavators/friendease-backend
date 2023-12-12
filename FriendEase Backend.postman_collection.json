@@ -83,11 +83,14 @@
 						{
 							"name": "Register",
 							"request": {
+								"auth": {
+									"type": "noauth"
+								},
 								"method": "POST",
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"email\": \"haradakumiko1224@gmail.com\",\n    \"password\": \"password123!\"\n}",
+									"raw": "{\n    \"email\": \"haradakumiko12@gmail.com\",\n    \"password\": \"password123!\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -132,6 +135,34 @@
 										"api",
 										"notification",
 										"user"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Notification",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"icon\": \"https://i.pinimg.com/736x/21/ac/0c/21ac0c84569003bc58102fb6a9a0883a.jpg\",\n    \"title\": \"Waduh! Status Pembayaran Kamu Gagal Nih!\",\n    \"body\": \"Pembayaran Anda sebesar RP. 400.000 sudah diterima, Talent akan segera melakukan follow up\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/notification/create",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"notification",
+										"create"
 									]
 								}
 							},
@@ -313,6 +344,116 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Talent",
+			"item": [
+				{
+					"name": "Get All Talent",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/talent?fullname=Fujikawa",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"talent"
+							],
+							"query": [
+								{
+									"key": "fullname",
+									"value": "Fujikawa"
+								},
+								{
+									"key": "page",
+									"value": "1",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Talent By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/talent/dc8a0ff0-1d0e-414a-9f37-ebe70fae5fc4",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"talent",
+								"dc8a0ff0-1d0e-414a-9f37-ebe70fae5fc4"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "mou",
+									"disabled": true
+								},
+								{
+									"key": "page",
+									"value": "2",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Service",
+			"item": []
+		},
+		{
+			"name": "Tag",
+			"item": []
+		},
+		{
+			"name": "Order",
+			"item": [
+				{
+					"name": "Create New Order",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"start_hour\": \"12:00\",\r\n    \"end_hour\": \"2:00 PM\",\r\n    \"date\": \"2023-12-12T16:00:00.000Z\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/order/4851ecb9-f8f2-4000-8c89-90d293da95df",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"order",
+								"4851ecb9-f8f2-4000-8c89-90d293da95df"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Highlight",
+			"item": []
 		}
 	],
 	"auth": {
