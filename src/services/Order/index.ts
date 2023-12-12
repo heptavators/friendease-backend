@@ -3,6 +3,7 @@ import { CreateProductRequest } from '../../domains/web/Product/CreateProductReq
 import { DEFAULT_LIMIT } from "../../utils/Constant";
 import { EditProductRequest } from "../../domains/web/Product/EditProductRequest";
 import { Op } from "sequelize";
+import Payment from "../../configs/Midtrans/Payment";
 
 export class OrderService {
     private orderRepository: OrderRepository
@@ -54,9 +55,19 @@ export class OrderService {
     //       return options;
     // }
 
-    async createOrderService(createProductRequest: any ){
-        const product = await this.orderRepository.insertOrder(createProductRequest)
-        return product
+    async createOrderService(serviceId: any ){
+        let params = {
+            "transaction_details": {
+                "gross_amount": 10000,
+                "order_id": serviceId + "23234343",
+            },
+        };
+
+        const payment = await Payment.createTransaction(params)
+    
+        // const product = await this.orderRepository.insertOrder(createProductRequest)
+        // return product
+        return payment
     }
 
 
