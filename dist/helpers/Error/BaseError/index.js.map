@@ -1,7 +1,7 @@
 {
   "version": 3,
   "sources": ["../../../../src/helpers/Error/BaseError/index.ts"],
-  "sourcesContent": ["export abstract class BaseError extends Error {  \r\n    abstract statusCode: number;\r\n    \r\n    constructor(message: string) {\r\n      super(message);\r\n    }\r\n}"],
+  "sourcesContent": ["export abstract class BaseError extends Error {  \n    abstract statusCode: number;\n    \n    constructor(message: string) {\n      super(message);\n    }\n}"],
   "mappings": ";;;;;;;;;;;;;;;;;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAO,MAAe,kBAAkB,MAAM;AAAA,EAG1C,YAAY,SAAiB;AAC3B,UAAM,OAAO;AAAA,EACf;AACJ;",
   "names": []
 }

@@ -59,7 +59,7 @@ AuthModel.init(
     },
     locationId: {
       type: import_sequelize.DataTypes.UUID,
-      allowNull: false
+      allowNull: true
     },
     fullname: {
       type: import_sequelize.DataTypes.STRING,

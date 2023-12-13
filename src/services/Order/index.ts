@@ -63,7 +63,9 @@ export class OrderService {
             },
         };
 
-        const payment = await Payment.createTransaction(params)
+        const payment = await Payment.createTransaction(params).then((transactions) => {
+            console.log(transactions)
+        });
     
         // const product = await this.orderRepository.insertOrder(createProductRequest)
         // return product

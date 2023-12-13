@@ -58,7 +58,6 @@ try {
   app.get("/seed", checkAuthorization, import_DatabaseSeeder.DatabaseSeeder);
   app.use("/api", import_routes.default);
   app.listen(port, () => {
-    import_Log.logger.info(process.env.SECRET_KEYS);
     import_Log.logger.info("apps running on port " + port);
   });
 } catch (error) {

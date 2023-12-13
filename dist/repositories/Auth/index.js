@@ -53,6 +53,7 @@ class AuthRepository {
   // }
   async createUser(registerRequest) {
     try {
+      console.log("status");
       const newUser = await import_Auth.AuthModel.create(
         {
           authId: (0, import_uuid.v4)(),

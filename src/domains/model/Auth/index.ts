@@ -31,7 +31,7 @@ AuthModel.init(
       },
       locationId: {
         type: DataTypes.UUID,
-        allowNull: false,
+        allowNull: true,
       },
       fullname: {
         type: DataTypes.STRING,

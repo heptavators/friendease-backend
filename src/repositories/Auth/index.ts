@@ -36,6 +36,7 @@ export class AuthRepository{
 
     async createUser(registerRequest : RegisterRequest): Promise<any>{
         try {
+            console.log("status")
             const newUser = await AuthModel.create({
                 authId: uuidv4(),
                 email: registerRequest.email,
