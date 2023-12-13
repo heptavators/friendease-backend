@@ -31,7 +31,7 @@ TalentModel.init(
         defaultValue: "UNVERIFIED"
     },
     rating: {
-      type: DataTypes.FLOAT(5, 1),
+      type: DataTypes.DECIMAL(5, 1),
       allowNull: true,
     }
   },

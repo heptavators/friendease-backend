@@ -23,10 +23,9 @@ export class OrderController {
         try {
             const serviceId = req.params.serviceId as string;
             const data: CreateOrderRequest = req.body;
-            console.log(serviceId)
-            // const validatedData = Validator.validate(data, CreateOrderRequest.getSchema());
-            // console.log(validatedData)
-            const result = await this.orderService.createOrderService(serviceId);
+            const validatedData = Validator.validate(data, CreateOrderRequest.getSchema());
+
+            const result = await this.orderService.createOrderService(validatedData);
             const response = SuccessSingularFormatter('Berhasil Buat Order Baru', result);
     
             return res.status(200).send(response);
