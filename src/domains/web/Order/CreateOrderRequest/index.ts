@@ -11,6 +11,9 @@ export class CreateOrderRequest {
   end_hour: string;
   total_hour?: number;
   total_amount?: number;
+  token?: string;
+  redirect_url?: string;
+
 
   constructor(
     name: string,
@@ -76,6 +79,8 @@ export class CreateOrderRequest {
       price: Joi.number().allow('').optional(),
       total_hour: Joi.number().allow('').optional(),
       total_amount: Joi.number().allow('').optional(),
+      token: Joi.string().allow('').optional(),
+      redirect_url: Joi.string().allow('').optional(),
       talentId: Joi.string().allow('').optional(),
     });
   }

@@ -16,6 +16,8 @@ export class OrderModel extends Model{
     total_amount!: number;
     payment_type!: string;
     transaction_status!: string;
+    token!: string;
+    redirect_url!: string;
     transaction_time!: Date
 }
 
@@ -82,6 +84,14 @@ OrderModel.init(
       type: DataTypes.ENUM,
       values: ['settlement', 'deny', 'pending', 'cancel', 'refund'],
       defaultValue: 'pending'
+    },
+    token:{
+      type: DataTypes.STRING,
+      allowNull: true
+    },
+    redirect_url:{
+      type: DataTypes.STRING,
+      allowNull: true
     },
     transaction_time: {
       type: DataTypes.DATE,

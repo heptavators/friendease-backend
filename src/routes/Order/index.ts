@@ -16,6 +16,8 @@ const orderController = new OrderController(orderService);
 OrderRouter.use(MiddlewareAuth)
 
 OrderRouter.post("/order/:talentId",  async (req, res) => orderController.CreateOrderController(req, res));
+
+OrderRouter.post("/order-test/:talentId",  async (req, res) => orderController.CreateTestOrderController(req, res));
 OrderRouter.post("/pay/order/:orderId", async (req, res) => orderController.PayOrderController(req, res));
 
 export default OrderRouter

@@ -5,6 +5,7 @@ import { EditProductRequest } from "../../domains/web/Product/EditProductRequest
 import { Op } from "sequelize";
 import Payment from "../../configs/Midtrans/Payment";
 import { TalentRepository } from "../../repositories/Talent";
+import { v4 as uuidv4 } from 'uuid';
 
 export class OrderService {
     private orderRepository: OrderRepository
@@ -58,23 +59,75 @@ export class OrderService {
     //       return options;
     // }
 
-    async createOrderService(talentId: string, userId: string, createOrderRequest: CreateOrderRequest){
+    async createOrderTestService(talentId: string, userId: string, createOrderRequest: CreateOrderRequest){
         const findTalent = await this.talentRepository.getTalentById(talentId);
         const talent = findTalent.toJSON()
         const totalHours = calculateTimeDifference(createOrderRequest.start_hour, createOrderRequest.end_hour);
-        
+            
         const orderData: CreateOrderRequest = {
             ...createOrderRequest,
             talentId: talent.talentId,
             price: talent.price, 
             customerId: userId,
             total_hour: totalHours,
-            total_amount: totalHours * talent.price + FEE_PLATFORM
+            total_amount: totalHours * talent.price + FEE_PLATFORM,
+          };
+
+          
+        const order = await this.orderRepository.testInsertOrder(orderData);
+        
+        return order;
+    }
+
+    async createOrderService(talentId: string, userId: string, createOrderRequest: CreateOrderRequest){
+        const findTalent = await this.talentRepository.getTalentById(talentId);
+        const talent = findTalent.toJSON()
+        const totalHours = calculateTimeDifference(createOrderRequest.start_hour, createOrderRequest.end_hour);
+            
+        const orderData: CreateOrderRequest = {
+            ...createOrderRequest,
+            talentId: talent.talentId,
+            price: talent.price, 
+            customerId: userId,
+            total_hour: totalHours,
+            total_amount: totalHours * talent.price + FEE_PLATFORM,
           };
 
           
         const order = await this.orderRepository.insertOrder(orderData);
+        // const token = await this.createMidtransTokenService(order.orderId);
+        
         return order;
+    }
+
+
+    async createMidtransTokenService(orderId: string){
+        const findOrder = await this.orderRepository.getOrderById(orderId);
+        const order = findOrder.toJSON();
+        let params = {
+            "transaction_details": {
+                "gross_amount": order.total_hour * order.price + FEE_PLATFORM,
+                "order_id":  order.orderId,
+            },
+            "item_details": [
+                {
+                  "id": order.talentId,
+                  "price": order.price,
+                  "quantity": order.total_hour,
+                  "name": order.name 
+                },
+                {
+                 "id": "biaya Transaksi",
+                 "price": FEE_PLATFORM,
+                 "quantity": 1,
+                 "name": "Biaya Transaksi"
+                 }
+            ]
+        };
+
+        const payment = await Payment.createTransaction(params)
+        const changeOrder = await this.orderRepository.addTokenMidtransOrder(orderId, payment)
+        return changeOrder
     }
 
     async createPaymentOrderService(orderId: string){
