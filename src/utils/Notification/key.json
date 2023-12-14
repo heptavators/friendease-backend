@@ -1,0 +1,13 @@
+{
+    "type": "service_account",
+    "project_id": "hexavator",
+    "private_key_id": "a6c904e580e4501d51b077563062a2f49489005f",
+    "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDEhLVzkbbZNkiW\ninTGyiwYiCUvekIpnP6v6OwMiUo1yFHNgpXYR043azD9ej9pLAQkfYsRGYX1SIVk\npo/2GexpIscE/CPCvSDhVGZnUpJihzkw23q0UAZ/i3bL979/vF00YVoV8Nv/brcJ\nejiy621kcYeM3fG8Qeufoig98tpworlm3EiPq3tflP0v/p0WCSMFuVG0G4s1EfqX\n/HCzfZOlsn2bxLXn+pz1C4cbEpVRJ2rFzkIDduJKY3qzPSBkmqpEA6IjMpnF9B1t\nv+xPW2wS6557i42WHKwYEBnPhxhdPp6BGwK31F8X8nycYYh7gkwUs/8g5AupiTrH\n5OjtVFubAgMBAAECggEAAQTjKST6usOiTQRoyuevff9cdW7/32g6leKpMP7hRBFG\n3sAZ5WY6aAm8sbqr2Tmho0vyzId5NjjYxNAjKrH6SpZtJzbAFwKU7X9a+k55vdw0\nOrh9OWi5ZsJ+h+4/+LEthEWX05K65ec0plwTLukzonPajRksZ5qFDZJxRh/S/nSH\nOrtvJHLV+o77OiGCANe3pFCkD291kDfA9xml6wE+KUDu7Euw60V4E9rFeA/PSOpz\nH0a4iRAaSChB9PUHPWFXsjofuAidomZTrprNN1/M+XJKjBF26tcGAny+LFwLLm8w\ngS7E0M9B8VnXXRE/LhTOyQj8Px9wX9a79yz5IKaHAQKBgQD8iroJ/CXqMQhvrMgR\n0mWik85qWbRPKtVnMvTAASPE6pu4ZnYP2gUG9mobUwnq/w3WJKAPCd8PQ3nZUpFS\niZ+0rHMUNzLROeVY2fValpe4M/W2X4j1bGg/By3cnDlb27U3SBDBVkE4PDEVFWTd\nHsnzhB5uIbFMyWRgGg9T0vB/gQKBgQDHNZgrgqTGQinuD2k76H1dxVD02rYcwQoT\nxg+juObBxEWpfPEwyjJWQxNZgY5E1nFcO+6HgLLlqaPsAOk1LKWRhIvAs67llvSO\nt5VUk03S/7BJ+jZdZQqgOb776aTQe+CBF14w6W3IdUKIvUzCQDaQNYFWzpS5m9ap\nrXM3HytpGwKBgE/U1ryDTcT7XQxYVSJ1HRXInY627q27/5vQ2te7RIBiHXmsQhP+\numoaCS68ED2OBOS1zTcTysR7cxBE7pVl1et6PCKe1FyZbaupssrBIhLjsf/FsXjL\nnSSXc2Lyq5sjF+TyzgEf8BwDwwxEKA9SRUrKcAgmdHKukyFh+4hm/QmBAoGBAKUY\na7aTnU+aAfoD16kIsu2F2+QxZoBKE7nziX6cfNHVgg5HN/TBfhozmNOzJV8zgdt4\n5+Rw6tKfVvT+hEfHaqhA+zmHMMmh46hryVzAf90Afu+waGHanYXQldFc/3SxVYxm\n+2755jwdwjhk+jp60T2OulRg/K0e1DbnQvdJ48ZFAoGBAJMBXI3sNW3TU0DZH9dx\nuH7gL5eMfym9T/uTRZMTdNnwHTiwb5e/Sb2o2IusWRzGlkCi+ZeKU/TbXpEbhwDs\nDijfgShT5NOOZmvT/XCww6xAbbmahGDQdHYkt5eXnZUk6fWrJ++rVsRDxW19Ba4g\n64I5qE3imhGSk5bZZmMytDxf\n-----END PRIVATE KEY-----\n",
+    "client_email": "firebase-notif-friendease@hexavator.iam.gserviceaccount.com",
+    "client_id": "104431131948219317905",
+    "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+    "token_uri": "https://oauth2.googleapis.com/token",
+    "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+    "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-notif-friendease%40hexavator.iam.gserviceaccount.com",
+    "universe_domain": "googleapis.com"
+  }

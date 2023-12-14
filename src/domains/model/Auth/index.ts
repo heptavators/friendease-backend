@@ -70,18 +70,18 @@ AuthModel.init(
       },
       gender: {
         type: DataTypes.ENUM,
-        values: ['FEMALE', 'MALE', ''],
+        values: ['female', 'male', ''],
         defaultValue: ""
     },
       status: {
         type: DataTypes.ENUM,
-        values: ['INACTIVE', 'ACTIVE'],
-        defaultValue: "ACTIVE"
+        values: ['inactive', 'active'],
+        defaultValue: "active"
       },
       roles: {
         type: DataTypes.ENUM,
-        values: ['CUSTOMER', 'ADMIN', 'TALENT'],
-        defaultValue: "CUSTOMER"
+        values: ['customer', 'admin', 'talent'],
+        defaultValue: "customer"
     },
       device_token: {
         type: DataTypes.STRING,

@@ -7,21 +7,34 @@ export class OrderModel extends Model{
     customerId!: string;
     name!: string;
     type!: string;
+    price!: number;
+    date!: Date;
     start_hour!: string;
     end_hour!: string;
-    price!: number;
-    status!: string;
-    date!: string;
+    total_hour!: number;
+    order_status!: string;
+    total_amount!: number;
+    payment_type!: string;
+    transaction_status!: string;
+    transaction_time!: Date
 }
 
 
 OrderModel.init(
   {
-    productId: {
+    orderId: {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUID,
       primaryKey: true,
       unique: true
+    },
+    talentId: {
+      type: DataTypes.UUID,
+      allowNull: false,
+    },
+    customerId: {
+      type: DataTypes.UUID,
+      allowNull: false,
     },
     name: {
       type: DataTypes.STRING,
@@ -29,30 +42,52 @@ OrderModel.init(
     },
     type: {
         type: DataTypes.ENUM,
-        values: ['ONLINE', 'OFFLINE'],
-        defaultValue: "OFFLINE"
+        values: ['online', 'offline'],
+        defaultValue: "offline"
+    },
+    price: {
+      type: DataTypes.DOUBLE,
+      allowNull: false,
+    },
+    date: {
+      type: DataTypes.DATE,
+      allowNull: false,
     },
     start_hour: {
         type: DataTypes.STRING,
         allowNull: false,
     },
     end_hour: {
-    type: DataTypes.STRING,
-    allowNull: false,
+      type: DataTypes.STRING,
+      allowNull: false,
     },
-    price: {
+    total_hour: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    total_amount: {
       type: DataTypes.DOUBLE,
       allowNull: false,
     },
-    status: {
+    order_status: {
         type: DataTypes.ENUM,
-        values: ['CANCELED', 'SCHEDULED', 'SUCCESS'],
-        defaultValue: "SCHEDULED"
+        values: ['canceled', 'scheduled', 'success'],
+        defaultValue: "scheduled"
     },
-    date: {
-        type: DataTypes.DATEONLY,
-        allowNull: false,
+    payment_type: {
+      type: DataTypes.STRING,
+      allowNull: true
     },
+    transaction_status: {
+      type: DataTypes.ENUM,
+      values: ['settlement', 'deny', 'pending', 'cancel', 'refund'],
+      defaultValue: 'pending'
+    },
+    transaction_time: {
+      type: DataTypes.DATE,
+      allowNull: true,
+    }
+
   },
   {
     modelName: 'Order',

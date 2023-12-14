@@ -1,19 +1,48 @@
-import admin from "firebase-admin";
+import * as admin from 'firebase-admin';
+import * as serviceAccount from './key.json'
 
-// var serviceAccount = require('./emangboleh-75d45-firebase-adminsdk-7fva3-6ffb27d967.json');
+const params = {
+  type: serviceAccount.type,
+  projectId: serviceAccount.project_id,
+  privateKeyId: serviceAccount.private_key_id,
+  privateKey: serviceAccount.private_key,
+  clientEmail: serviceAccount.client_email,
+  clientId: serviceAccount.client_id,
+  authUri: serviceAccount.auth_uri,
+  tokenUri: serviceAccount.token_uri,
+  authProviderX509CertUrl: serviceAccount.auth_provider_x509_cert_url,
+  clientC509CertUrl: serviceAccount.client_x509_cert_url
+}
+   
+admin.initializeApp({
+  credential: admin.credential.cert(params),
+})
 
-// const firebaseConfig = admin.initializeApp({
-//     credential: admin.credential.cert(serviceAccount),
-//     databaseURL: 'https://emangboleh-75d45-default-rtdb.asia-southeast1.firebasedatabase.app',
-//   });
-  
-  const SendNotification = async (payload: object) => {
-    try {
-      // await firebaseConfig.messaging().send(payload);
-      console.log('Notification sent successfully.');
-    } catch (error) {
-      console.error('Error sending notification:', error);
-    }
-  };
-  
-  export { SendNotification };
+
+const deviceToken = "fy_lO84MQ06bbWwVpZ5CeS:APA91bHjrzlPCEe2UtYrAb6juUj4_7NaQY_5RCTcgjmhglYcWNJ6iDUz7WWZXPcq4rxZ_BKtHUHIs40o2eY1K-z96yZzcMFFg-1RsQ7xNGDG1Ivu4LzGVIrXkCRHXh2wXMwKgcEb_6IK";
+
+const payload: admin.messaging.MessagingPayload = {
+  notification: {
+    title: "FCM IS COOL !",
+    body: "Notification has been received",
+    content_available: "true",
+    image: "https://i.pinimg.com/564x/73/28/ce/7328ce6807d0620039de3fb1a8f855b7.jpg"
+  }
+};
+
+const options: admin.messaging.MessagingOptions = {
+  priority: "high"
+};
+
+
+const SendNotification = async () => {
+  try {
+
+    await admin.messaging().sendToDevice(deviceToken, payload, options);
+    console.log('Notification sent successfully.');
+  } catch (error) {
+    console.error('Error sending notification:', error);
+  }
+};
+
+export { SendNotification };

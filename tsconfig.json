@@ -20,8 +20,9 @@
     "esModuleInterop": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "moduleResolution": "Node",
+    "moduleResolution": "node",
     "skipLibCheck": true,
+    "allowSyntheticDefaultImports": true,
   },
   "include": [
     "./src/**/*"

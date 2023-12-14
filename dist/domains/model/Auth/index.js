@@ -97,18 +97,18 @@ AuthModel.init(
     },
     gender: {
       type: import_sequelize.DataTypes.ENUM,
-      values: ["FEMALE", "MALE", ""],
+      values: ["female", "male", ""],
       defaultValue: ""
     },
     status: {
       type: import_sequelize.DataTypes.ENUM,
-      values: ["INACTIVE", "ACTIVE"],
-      defaultValue: "ACTIVE"
+      values: ["inactive", "active"],
+      defaultValue: "active"
     },
     roles: {
       type: import_sequelize.DataTypes.ENUM,
-      values: ["CUSTOMER", "ADMIN", "TALENT"],
-      defaultValue: "CUSTOMER"
+      values: ["customer", "admin", "talent"],
+      defaultValue: "customer"
     },
     device_token: {
       type: import_sequelize.DataTypes.STRING,

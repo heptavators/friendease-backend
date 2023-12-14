@@ -9,6 +9,7 @@ export class TalentModel extends Model{
     authId!: string;
     verified_status!: string;
     rating!: number;
+    price!: number;
 }
 
 
@@ -24,15 +25,20 @@ TalentModel.init(
     authId: {
         type: DataTypes.UUID,
         allowNull: false,
-      },
+    },
     verified_status: {
         type: DataTypes.ENUM,
-        values: ['VERIFIED', 'UNVERIFIED'],
-        defaultValue: "UNVERIFIED"
+        values: ['verified', 'unverified'],
+        defaultValue: "unverified"
     },
     rating: {
       type: DataTypes.DECIMAL(5, 1),
       allowNull: true,
+    },
+    price: {
+      type: DataTypes.DOUBLE,
+      allowNull: false,
+      defaultValue: 0
     }
   },
   {

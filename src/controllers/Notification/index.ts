@@ -45,6 +45,18 @@ export class NotificationController {
         handleErrorResponse(res, error)
       }
     }
+
+    async TestNotificationController(req: Request, res: Response){
+      try {
+            const result = await this.notificationService.TestNotificationService()
+            const response = SuccessSingularFormatter('Berhasil Buat Notifikasi Baru', result);
+    
+            return res.status(200).send(response);
+      } catch (error) {
+        handleErrorResponse(res, error)
+      }
+    }
+    
     
     }
 

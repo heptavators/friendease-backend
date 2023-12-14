@@ -1,21 +1,24 @@
 import { OrderRepository } from "../../repositories/Order";
 import { CreateOrderRequest } from '../../domains/web/Order/CreateOrderRequest';
-import { DEFAULT_LIMIT } from "../../utils/Constant";
+import { FEE_PLATFORM } from "../../utils/Constant";
 import { EditProductRequest } from "../../domains/web/Product/EditProductRequest";
 import { Op } from "sequelize";
 import Payment from "../../configs/Midtrans/Payment";
+import { TalentRepository } from "../../repositories/Talent";
 
 export class OrderService {
     private orderRepository: OrderRepository
+    private talentRepository: TalentRepository
     private static instance: OrderService
 
-    private constructor(orderRepository: OrderRepository) {
+    private constructor(orderRepository: OrderRepository, talentRepository: TalentRepository) {
         this.orderRepository = orderRepository;
+        this.talentRepository = talentRepository;
     }
 
-    static getInstance(orderRepository: OrderRepository): OrderService {
+    static getInstance(orderRepository: OrderRepository, talentRepository: TalentRepository): OrderService {
         if (!this.instance) {
-            this.instance = new OrderService(orderRepository);
+            this.instance = new OrderService(orderRepository, talentRepository);
         }
         return this.instance;
     }
@@ -55,24 +58,44 @@ export class OrderService {
     //       return options;
     // }
 
-    async createOrderService(createOrderRequest: CreateOrderRequest){
+    async createOrderService(talentId: string, userId: string, createOrderRequest: CreateOrderRequest){
+        const findTalent = await this.talentRepository.getTalentById(talentId);
+        const talent = findTalent.toJSON()
         const totalHours = calculateTimeDifference(createOrderRequest.start_hour, createOrderRequest.end_hour);
-        console.log(totalHours)
+        
+        const orderData: CreateOrderRequest = {
+            ...createOrderRequest,
+            talentId: talent.talentId,
+            price: talent.price, 
+            customerId: userId,
+            total_hour: totalHours,
+            total_amount: totalHours * talent.price + FEE_PLATFORM
+          };
+
+          
+        const order = await this.orderRepository.insertOrder(orderData);
+        return order;
+    }
+
+    async createPaymentOrderService(orderId: string){
+        const findOrder = await this.orderRepository.getOrderById(orderId);
+        const order = findOrder.toJSON();
+        console.log(order)
         let params = {
             "transaction_details": {
-                "gross_amount": totalHours * 75_000 + 5000,
-                "order_id":  "23234343",
+                "gross_amount": order.total_hour * order.price + FEE_PLATFORM,
+                "order_id":  order.orderId,
             },
             "item_details": [
                 {
-                  "id": "idtalent-4025920594509",
-                  "price": 75_000,
-                  "quantity": totalHours,
-                  "name": `${totalHours} Jam sama Talent` 
+                  "id": order.talentId,
+                  "price": order.price,
+                  "quantity": order.total_hour,
+                  "name": order.name 
                 },
                 {
-                 "id": "biaya-transanski-4209420923",
-                 "price": 5000,
+                 "id": "biaya Transaksi",
+                 "price": FEE_PLATFORM,
                  "quantity": 1,
                  "name": "Biaya Transaksi"
                  }

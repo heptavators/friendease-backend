@@ -13,7 +13,7 @@ export class NotificationSeeder {
         icon: "https://i.pinimg.com/736x/21/ac/0c/21ac0c84569003bc58102fb6a9a0883a.jpg",
         title: "Yeay! Status Pembayaran Kamu Diterima!",
         body: "Pembayaran Anda sebesar RP. 400.000 sudah diterima, Talent akan segera melakukan follow up",
-        status: "READ"
+        status: "read"
     },
     { 
         notificationId: uuidv4(),
@@ -21,7 +21,7 @@ export class NotificationSeeder {
         icon: "https://i.pinimg.com/736x/21/ac/0c/21ac0c84569003bc58102fb6a9a0883a.jpg",
         title: "Waduh, Order Kamu Ditolak Talent!",
         body: "Talent Kopiyama Menolak Order Kamu Nih. Tenang Duit Kamu Aman Sama Kami",
-        status: "READ"
+        status: "read"
     },
 
     { 
@@ -30,7 +30,7 @@ export class NotificationSeeder {
         icon: "https://i.pinimg.com/736x/21/ac/0c/21ac0c84569003bc58102fb6a9a0883a.jpg",
         title: "Jangan Lupa Kasih Rating & Review Ke Talent Yah!",
         body: "Gimana Jalan-jalannya? Ceritakan dong di kolom review",
-        status: "UNREAD"
+        status: "unread"
 
     },
   ];

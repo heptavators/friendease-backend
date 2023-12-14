@@ -48,6 +48,15 @@ export class TalentRepository{
     async getTalentById(talentId: string): Promise<any>{
         try {
             const talent = await TalentModel.findByPk(talentId, {
+                include: [
+                    {
+                        model: AuthModel,
+                        as: 'auth',
+                        attributes: {
+                            exclude: ['email', 'bio', 'bod', 'gender', 'status', 'roles', 'device_token', 'password', 'createdAt', 'updatedAt', "locationId"],
+                        },
+                    }
+                ],
                 attributes: {
                     exclude: ['createdAt', 'updatedAt']
                 }

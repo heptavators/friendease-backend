@@ -1,10 +1,16 @@
 import Joi from 'joi';
 
 export class CreateOrderRequest {
+  customerId?: string;
+  talentId?: string;
   name: string;
+  type?: string;
+  price?: number;
+  date: Date;
   start_hour: string;
   end_hour: string;
-  date: Date;
+  total_hour?: number;
+  total_amount?: number;
 
   constructor(
     name: string,
@@ -22,6 +28,7 @@ export class CreateOrderRequest {
     const timeSchema = Joi.string().regex(/^([0-1]?[0-9]|2[0-3]):[0-5][0-9] (AM|PM)$/);
 
     return Joi.object({
+      customerId: Joi.string().allow('').optional(),
       name: Joi.string().required().messages({
         'any.required': 'Jam mulai diperlukan',
         'string.empty': 'Jam mulai tidak boleh kosong',
@@ -65,7 +72,11 @@ export class CreateOrderRequest {
         'string.empty': 'Tanggal tidak boleh kosong',
         'date.not_future': 'Tanggal harus setidaknya satu hari ke depan',
       }),
-    }
-    );
+      type: Joi.string().allow('').optional(),
+      price: Joi.number().allow('').optional(),
+      total_hour: Joi.number().allow('').optional(),
+      total_amount: Joi.number().allow('').optional(),
+      talentId: Joi.string().allow('').optional(),
+    });
   }
 }

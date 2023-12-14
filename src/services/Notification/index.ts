@@ -29,10 +29,16 @@ export class NotificationService {
 
 
     async CreateNotificationService(authId: string, CreateNotificationRequest: CreateNotificationRequest){
-        await SendNotification({})
+        await SendNotification()
         const user = await this.authRepository.getProfileById(authId);
         console.log(user.toJSON().device_token)
         const data = await this.notificationRepository.CreateNotification(authId, CreateNotificationRequest);
+        return data; 
+    }
+
+    async TestNotificationService(){
+        await SendNotification()
+        const data =  {message: "omke"}
         return data; 
     }
 

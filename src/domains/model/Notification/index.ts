@@ -39,8 +39,8 @@ NotificationModel.init(
     },
     status: {
         type: DataTypes.ENUM,
-        values: ['UNREAD', 'READ'],
-        defaultValue: "UNREAD"
+        values: ['unread', 'read'],
+        defaultValue: "unread"
     },
   },
   {

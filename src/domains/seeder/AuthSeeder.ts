@@ -18,9 +18,9 @@ export class AuthSeeder {
       phone_number: "089600000000",
       bio: "Tech Enthusiast | A newbie at everything",
       bod: new Date('2002-12-10'),
-      gender: "MALE",
-      status: "ACTIVE",
-      roles: "CUSTOMER",
+      gender: "male",
+      status: "active",
+      roles: "customer",
       device_token: "eXSkKORYvcTeeLjwQU_QrF:APA91bE_gjfNHVeSeoyj_t2ybY16fYRXB35lausR-NXiRMKovaj--ijah2hfoTBq4cv5BVMAlwasWENL8Egym8A0I_HkoBN0ksvcLaVXG__biHheAZmLSyVQdakhN1IduUiJyU7U21Qq"
     },
     { 
@@ -34,9 +34,9 @@ export class AuthSeeder {
       phone_number: "089600000000",
       bio: "Tech Enthusiast | A newbie at everything",
       bod: new Date('2023-09-05'),
-      gender: "MALE",
-      status: "ACTIVE",
-      roles: "ADMIN",
+      gender: "male",
+      status: "active",
+      roles: "admin",
       device_token: "eXSkKORYvcTeeLjwQU_QrF:APA91bE_gjfNHVeSeoyj_t2ybY16fYRXB35lausR-NXiRMKovaj--ijah2hfoTBq4cv5BVMAlwasWENL8Egym8A0I_HkoBN0ksvcLaVXG__biHheAZmLSyVQdakhN1IduUiJyU7U21Qq"
   },
   { 
@@ -50,9 +50,9 @@ export class AuthSeeder {
     phone_number: "089600000000",
     bio: "Tech Enthusiast | A newbie at everything",
     bod: new Date('1995-06-06'),
-    gender: "FEMALE",
-    status: "ACTIVE",
-    roles: "TALENT",
+    gender: "female",
+    status: "active",
+    roles: "talent",
     device_token: "eXSkKORYvcTeeLjwQU_QrF:APA91bE_gjfNHVeSeoyj_t2ybY16fYRXB35lausR-NXiRMKovaj--ijah2hfoTBq4cv5BVMAlwasWENL8Egym8A0I_HkoBN0ksvcLaVXG__biHheAZmLSyVQdakhN1IduUiJyU7U21Qq"
   },
   { 
@@ -66,9 +66,9 @@ export class AuthSeeder {
     phone_number: "089600000000",
     bio: "Tech Enthusiast | A newbie at everything",
     bod: new Date('1991-06-10'),
-    status: "ACTIVE",
-    gender: "FEMALE",
-    roles: "TALENT",
+    status: "active",
+    gender: "female",
+    roles: "talent",
     device_token: "eXSkKORYvcTeeLjwQU_QrF:APA91bE_gjfNHVeSeoyj_t2ybY16fYRXB35lausR-NXiRMKovaj--ijah2hfoTBq4cv5BVMAlwasWENL8Egym8A0I_HkoBN0ksvcLaVXG__biHheAZmLSyVQdakhN1IduUiJyU7U21Qq"
   },
   { 
@@ -82,9 +82,9 @@ export class AuthSeeder {
     phone_number: "089600000000",
     bio: "Tech Enthusiast | A newbie at everything",
     bod: new Date('1991-09-05'),
-    gender: "MALE",
-    status: "ACTIVE",
-    roles: "TALENT",
+    gender: "male",
+    status: "active",
+    roles: "talent",
     device_token: "eXSkKORYvcTeeLjwQU_QrF:APA91bE_gjfNHVeSeoyj_t2ybY16fYRXB35lausR-NXiRMKovaj--ijah2hfoTBq4cv5BVMAlwasWENL8Egym8A0I_HkoBN0ksvcLaVXG__biHheAZmLSyVQdakhN1IduUiJyU7U21Qq"
   },
   { 
@@ -98,9 +98,9 @@ export class AuthSeeder {
     phone_number: "089600000000",
     bio: "Tech Enthusiast | A newbie at everything",
     bod: new Date('1991-09-05'),
-    gender: "FEMALE",
-    status: "ACTIVE",
-    roles: "TALENT",
+    gender: "female",
+    status: "active",
+    roles: "talent",
     device_token: "eXSkKORYvcTeeLjwQU_QrF:APA91bE_gjfNHVeSeoyj_t2ybY16fYRXB35lausR-NXiRMKovaj--ijah2hfoTBq4cv5BVMAlwasWENL8Egym8A0I_HkoBN0ksvcLaVXG__biHheAZmLSyVQdakhN1IduUiJyU7U21Qq"
   },
   { 
@@ -114,9 +114,9 @@ export class AuthSeeder {
     phone_number: "089600000000",
     bio: "Tech Enthusiast | A newbie at everything",
     bod: new Date('1992-03-31'),
-    gender: "FEMALE",
-    status: "ACTIVE",
-    roles: "TALENT",
+    gender: "female",
+    status: "active",
+    roles: "talent",
     device_token: "eXSkKORYvcTeeLjwQU_QrF:APA91bE_gjfNHVeSeoyj_t2ybY16fYRXB35lausR-NXiRMKovaj--ijah2hfoTBq4cv5BVMAlwasWENL8Egym8A0I_HkoBN0ksvcLaVXG__biHheAZmLSyVQdakhN1IduUiJyU7U21Qq"
   },
   { 
@@ -130,9 +130,9 @@ export class AuthSeeder {
     phone_number: "089600000000",
     bio: "Tech Enthusiast | A newbie at everything",
     bod: new Date('2003-11-10'),
-    gender: "MALE",
-    status: "ACTIVE",
-    roles: "TALENT",
+    gender: "male",
+    status: "active",
+    roles: "talent",
     device_token: "eXSkKORYvcTeeLjwQU_QrF:APA91bE_gjfNHVeSeoyj_t2ybY16fYRXB35lausR-NXiRMKovaj--ijah2hfoTBq4cv5BVMAlwasWENL8Egym8A0I_HkoBN0ksvcLaVXG__biHheAZmLSyVQdakhN1IduUiJyU7U21Qq"
   },
   { 
@@ -146,9 +146,9 @@ export class AuthSeeder {
     phone_number: "089600000000",
     bio: "Tech Enthusiast | A newbie at everything",
     bod: new Date('1987-01-15'),
-    gender: "MALE",
-    status: "ACTIVE",
-    roles: "TALENT",
+    gender: "male",
+    status: "active",
+    roles: "talent",
     device_token: "eXSkKORYvcTeeLjwQU_QrF:APA91bE_gjfNHVeSeoyj_t2ybY16fYRXB35lausR-NXiRMKovaj--ijah2hfoTBq4cv5BVMAlwasWENL8Egym8A0I_HkoBN0ksvcLaVXG__biHheAZmLSyVQdakhN1IduUiJyU7U21Qq"
   },
   { 
@@ -162,9 +162,9 @@ export class AuthSeeder {
     phone_number: "089600000000",
     bio: "Tech Enthusiast | A newbie at everything",
     bod: new Date('2001-06-10'),
-    gender: "FEMALE",
-    status: "ACTIVE",
-    roles: "TALENT",
+    gender: "female",
+    status: "active",
+    roles: "talent",
     device_token: "eXSkKORYvcTeeLjwQU_QrF:APA91bE_gjfNHVeSeoyj_t2ybY16fYRXB35lausR-NXiRMKovaj--ijah2hfoTBq4cv5BVMAlwasWENL8Egym8A0I_HkoBN0ksvcLaVXG__biHheAZmLSyVQdakhN1IduUiJyU7U21Qq"
   },
   ];

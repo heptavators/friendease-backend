@@ -16,4 +16,6 @@ const notificationController = new NotificationController(notificationService);
 NotificationRouter.get("/notification/user", middlewareAuth,  async (req, res) => notificationController.GetNotificationController(req, res));
 NotificationRouter.post("/notification/create", middlewareAuth,  async (req, res) => notificationController.CreateNotificationController(req, res));
 
+NotificationRouter.get('/notification/test', async (req, res) => notificationController.TestNotificationController(req, res))
+
 export default NotificationRouter
