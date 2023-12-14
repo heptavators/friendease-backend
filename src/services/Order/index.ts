@@ -5,21 +5,24 @@ import { EditProductRequest } from "../../domains/web/Product/EditProductRequest
 import { Op } from "sequelize";
 import Payment from "../../configs/Midtrans/Payment";
 import { TalentRepository } from "../../repositories/Talent";
+import { AuthRepository } from "../../repositories/Auth";
 import { v4 as uuidv4 } from 'uuid';
 
 export class OrderService {
-    private orderRepository: OrderRepository
-    private talentRepository: TalentRepository
+    private orderRepository: OrderRepository;
+    private talentRepository: TalentRepository;
+    private authRepository: AuthRepository;
     private static instance: OrderService
 
-    private constructor(orderRepository: OrderRepository, talentRepository: TalentRepository) {
+    private constructor(orderRepository: OrderRepository, talentRepository: TalentRepository, authRepository: AuthRepository) {
         this.orderRepository = orderRepository;
         this.talentRepository = talentRepository;
+        this.authRepository = authRepository;
     }
 
-    static getInstance(orderRepository: OrderRepository, talentRepository: TalentRepository): OrderService {
+    static getInstance(orderRepository: OrderRepository, talentRepository: TalentRepository, authRepository: AuthRepository): OrderService {
         if (!this.instance) {
-            this.instance = new OrderService(orderRepository, talentRepository);
+            this.instance = new OrderService(orderRepository, talentRepository, authRepository);
         }
         return this.instance;
     }
@@ -59,6 +62,31 @@ export class OrderService {
     //       return options;
     // }
 
+
+    async createOrderService(talentId: string, userId: string, createOrderRequest: CreateOrderRequest){
+        const findTalent = await this.talentRepository.getTalentById(talentId);
+        const findCustomer = await this.authRepository.getProfileById(userId);
+        const talent = findTalent.toJSON();
+        const customer = findCustomer.toJSON();
+
+        const totalHours = calculateTimeDifference(createOrderRequest.start_hour, createOrderRequest.end_hour);
+            
+        const orderData: CreateOrderRequest = {
+            ...createOrderRequest,
+            talentId: talent.talentId,
+            price: talent.price, 
+            customerId: userId,
+            total_hour: totalHours,
+            total_amount: totalHours * talent.price + FEE_PLATFORM,
+          };
+
+          
+        const order = await this.orderRepository.insertOrder(orderData, customer);
+        
+        return order;
+    }
+
+    
     async createOrderTestService(talentId: string, userId: string, createOrderRequest: CreateOrderRequest){
         const findTalent = await this.talentRepository.getTalentById(talentId);
         const talent = findTalent.toJSON()
@@ -78,28 +106,6 @@ export class OrderService {
         
         return order;
     }
-
-    async createOrderService(talentId: string, userId: string, createOrderRequest: CreateOrderRequest){
-        const findTalent = await this.talentRepository.getTalentById(talentId);
-        const talent = findTalent.toJSON()
-        const totalHours = calculateTimeDifference(createOrderRequest.start_hour, createOrderRequest.end_hour);
-            
-        const orderData: CreateOrderRequest = {
-            ...createOrderRequest,
-            talentId: talent.talentId,
-            price: talent.price, 
-            customerId: userId,
-            total_hour: totalHours,
-            total_amount: totalHours * talent.price + FEE_PLATFORM,
-          };
-
-          
-        const order = await this.orderRepository.insertOrder(orderData);
-        // const token = await this.createMidtransTokenService(order.orderId);
-        
-        return order;
-    }
-
 
     async createMidtransTokenService(orderId: string){
         const findOrder = await this.orderRepository.getOrderById(orderId);

@@ -4,14 +4,17 @@ import { CreateOrderRequest } from '../../domains/web/Order/CreateOrderRequest';
 import { v4 as uuidv4 } from 'uuid';
 import { FEE_PLATFORM } from "../../utils/Constant";
 
+
+
 export class OrderRepository{
 
+ 
 
-    async insertOrder(createOrderRequest: CreateOrderRequest): Promise<any> {
+    async insertOrder(createOrderRequest: CreateOrderRequest, customer: any): Promise<any> {
         if (!OrderModel.sequelize) {
             throw new Error('Sequelize is not initialized on OrderModel.');
         }
-
+        
         const transaction = await OrderModel.sequelize.transaction();
         
         try {
@@ -52,6 +55,11 @@ export class OrderRepository{
                         "name": "Biaya Transaksi",
                     },
                 ],
+                "customer_details": {
+                    "first_name":  customer.fullname,
+                    "email": customer.email,
+                    "phone": customer.phone_number,
+                }
             };
             
 
