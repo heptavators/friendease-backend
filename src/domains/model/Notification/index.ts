@@ -1,9 +1,11 @@
 import { Model, DataTypes } from 'sequelize';
 import Database  from "../../../configs/Database";
+import { AuthModel } from '../Auth';
 
 
 export class NotificationModel extends Model{
     notificationId!: string;
+    authId!: string;
     icon!: string;
     title!: string;
     body!: string;
@@ -21,14 +23,15 @@ NotificationModel.init(
       primaryKey: true,
       unique: true,
     },
+    authId: {
+      type: DataTypes.UUID,
+      allowNull: false,
+    },
     icon: {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    authId: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
+
     title: {
         type: DataTypes.STRING,
         allowNull: false,

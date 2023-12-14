@@ -30,9 +30,9 @@ export class OrderRepository{
                 end_hour: createOrderRequest.end_hour,
                 total_hour: createOrderRequest.total_hour,
                 total_amount: createOrderRequest.total_amount,
+                order_status: 'scheduled',
+                transaction_status: 'pending'
             }, { transaction });
-
-
 
 
             // Call Midtrans
@@ -73,12 +73,11 @@ export class OrderRepository{
                 redirect_url: payment.redirect_url
             });
             
-            console.log("checkpoint")
 
 
             await transaction.commit();
 
-            return order.toJSON();
+            return order;
         } catch (error) {
             await transaction.rollback();
             throw new Error(`Cannot insert data because: ${error}`);
@@ -109,9 +108,9 @@ export class OrderRepository{
         }
     }
 
-    async getOrderById(talentId: string): Promise<any>{
+    async getOrderById(orderId: string): Promise<any>{
         try {
-            const order = await OrderModel.findByPk(talentId)
+            const order = await OrderModel.findByPk(orderId)
             return order
         } catch (error) {
             throw new Error(`Cannot find data because : ${error}`)

@@ -1,7 +1,6 @@
 import { DataTypes, Model } from 'sequelize';
 import Database  from "../../../configs/Database";
-import { LocationModel } from '../Location';
-import { TalentModel } from '../Talent';
+import { NotificationModel } from '../Notification';
 
 export class AuthModel extends Model {
     authId!: string;
@@ -95,3 +94,5 @@ AuthModel.init(
   );
 
 
+// AuthModel.hasMany(NotificationModel, { foreignKey: 'authId', as: 'notifications' });
+// NotificationModel.belongsTo(AuthModel, { foreignKey: 'authId', as: 'auth' });

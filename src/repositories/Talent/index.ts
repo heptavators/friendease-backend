@@ -11,7 +11,7 @@ export class TalentRepository{
     
     async getAllTalents(fullname: any): Promise<any>{
         try {
-            const talents = await TalentModel.findAll({ 
+            const queryOptions: any = {
                 include: [
                     {
                         model: AuthModel,
@@ -25,9 +25,6 @@ export class TalentRepository{
                         ],
                         attributes: {
                             exclude: ['email', 'bio', 'bod', 'gender', 'status', 'roles', 'device_token', 'password', 'createdAt', 'updatedAt', "locationId"],
-                        },
-                        where:{
-                            fullname: {[Op.iLike]: `%${fullname}%`}
                         }
                     },
                     {
@@ -37,9 +34,20 @@ export class TalentRepository{
                     }
                 ],
                 attributes: { exclude: ['authId', 'createdAt', 'updatedAt'] },
-            });
+            };
     
-            return talents
+            if (fullname) {
+                queryOptions.include[0].where = {
+                    [Op.or]: [
+                        { fullname: { [Op.iLike]: `%${fullname}%` } },
+                        { username: { [Op.iLike]: `%${fullname}%` } }
+                    ]
+                };
+            }
+    
+            const talents = await TalentModel.findAll(queryOptions);
+    
+            return talents;
         } catch (error) {
             throw new Error(`Cannot find data because : ${error}`)
         }
