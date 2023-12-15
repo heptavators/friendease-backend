@@ -3,6 +3,7 @@ import  ProductRouter  from './Product';
 import  NotificationRouter  from './Notification';
 import  TalentRouter  from './Talent';
 import OrderRouter from './Order';
+import ReviewRouter from './Review';
 
 
 const Router = [
@@ -10,7 +11,8 @@ const Router = [
     ProductRouter,
     NotificationRouter,
     TalentRouter,
-    OrderRouter
+    OrderRouter,
+    ReviewRouter
 ]
 
 export default Router;

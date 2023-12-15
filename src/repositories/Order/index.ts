@@ -84,6 +84,20 @@ export class OrderRepository{
         }
     }
 
+    async countOrderTalentById(talentId: string){
+        try {
+            const order = await OrderModel.findAndCountAll({where: {
+                "talentId": talentId
+            }})
+
+            console.log(order)
+            return order
+        } catch (error) {
+            throw new Error(`Cannot find data because : ${error}`)
+        }
+    }
+    
+
 
     async testInsertOrder(createOrderRequest: CreateOrderRequest): Promise<any>{
         try {

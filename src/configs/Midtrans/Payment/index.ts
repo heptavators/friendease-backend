@@ -9,6 +9,4 @@ const Payment = new midtransClient.Snap({
     clientKey : process.env.CLIENT_KEY
 })
 
-console.log(process.env.SERVER_KEY)
-
 export default Payment;

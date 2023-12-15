@@ -5,7 +5,8 @@ import Database  from "../../../configs/Database";
 export class ReviewModel extends Model {
     reviewId!: string;
     orderId!: string;
-    authId!: string;
+    customerId!: string;
+    talentId!: string;
     review!: string;
     rating!: number;
 }
@@ -23,16 +24,20 @@ ReviewModel.init(
         type: DataTypes.UUID,
         allowNull: true,
       },
-    authId: {
+      customerId: {
         type: DataTypes.UUID,
         allowNull: true,
-      },
+    },
+    talentId: {
+      type: DataTypes.UUID,
+      allowNull: true,
+  },
     review: {
         type: DataTypes.STRING,
         allowNull: true,
       },
     rating: {
-        type: DataTypes.NUMBER,
+        type: DataTypes.INTEGER,
         allowNull: true,
       },
     },

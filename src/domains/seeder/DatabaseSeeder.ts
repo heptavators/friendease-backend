@@ -8,6 +8,7 @@ import { TalentSeeder } from './TalentSeeder';
 import { HighlightSeeder } from './HighlightSeeder';
 import { TagSeeder } from './TagSeeder';
 import { OrderSeeder } from './OrderSeeder';
+import { ReviewSeeder } from './ReviewSeeder';
 
 
 
@@ -23,6 +24,7 @@ export async function DatabaseSeeder(req: Request, res: Response) {
     const highlightSeeder = new HighlightSeeder()
     const tagSeeder = new TagSeeder();
     const orderSeeder = new OrderSeeder();
+    const reviewSeeder = new ReviewSeeder();
 
     await productSeeder.run();
     await locationSeeder.run();
@@ -32,6 +34,7 @@ export async function DatabaseSeeder(req: Request, res: Response) {
     await highlightSeeder.run();
     await tagSeeder.run();
     await orderSeeder.run();
+    await reviewSeeder.run();
 
     console.info("success seed database")
     return res.status(200).send({message: "Berhasil seed data"})
