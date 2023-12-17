@@ -7,172 +7,6 @@
 	},
 	"item": [
 		{
-			"name": "Auth",
-			"item": [
-				{
-					"name": "All User",
-					"item": [
-						{
-							"name": "Login",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"var res =  pm.response.json();\r",
-											"pm.environment.set('authToken', res.data.token);                                "
-										],
-										"type": "text/javascript"
-									}
-								},
-								{
-									"listen": "prerequest",
-									"script": {
-										"exec": [
-											"pm.environment.set(\"variable_key\", \"variable_value\");"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"email\": \"fariv.fariv12@gmail.com\",\r\n    \"password\": \"password123!\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{url}}/api/auth/login",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"api",
-										"auth",
-										"login"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Get Profile",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{url}}/api/auth/profile",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"api",
-										"auth",
-										"profile"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Register",
-							"request": {
-								"auth": {
-									"type": "noauth"
-								},
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"email\": \"haradakumiko12@gmail.com\",\n    \"password\": \"password123!\"\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{url}}/api/auth/register",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"api",
-										"auth",
-										"register"
-									]
-								}
-							},
-							"response": []
-						}
-					]
-				}
-			]
-		},
-		{
-			"name": "Notification",
-			"item": [
-				{
-					"name": "All Request",
-					"item": [
-						{
-							"name": "Get Notification",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{url}}/api/notification/user",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"api",
-										"notification",
-										"user"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Create Notification",
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"icon\": \"https://i.pinimg.com/736x/21/ac/0c/21ac0c84569003bc58102fb6a9a0883a.jpg\",\n    \"title\": \"Waduh! Status Pembayaran Kamu Gagal Nih!\",\n    \"body\": \"Pembayaran Anda sebesar RP. 400.000 sudah diterima, Talent akan segera melakukan follow up\"\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{url}}/api/notification/create",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"api",
-										"notification",
-										"create"
-									]
-								}
-							},
-							"response": []
-						}
-					]
-				}
-			]
-		},
-		{
 			"name": "Testing",
 			"item": [
 				{
@@ -346,6 +180,191 @@
 			]
 		},
 		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "All User",
+					"item": [
+						{
+							"name": "Login",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var res =  pm.response.json();\r",
+											"pm.environment.set('authToken', res.data.token);                                "
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.environment.set(\"variable_key\", \"variable_value\");"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"fariv.fariv12@gmail.com\",\r\n    \"password\": \"password123!\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/auth/login",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"auth",
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Profile",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/auth/profile",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"auth",
+										"profile"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Register",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"haradakumiko12@gmail.com\",\n    \"password\": \"password123!\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/auth/register",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"auth",
+										"register"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Notification",
+			"item": [
+				{
+					"name": "All Request",
+					"item": [
+						{
+							"name": "Get Notification",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/notification/user",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"notification",
+										"user"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Notification Copy",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/notification/test",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"notification",
+										"test"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Notification",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"icon\": \"https://i.pinimg.com/736x/21/ac/0c/21ac0c84569003bc58102fb6a9a0883a.jpg\",\n    \"title\": \"Waduh! Status Pembayaran Kamu Gagal Nih!\",\n    \"body\": \"Pembayaran Anda sebesar RP. 400.000 sudah diterima, Talent akan segera melakukan follow up\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/notification/create",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"notification",
+										"create"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
 			"name": "Talent",
 			"item": [
 				{
@@ -354,7 +373,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{url}}/api/talent?fullname=Fujikawa",
+							"raw": "{{url}}/api/talent",
 							"host": [
 								"{{url}}"
 							],
@@ -365,7 +384,8 @@
 							"query": [
 								{
 									"key": "fullname",
-									"value": "Fujikawa"
+									"value": "q",
+									"disabled": true
 								},
 								{
 									"key": "page",
@@ -411,10 +431,6 @@
 			]
 		},
 		{
-			"name": "Service",
-			"item": []
-		},
-		{
 			"name": "Tag",
 			"item": []
 		},
@@ -422,13 +438,13 @@
 			"name": "Order",
 			"item": [
 				{
-					"name": "Create New Order",
+					"name": "Create New Order + Midtrans",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"start_hour\": \"12:00\",\r\n    \"end_hour\": \"2:00 PM\",\r\n    \"date\": \"2023-12-12T16:00:00.000Z\"\r\n}",
+							"raw": "{\r\n    \r\n    \"name\": \"Pergi ke event wibu\",\r\n    \"type\": \"offline\",\r\n    \"start_hour\": \"01:00 PM\",\r\n    \"end_hour\": \"03:00 PM\",\r\n    \"date\": \"2023-12-18T16:00:00.000Z\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -436,14 +452,71 @@
 							}
 						},
 						"url": {
-							"raw": "{{url}}/api/order/4851ecb9-f8f2-4000-8c89-90d293da95df",
+							"raw": "{{url}}/api/order/dc8a0ff0-1d0e-414a-9f37-ebe70fae5fc4",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"api",
 								"order",
-								"4851ecb9-f8f2-4000-8c89-90d293da95df"
+								"dc8a0ff0-1d0e-414a-9f37-ebe70fae5fc4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create New Order Test",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n    \"name\": \"Pergi ke event wibu\",\r\n    \"type\": \"offline\",\r\n    \"start_hour\": \"01:00 PM\",\r\n    \"end_hour\": \"03:00 PM\",\r\n    \"date\": \"2023-12-19T16:00:00.000Z\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/order-test/dc8a0ff0-1d0e-414a-9f37-ebe70fae5fc4",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"order-test",
+								"dc8a0ff0-1d0e-414a-9f37-ebe70fae5fc4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Midtrans Token Order By Id",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Pergi ke undangan\",\r\n    \"start_hour\": \"01:00 PM\",   \r\n    \"end_hour\": \"03:00 PM\",\r\n    \"date\": \"2023-12-13T16:00:00.000Z\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/pay/order/e28a453e-7584-4749-8cd6-8706b3de1861",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"pay",
+								"order",
+								"e28a453e-7584-4749-8cd6-8706b3de1861"
 							]
 						}
 					},
@@ -454,6 +527,39 @@
 		{
 			"name": "Highlight",
 			"item": []
+		},
+		{
+			"name": "Review",
+			"item": [
+				{
+					"name": "Create Review By OrderId",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"review\": \"Talentnya sangat ramah, belum pernah senyaman ini mau curhat ke orang lain\",\r\n    \"rating\": 5\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/review/71e08a28-2ce1-4406-99b5-70925b4763d2",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"review",
+								"71e08a28-2ce1-4406-99b5-70925b4763d2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	],
 	"auth": {
