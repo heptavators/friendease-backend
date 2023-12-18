@@ -1,7 +1,7 @@
 {
   "version": 3,
   "sources": ["../../../../src/helpers/Response/ErrorInputFormatter/index.ts"],
-  "sourcesContent": ["import { logger } from \"../../../helpers/Log\";\nimport { ValidationException } from \"../../../helpers/Validator\";\nimport ErrorFormatter from \"../ErrorFormatter\";\n\nexport default function ErrorInputFormatter(message: Array<Object>) {\n    const response: object = {\n        info: {\n          success: false,\n          meta: null,\n          message: message\n        },\n        data: null,\n      }\n    \n      return response\n}\n  "],
+  "sourcesContent": ["import { logger } from \"../../../helpers/Log\";\r\nimport { ValidationException } from \"../../../helpers/Validator\";\r\nimport ErrorFormatter from \"../ErrorFormatter\";\r\n\r\nexport default function ErrorInputFormatter(message: Array<Object>) {\r\n    const response: object = {\r\n        info: {\r\n          success: false,\r\n          meta: null,\r\n          message: message\r\n        },\r\n        data: null,\r\n      }\r\n    \r\n      return response\r\n}\r\n  "],
   "mappings": ";;;;;;;;;;;;;;;;;;AAAA;AAAA;AAAA;AAAA;AAAA;AAIe,SAAR,oBAAqC,SAAwB;AAChE,QAAM,WAAmB;AAAA,IACrB,MAAM;AAAA,MACJ,SAAS;AAAA,MACT,MAAM;AAAA,MACN;AAAA,IACF;AAAA,IACA,MAAM;AAAA,EACR;AAEA,SAAO;AACb;",
   "names": []
 }

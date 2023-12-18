@@ -269,7 +269,6 @@ export class TagSeeder {
         "Trading",
         "Traveling",
         "Voli",
-        "Akting",
         "Mendaki",
         "Bisnis",
         "Sastra",
@@ -314,6 +313,10 @@ export class TagSeeder {
       {
         tagId: "8aff57d8-ec74-4e5f-b741-570115c05a6d",
         name: "Wibu",
+      },
+      {
+        tagId: "597add33-257c-4d86-9812-e655f6a52b94",
+        name: "Akting",
       }
     ]
 
