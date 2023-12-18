@@ -25,15 +25,31 @@ export class ReviewService {
     }
 
     async createReviewService(createReviewRequest: CreateReviewRequest, orderId: string){
-        // const review = await this.reviewRepository.insertReview(createReviewRequest)
-        const findOrder = await this.orderRepository.getOrderById(orderId)
-        const order = findOrder.toJSON();
+        const findReview = await this.reviewRepository.findReviewByOrderId(orderId);
 
-        const sumOfRatings = await this.reviewRepository.getAverageReviewRatingByTalentId(order.talentId);
+        if (findReview > 0){
+            throw new Error("REVIEW SUDAH ADA CUY")
+        }else {
+            const findOrder = await this.orderRepository.getOrderById(orderId)
+            const order = findOrder.toJSON();
+    
+            const beforeInsert = await this.reviewRepository.countOrderRatingsByTalentId(order.talentId);
+            const sumBeforeReviewRating = await this.reviewRepository.sumOrderRatingsByTalentId(order.talentId);
+    
+            console.log("before insert review: " + sumBeforeReviewRating / beforeInsert);
+    
+            const review = await this.reviewRepository.insertReview(createReviewRequest, orderId, order.customerId, order.talentId)
+    
+    
+            const afterInsert = await this.reviewRepository.countOrderRatingsByTalentId(order.talentId);
+            const sumReviewRating = await this.reviewRepository.sumOrderRatingsByTalentId(order.talentId);
+    
+            console.log("rating after insert review: " + sumReviewRating / afterInsert);
+    
+    
+            return review
 
-
-        console.log(sumOfRatings)
-        return order
+        }
     }
 
     

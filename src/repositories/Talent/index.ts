@@ -4,6 +4,8 @@ import { LocationModel } from "../../domains/model/Location";
 import { HighlightModel } from "../../domains/model/Highlight";
 import { Op } from "sequelize";
 import { DEFAULT_LIMIT } from "../../utils/Constant";
+import { TagModel } from "../../domains/model/Tag";
+import { TagTalent } from "../../domains/model/TagTalent";
 
 
 export class TalentRepository{
@@ -28,6 +30,13 @@ export class TalentRepository{
                         }
                     },
                     {
+                        model: TagModel,
+                        as: 'tags',
+                        attributes: {
+                            exclude: ["createdAt", "updatedAt", "TagTalent"],
+                        }
+                    },
+                    {
                         model: HighlightModel,
                         as: 'highlights',
                         attributes: ["highlightId", "highlightURL"]
@@ -46,8 +55,12 @@ export class TalentRepository{
             }
     
             const talents = await TalentModel.findAll(queryOptions);
-    
-            return talents;
+            // Remove TagTalent property from each tag in the result
+            const talentsWithoutTagTalent = talents.map((talent: any) => ({
+                ...talent.toJSON(),
+                tags: talent.tags.map((tag: any) => ({ ...tag.toJSON(), TagTalent: undefined })),
+            }));
+            return talentsWithoutTagTalent;
         } catch (error) {
             throw new Error(`Cannot find data because : ${error}`)
         }

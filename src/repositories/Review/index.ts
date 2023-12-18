@@ -1,46 +1,67 @@
 import { CreateReviewRequest } from "../../domains/web/Review";
 import { ReviewModel } from "../../domains/model/Review";
 import { v4 as uuidv4 } from 'uuid';
-import { Op, col, fn } from "sequelize";
+import { Op, Sequelize, col, fn } from "sequelize";
 
 export class ReviewRepository{
     
     
-    async insertReview(createReviewRequest: CreateReviewRequest): Promise<any>  {
+    async insertReview(createReviewRequest: CreateReviewRequest, orderId: any, customerId: any, talentId: string): Promise<any>  {
         try {
             const review = await ReviewModel.create({
                 reviewId: uuidv4(),
+                orderId: orderId,
+                customerId: customerId,
+                talentId: talentId,
                 review: createReviewRequest.review,
                 rating: createReviewRequest.rating,
               });
           
-              console.log("boop")
-              return review.toJSON();
+              return review;
         } catch (error) {
             throw new Error(`Cannot insert data because : ${error}`)
         }
     }
-
-    async getAverageReviewRatingByTalentId(talentId: string): Promise<any> {
-        try {
-          const averageResult = await ReviewModel.findOne({
-            attributes: [[fn('AVG', col('rating')), 'average']],
-            where: {
-              talentId,
-              rating: {
-                [Op.ne]: null,
-              },
+    async sumOrderRatingsByTalentId(talentId: string): Promise<any> {
+      try {
+        const result = await ReviewModel.aggregate('rating', 'SUM', {
+          where: {
+            talentId,
+            rating: {
+              [Op.ne]: null, // Exclude null ratings
             },
-            raw: true, 
-          });
-            
-          return averageResult && averageResult.average !== null
-            ? parseFloat(Number(averageResult.average).toFixed(1))
-            : 0;
-        } catch (error) {
-          throw new Error(`Error calculating average of review ratings: ${error}`);
-        }
+          },
+        });
+  
+        return result || 0; // If result is null, default to 0
+      } catch (error) {
+        throw new Error(`Error calculating sum of order ratings: ${error}`);
       }
+    }
+    async countOrderRatingsByTalentId(talentId: string): Promise<any> {
+      try {
+          const result = await ReviewModel.count({where: {
+            talentId: talentId
+          }});
+
+          return result;
+      } catch (error) {
+          throw new Error(`Error calculating count of order ratings: ${error}`);
+      }
+   }
+
+   async findReviewByOrderId(orderId: string): Promise<any> {
+    try {
+      const result = await ReviewModel.count({where: {
+        orderId: orderId
+      }});
+
+      return result;
+    } catch (error) {
+      throw new Error(`Error find review by order id : ${error}`);
+
+    }
+   }
     
     
 
