@@ -1,12 +1,10 @@
 import { OrderRepository } from "../../repositories/Order";
 import { CreateOrderRequest } from '../../domains/web/Order/CreateOrderRequest';
-import { FEE_PLATFORM } from "../../utils/Constant";
-import { EditProductRequest } from "../../domains/web/Product/EditProductRequest";
+import { DEFAULT_LIMIT, FEE_PLATFORM } from "../../utils/Constant";
 import { Op } from "sequelize";
 import Payment from "../../configs/Midtrans/Payment";
 import { TalentRepository } from "../../repositories/Talent";
 import { AuthRepository } from "../../repositories/Auth";
-import { v4 as uuidv4 } from 'uuid';
 
 export class OrderService {
     private orderRepository: OrderRepository;
@@ -28,39 +26,31 @@ export class OrderService {
     }
 
 
-    // private buildQueryOptions(name: string, page: number) {
-    //     const options: any = {
-    //       order: [['createdAt', 'DESC']], 
-    //       offset: page && page > 1 ? 10 * page - 10 : 0,
-    //       limit: DEFAULT_LIMIT,
-    //     };
+    private buildQueryOptions(page: number) {
+        const options: any = {
+          order: [['createdAt', 'DESC']], 
+          offset: page && page > 1 ? 10 * page - 10 : 0,
+          limit: DEFAULT_LIMIT,
+        };
       
-    //     if (name) {
-    //       options.where = {
-    //         name: {
-    //           [Op.iLike]: `%${name}%`,
-    //         },
-    //       };
-    //     }
-      
-    //     return options;
-    //   }
+        return options;
+      }
 
-    // private buildQueryCount(name: any){
-    //     const options: any = {
-    //         order: [['createdAt', 'DESC']], 
-    //       };
-        
-    //       if (name) {
-    //         options.where = {
-    //           name: {
-    //             [Op.iLike]: `%${name}%`,
-    //           },
-    //         };
-    //       }
-        
-    //       return options;
-    // }
+    private buildQueryCount(){
+        const options: any = {
+            order: [['createdAt', 'DESC']], 
+          };
+                
+          return options;
+    }
+
+    async GetOrderUserService(page: any, authId: string){
+        const options = this.buildQueryOptions(page);
+        const total = this.buildQueryCount()
+        const data = await this.orderRepository.GetAllOrderUser(options, authId);
+        const count = await this.orderRepository.countOrder(total);
+        return { data, count }; 
+    }
 
 
     async createOrderService(talentId: string, userId: string, createOrderRequest: CreateOrderRequest){

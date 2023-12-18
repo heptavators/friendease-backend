@@ -84,19 +84,40 @@ export class OrderRepository{
         }
     }
 
-    async countOrderTalentById(talentId: string){
+    async countOrderTalentById(talentId: string): Promise<any>{
         try {
-            const order = await OrderModel.findAndCountAll({where: {
+            const order = await OrderModel.findAll({where: {
                 "talentId": talentId
             }})
-
-            console.log(order)
             return order
         } catch (error) {
             throw new Error(`Cannot find data because : ${error}`)
         }
     }
     
+    async GetAllOrderUser(options: object, customerId: string): Promise<any>{
+        try {
+            const data = await OrderModel.findAll({where: {
+                "customerId": customerId
+            },  ...options,
+            })
+
+            return data
+        } catch (error) {
+            throw new Error(`Cannot find data because : ${error}`)
+        }
+    }
+
+
+    async countOrder(options: object): Promise<any>{
+        try {
+            const data = await OrderModel.count(options)
+            return data
+        } catch (error) {
+            throw new Error(`Cannot count data because : ${error}`)
+
+        }
+    }
 
 
     async testInsertOrder(createOrderRequest: CreateOrderRequest): Promise<any>{

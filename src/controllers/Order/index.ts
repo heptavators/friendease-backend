@@ -6,6 +6,8 @@ import { logger } from "../../helpers/Log";
 import SuccessSingularFormatter from '../../helpers/Response/SuccessSingularFormatter';
 import { CreateOrderRequest } from "../../domains/web/Order/CreateOrderRequest";
 import { ValidationException, Validator } from '../../helpers/Validator';
+import { DEFAULT_LIMIT } from "../../utils/Constant";
+import SuccessPluralFormatter from "../../helpers/Response/SuccessPluralFormatter";
 
 
 export class OrderController {
@@ -13,6 +15,30 @@ export class OrderController {
 
     constructor(orderService: OrderService){
         this.orderService = orderService
+    }
+
+    async GetOrderUserController(req: Request, res: Response){
+        try {
+            const {page} = req.query as any
+            const limit = DEFAULT_LIMIT
+
+            const {data, count} = await this.orderService.GetOrderUserService(page, req.authId);
+            if(data.length != 0){
+                const meta = {
+                    currentPage: page || 1 ,
+                    totalPage: Math.ceil(count / limit),
+                    totalItems: count,
+                    itemsPerPage: limit
+                }
+            const response = SuccessPluralFormatter('Data Semua Order', meta, data);
+            return res.status(200).send(response);
+            }else {
+              const response = ErrorFormatter("Data Order User Tidak Ditemukan")
+              return res.status(404).send(response);
+            }
+        } catch (error) {
+            return handleErrorResponse(res, error);
+        }
     }
 
 
