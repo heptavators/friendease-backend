@@ -2,7 +2,9 @@
 import { ReviewRepository } from "../../repositories/Review";
 import { CreateReviewRequest } from "../../domains/web/Review";
 import { OrderRepository } from "src/repositories/Order";
-import { TalentRepository } from "src/repositories/Talent";
+import { TalentRepository } from "../../repositories/Talent";
+import { CustomException } from "../../helpers/Error/CustomException";
+import { BadRequestError } from "../../helpers/Error/BadRequestError";
 
 
 export class ReviewService {
@@ -28,8 +30,8 @@ export class ReviewService {
         const findReview = await this.reviewRepository.findReviewByOrderId(orderId);
 
         if (findReview > 0){
-            throw new Error("REVIEW SUDAH ADA CUY")
-        }else {
+            throw new CustomException([{ error: 'Review', message: 'Review already exists' }], 401);
+            }else {
             const findOrder = await this.orderRepository.getOrderById(orderId)
             const order = findOrder.toJSON();
     

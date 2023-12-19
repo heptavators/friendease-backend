@@ -5,6 +5,7 @@ import { logger } from "../../helpers/Log";
 import { CreateReviewRequest } from "../../domains/web/Review";
 import { ValidationException, Validator } from '../../helpers/Validator';
 import { ReviewService } from "../../services/Review";
+import { CustomException } from "../../helpers/Error/CustomException";
 
 
 export class ReviewController {
@@ -36,7 +37,7 @@ export class ReviewController {
 
 
 const handleErrorResponse = (res: Response, error: any) => {
-    if (error instanceof BadRequestError || error instanceof ValidationException) {
+    if (error instanceof BadRequestError || error instanceof ValidationException || error instanceof CustomException) {
       const response = ErrorFormatter(error.toResponseObject());
       return res.status(error.status).send(response);
     }
