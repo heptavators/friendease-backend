@@ -41,7 +41,6 @@ export class ProductController {
                 return res.status(404).send(response);
             }              
         } catch (error) {
-            console.log(error)
             return HandleErrorResponse(res, error);
         }
     }

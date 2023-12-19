@@ -44,7 +44,30 @@ export class TalentController {
                 return res.status(404).send(response);
             }              
         } catch (error) {
-            console.log(error)
+            return HandleErrorResponse(res, error);
+        }
+    }
+
+    async GetRecomendationTalentController(req: Request, res: Response){
+        try {
+            const {data} = await this.talentService.getRecomendationTalentService()
+            if (data.length != 0) {
+
+                // const meta = {
+                //     currentPage: page || 1 ,
+                //     totalPage: Math.ceil(count / limit),
+                //     totalItems: count,
+                //     itemsPerPage: limit
+                // }
+    
+                const response = SuccessPluralFormatter('Data Semua Talent', {}, data.data);
+        
+                return res.status(200).send(response);
+            } else {
+                const response = ErrorFormatter('Data Talent Tidak Ditemukan');
+                return res.status(404).send(response);
+            }              
+        } catch (error) {
             return HandleErrorResponse(res, error);
         }
     }
@@ -61,7 +84,6 @@ export class TalentController {
                 return res.status(404).send(response);
             }    
         } catch (error) {
-            console.log(error)
             return HandleErrorResponse(res, error);
         }
     }

@@ -6,6 +6,7 @@ import { Op } from "sequelize";
 import { HighlightModel } from "../../domains/model/Highlight";
 import { AuthModel } from "../../domains/model/Auth";
 import { LocationModel } from "../../domains/model/Location";
+import axios, { AxiosResponse } from 'axios';
 
 export class TalentService {
     private talentRepository: TalentRepository;
@@ -95,6 +96,25 @@ export class TalentService {
             data, 
             count
         }; 
+    }
+
+    async getRecomendationTalentService(){
+        const url = 'https://recsys.friendease.id/api/v1/talents'; 
+
+    const requestBody = {
+        "id": "cc317068-1297-4588-a58a-2ed09d8ccfe6",
+        "name": "Aoi Todo",
+        "gender": "L",
+        "birth_date": "12/06/2002",
+        "age": 21,
+        "location": "Jawa Timur, Surabaya",
+        "tags": ["Desain", "Fashion", "Kreatif", "Perfeksionis", "Ramah"],
+        "preferences": "Ingin memiliki teman yang bisa diajak kulineran dan staycation mengelilingi Indonesia"
+      };
+
+        const data = axios.post(url, requestBody);
+        console.log("this is data fetch " + data);
+        return data
     }
 
     async getTalentByIdService(talentId: string){

@@ -18,6 +18,7 @@ const talentService = TalentService.getInstance(talentRepository, authRepository
 const talentController = new TalentController(talentService);
 
 TalentRouter.get("/talent", middlewareAuth,  async (req, res) => talentController.GetAllTalentController(req, res));
+TalentRouter.post("/talent-recommendation", middlewareAuth,  async (req, res) => talentController.GetRecomendationTalentController(req, res));
 TalentRouter.get("/talent/:id", middlewareAuth,  async (req, res) => talentController.GetTalentByIdController(req, res));
 
 export default TalentRouter
