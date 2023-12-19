@@ -99,6 +99,20 @@ export class TalentRepository{
         }
     }
 
+        
+    async changeRatingTalent(talentId: string, rating: number): Promise<any> {
+        try {
+            const data = await TalentModel.update({ rating: rating }, {
+                where: { talentId: talentId }
+            });
+    
+            return data;
+        } catch (error) {
+            throw new Error(`Cannot update data: ${error}`);
+        }
+    }
+
+
 
 }
 

@@ -8,7 +8,7 @@ export class TalentSeeder {
         authId: "d1f83072-c6d6-4626-9981-5df048799758",
         verified_status: "verified",
         price: 150_000,
-        rating: 5
+        rating: 4.5
       },
       { 
         talentId: "6b908512-a145-4e3b-b072-96af84b00d87",

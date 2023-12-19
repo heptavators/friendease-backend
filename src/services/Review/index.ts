@@ -30,21 +30,21 @@ export class ReviewService {
         const findReview = await this.reviewRepository.findReviewByOrderId(orderId);
 
         if (findReview > 0){
-            throw new BadRequestError([{ error: 'Review', message: 'Review already exists' }], 401);
+            throw new BadRequestError([{ error: 'Review', message: 'Review already exists' }], 400);
         }
         else {
             const findOrder = await this.orderRepository.getOrderById(orderId)
             const order = findOrder.toJSON();
     
-            const beforeInsert = await this.reviewRepository.countOrderRatingsByTalentId(order.talentId);
-            const sumBeforeReviewRating = await this.reviewRepository.sumOrderRatingsByTalentId(order.talentId);
-    
-    
             const review = await this.reviewRepository.insertReview(createReviewRequest, orderId, order.customerId, order.talentId)
     
     
-            const afterInsert = await this.reviewRepository.countOrderRatingsByTalentId(order.talentId);
+            const totalReview = await this.reviewRepository.countOrderRatingsByTalentId(order.talentId);
             const sumReviewRating = await this.reviewRepository.sumOrderRatingsByTalentId(order.talentId);
+            const countRating = (sumReviewRating / totalReview).toFixed(1)
+
+
+            await this.talentRepository.changeRatingTalent(order.talentId, parseFloat(countRating))
     
     
     
