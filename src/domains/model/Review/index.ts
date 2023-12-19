@@ -9,6 +9,8 @@ export class ReviewModel extends Model {
     talentId!: string;
     review!: string;
     rating!: number;
+    mediaURL!: string;
+    mediaNameFile!: string;
 }
 
 
@@ -38,6 +40,14 @@ ReviewModel.init(
       },
     rating: {
         type: DataTypes.INTEGER,
+        allowNull: true,
+      },
+    mediaURL: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
+      mediaNameFile: {
+        type: DataTypes.STRING,
         allowNull: true,
       },
     },

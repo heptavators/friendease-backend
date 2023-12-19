@@ -23,16 +23,14 @@ export class NotificationService {
 
     async GetNotificationService(authId: string){
         const data = await this.notificationRepository.GetAllNotificationUser(authId);
-        // const count = await this.productRepository.countProduct(total);
         return data; 
     }
 
 
-    async CreateNotificationService(authId: string, CreateNotificationRequest: CreateNotificationRequest){
-        await SendNotification()
+    async CreateNotificationService(authId: string, createNotificationRequest: CreateNotificationRequest){
+        await SendNotification(createNotificationRequest)
         const user = await this.authRepository.getProfileById(authId);
-        console.log(user.toJSON().device_token)
-        const data = await this.notificationRepository.CreateNotification(authId, CreateNotificationRequest);
+        const data = await this.notificationRepository.CreateNotification(authId, createNotificationRequest);
         return data; 
     }
 
@@ -41,24 +39,6 @@ export class NotificationService {
         const data =  {message: "omke"}
         return data; 
     }
-
-
-
-
-
-
-    // async createProductService(createProductRequest: CreateProductRequest ){
-    //     const product = await this.productRepository.insertProduct(createProductRequest)
-    //     return product
-    // }
-
-    // async getProductByIdService(id: string){
-    //     const data = await this.productRepository.getProductById(id);
-    //     return data; 
-
-    // }
-
-
 
 
 }

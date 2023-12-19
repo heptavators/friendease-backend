@@ -6,6 +6,7 @@ export class TalentSeeder {
       { 
         talentId: "dc8a0ff0-1d0e-414a-9f37-ebe70fae5fc4",
         authId: "d1f83072-c6d6-4626-9981-5df048799758",
+        description: "Seorang musisi dengan keahlian sebagai gitaris dan penyanyi. Saya suka mengeksplorasi berbagai genre musik dan sering tampil di acara-acara musik lokal.",
         verified_status: "verified",
         price: 150_000,
         rating: 4.5

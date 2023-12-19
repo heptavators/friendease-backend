@@ -9,13 +9,16 @@ import { ValidationException, Validator } from '../../helpers/Validator';
 import { DEFAULT_LIMIT } from "../../utils/Constant";
 import SuccessPluralFormatter from "../../helpers/Response/SuccessPluralFormatter";
 import { HandleErrorResponse } from "../../helpers/Error/HandleErrorResponse";
+import { NotificationService } from "../../services/Notification";
 
 
 export class OrderController {
     orderService: OrderService
+    notificationService: NotificationService
 
-    constructor(orderService: OrderService){
+    constructor(orderService: OrderService, notificationService: NotificationService){
         this.orderService = orderService
+        this.notificationService = notificationService
     }
 
     async GetOrderUserController(req: Request, res: Response){
@@ -54,6 +57,16 @@ export class OrderController {
             const validatedData = Validator.validate(data, CreateOrderRequest.getSchema());
 
             const result = await this.orderService.createOrderService(talentId, userId, validatedData);
+
+            const messageNotifOrder = {
+                    icon: "https://i.pinimg.com/564x/e8/a6/29/e8a6295025285f37aeb1a9ecbd9c642f.jpg",
+                    title: "Order Kamu Berhasil",
+                    body: "Yeay Order Kamu berhasil nih"
+                
+            }
+
+            const notif = await this.notificationService.CreateNotificationService(req.authId, messageNotifOrder)
+
             const response = SuccessSingularFormatter('Berhasil Buat Order Baru', result);
     
             return res.status(200).send(response);
@@ -70,6 +83,7 @@ export class OrderController {
             const validatedData = Validator.validate(data, CreateOrderRequest.getSchema());
 
             const result = await this.orderService.createOrderTestService(talentId, userId, validatedData);
+          
             const response = SuccessSingularFormatter('Berhasil Buat Order Baru', result);
     
             return res.status(200).send(response);

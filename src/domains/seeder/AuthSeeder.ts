@@ -21,7 +21,8 @@ export class AuthSeeder {
       gender: "male",
       status: "active",
       roles: "customer",
-      device_token: "eXSkKORYvcTeeLjwQU_QrF:APA91bE_gjfNHVeSeoyj_t2ybY16fYRXB35lausR-NXiRMKovaj--ijah2hfoTBq4cv5BVMAlwasWENL8Egym8A0I_HkoBN0ksvcLaVXG__biHheAZmLSyVQdakhN1IduUiJyU7U21Qq"
+      device_token: "eXSkKORYvcTeeLjwQU_QrF:APA91bE_gjfNHVeSeoyj_t2ybY16fYRXB35lausR-NXiRMKovaj--ijah2hfoTBq4cv5BVMAlwasWENL8Egym8A0I_HkoBN0ksvcLaVXG__biHheAZmLSyVQdakhN1IduUiJyU7U21Qq",
+      user_preferences: "Teman yang bisa diajak bertukar pikiran (open-minded), nyambung dengan saya jika berkomunikasi, bisa saling pengertian dan memahami satu sama lain."
     },
     { 
       authId: "80dd592b-fb31-4ffa-81cb-89c1004a6b62",
@@ -37,8 +38,9 @@ export class AuthSeeder {
       gender: "male",
       status: "active",
       roles: "admin",
-      device_token: "eXSkKORYvcTeeLjwQU_QrF:APA91bE_gjfNHVeSeoyj_t2ybY16fYRXB35lausR-NXiRMKovaj--ijah2hfoTBq4cv5BVMAlwasWENL8Egym8A0I_HkoBN0ksvcLaVXG__biHheAZmLSyVQdakhN1IduUiJyU7U21Qq"
-  },
+      device_token: "eXSkKORYvcTeeLjwQU_QrF:APA91bE_gjfNHVeSeoyj_t2ybY16fYRXB35lausR-NXiRMKovaj--ijah2hfoTBq4cv5BVMAlwasWENL8Egym8A0I_HkoBN0ksvcLaVXG__biHheAZmLSyVQdakhN1IduUiJyU7U21Qq",
+      user_preferences: "Teman yang bisa diajak bertukar pikiran (open-minded), nyambung dengan saya jika berkomunikasi, bisa saling pengertian dan memahami satu sama lain."
+    },
   { 
     authId: "d1f83072-c6d6-4626-9981-5df048799758",
     locationId: "d62abf30-cb6f-4690-aee9-a7dd9be70aeb",
@@ -69,7 +71,8 @@ export class AuthSeeder {
     status: "active",
     gender: "female",
     roles: "talent",
-    device_token: "eXSkKORYvcTeeLjwQU_QrF:APA91bE_gjfNHVeSeoyj_t2ybY16fYRXB35lausR-NXiRMKovaj--ijah2hfoTBq4cv5BVMAlwasWENL8Egym8A0I_HkoBN0ksvcLaVXG__biHheAZmLSyVQdakhN1IduUiJyU7U21Qq"
+    device_token: "eXSkKORYvcTeeLjwQU_QrF:APA91bE_gjfNHVeSeoyj_t2ybY16fYRXB35lausR-NXiRMKovaj--ijah2hfoTBq4cv5BVMAlwasWENL8Egym8A0I_HkoBN0ksvcLaVXG__biHheAZmLSyVQdakhN1IduUiJyU7U21Qq",
+    user_preferences: "Teman yang bisa diajak bertukar pikiran (open-minded), nyambung dengan saya jika berkomunikasi, bisa saling pengertian dan memahami satu sama lain."
   },
   { 
     authId: "636ba364-904b-4133-9cb6-dbb1185b8611",
@@ -85,7 +88,8 @@ export class AuthSeeder {
     gender: "male",
     status: "active",
     roles: "talent",
-    device_token: "eXSkKORYvcTeeLjwQU_QrF:APA91bE_gjfNHVeSeoyj_t2ybY16fYRXB35lausR-NXiRMKovaj--ijah2hfoTBq4cv5BVMAlwasWENL8Egym8A0I_HkoBN0ksvcLaVXG__biHheAZmLSyVQdakhN1IduUiJyU7U21Qq"
+    device_token: "eXSkKORYvcTeeLjwQU_QrF:APA91bE_gjfNHVeSeoyj_t2ybY16fYRXB35lausR-NXiRMKovaj--ijah2hfoTBq4cv5BVMAlwasWENL8Egym8A0I_HkoBN0ksvcLaVXG__biHheAZmLSyVQdakhN1IduUiJyU7U21Qq",
+    user_preferences: "Teman yang bisa diajak bertukar pikiran (open-minded), nyambung dengan saya jika berkomunikasi, bisa saling pengertian dan memahami satu sama lain."
   },
   { 
     authId: "d720cbef-4f9a-4376-905f-b0dc1a6b3d3d",
@@ -101,7 +105,8 @@ export class AuthSeeder {
     gender: "female",
     status: "active",
     roles: "talent",
-    device_token: "eXSkKORYvcTeeLjwQU_QrF:APA91bE_gjfNHVeSeoyj_t2ybY16fYRXB35lausR-NXiRMKovaj--ijah2hfoTBq4cv5BVMAlwasWENL8Egym8A0I_HkoBN0ksvcLaVXG__biHheAZmLSyVQdakhN1IduUiJyU7U21Qq"
+    device_token: "eXSkKORYvcTeeLjwQU_QrF:APA91bE_gjfNHVeSeoyj_t2ybY16fYRXB35lausR-NXiRMKovaj--ijah2hfoTBq4cv5BVMAlwasWENL8Egym8A0I_HkoBN0ksvcLaVXG__biHheAZmLSyVQdakhN1IduUiJyU7U21Qq",
+    user_preferences: "Teman yang bisa diajak bertukar pikiran (open-minded), nyambung dengan saya jika berkomunikasi, bisa saling pengertian dan memahami satu sama lain."
   },
   { 
     authId: "f6c44ee6-b695-4c00-901f-60efb44b45a1",
@@ -117,7 +122,7 @@ export class AuthSeeder {
     gender: "female",
     status: "active",
     roles: "talent",
-    device_token: "eXSkKORYvcTeeLjwQU_QrF:APA91bE_gjfNHVeSeoyj_t2ybY16fYRXB35lausR-NXiRMKovaj--ijah2hfoTBq4cv5BVMAlwasWENL8Egym8A0I_HkoBN0ksvcLaVXG__biHheAZmLSyVQdakhN1IduUiJyU7U21Qq"
+    device_token: "eXSkKORYvcTeeLjwQU_QrF:APA91bE_gjfNHVeSeoyj_t2ybY16fYRXB35lausR-NXiRMKovaj--ijah2hfoTBq4cv5BVMAlwasWENL8Egym8A0I_HkoBN0ksvcLaVXG__biHheAZmLSyVQdakhN1IduUiJyU7U21Qq",
   },
   { 
     authId: "3105781b-bd78-47b7-a36c-0e9e1e15ec73",
@@ -133,7 +138,7 @@ export class AuthSeeder {
     gender: "male",
     status: "active",
     roles: "talent",
-    device_token: "eXSkKORYvcTeeLjwQU_QrF:APA91bE_gjfNHVeSeoyj_t2ybY16fYRXB35lausR-NXiRMKovaj--ijah2hfoTBq4cv5BVMAlwasWENL8Egym8A0I_HkoBN0ksvcLaVXG__biHheAZmLSyVQdakhN1IduUiJyU7U21Qq"
+    device_token: "eXSkKORYvcTeeLjwQU_QrF:APA91bE_gjfNHVeSeoyj_t2ybY16fYRXB35lausR-NXiRMKovaj--ijah2hfoTBq4cv5BVMAlwasWENL8Egym8A0I_HkoBN0ksvcLaVXG__biHheAZmLSyVQdakhN1IduUiJyU7U21Qq",
   },
   { 
     authId: "6a17fc03-6c40-4946-8b7c-ba8ccb470fed",
@@ -149,7 +154,7 @@ export class AuthSeeder {
     gender: "male",
     status: "active",
     roles: "talent",
-    device_token: "eXSkKORYvcTeeLjwQU_QrF:APA91bE_gjfNHVeSeoyj_t2ybY16fYRXB35lausR-NXiRMKovaj--ijah2hfoTBq4cv5BVMAlwasWENL8Egym8A0I_HkoBN0ksvcLaVXG__biHheAZmLSyVQdakhN1IduUiJyU7U21Qq"
+    device_token: "eXSkKORYvcTeeLjwQU_QrF:APA91bE_gjfNHVeSeoyj_t2ybY16fYRXB35lausR-NXiRMKovaj--ijah2hfoTBq4cv5BVMAlwasWENL8Egym8A0I_HkoBN0ksvcLaVXG__biHheAZmLSyVQdakhN1IduUiJyU7U21Qq",
   },
   { 
     authId: "2db05355-7785-487c-9112-4309dc9a846c",
@@ -165,7 +170,7 @@ export class AuthSeeder {
     gender: "female",
     status: "active",
     roles: "talent",
-    device_token: "eXSkKORYvcTeeLjwQU_QrF:APA91bE_gjfNHVeSeoyj_t2ybY16fYRXB35lausR-NXiRMKovaj--ijah2hfoTBq4cv5BVMAlwasWENL8Egym8A0I_HkoBN0ksvcLaVXG__biHheAZmLSyVQdakhN1IduUiJyU7U21Qq"
+    device_token: "eXSkKORYvcTeeLjwQU_QrF:APA91bE_gjfNHVeSeoyj_t2ybY16fYRXB35lausR-NXiRMKovaj--ijah2hfoTBq4cv5BVMAlwasWENL8Egym8A0I_HkoBN0ksvcLaVXG__biHheAZmLSyVQdakhN1IduUiJyU7U21Qq",
   },
   ];
 

@@ -7,6 +7,7 @@ import { AuthModel } from '../Auth';
 export class TalentModel extends Model{
     talentId!: string;
     authId!: string;
+    description!: string;
     verified_status!: string;
     rating!: number;
     price!: number;
@@ -25,6 +26,10 @@ TalentModel.init(
     authId: {
         type: DataTypes.UUID,
         allowNull: false,
+    },
+    description: {
+      type: DataTypes.STRING,
+      allowNull: true,
     },
     verified_status: {
         type: DataTypes.ENUM,

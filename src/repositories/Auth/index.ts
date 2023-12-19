@@ -17,7 +17,7 @@ export class AuthRepository{
         try {
             const data = await AuthModel.findByPk(authId, {
                 include: ['location'],
-                attributes: { exclude: ['password', 'locationId', 'createdAt', 'updatedAt', 'device_token'] },
+                attributes: { exclude: ['password', 'locationId', 'createdAt', 'updatedAt'] },
             })
             return data
         } catch (error) {

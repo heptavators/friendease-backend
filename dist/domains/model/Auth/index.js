@@ -48,6 +48,7 @@ class AuthModel extends import_sequelize.Model {
   status;
   roles;
   device_token;
+  user_preferences;
 }
 AuthModel.init(
   {
@@ -111,6 +112,10 @@ AuthModel.init(
       defaultValue: "customer"
     },
     device_token: {
+      type: import_sequelize.DataTypes.STRING,
+      allowNull: true
+    },
+    user_preferences: {
       type: import_sequelize.DataTypes.STRING,
       allowNull: true
     }

@@ -5,6 +5,7 @@ import { Op } from "sequelize";
 import Payment from "../../configs/Midtrans/Payment";
 import { TalentRepository } from "../../repositories/Talent";
 import { AuthRepository } from "../../repositories/Auth";
+import { NotificationRepository } from "../../repositories/Notification";
 
 export class OrderService {
     private orderRepository: OrderRepository;
@@ -12,13 +13,21 @@ export class OrderService {
     private authRepository: AuthRepository;
     private static instance: OrderService
 
-    private constructor(orderRepository: OrderRepository, talentRepository: TalentRepository, authRepository: AuthRepository) {
+    private constructor(
+        orderRepository: OrderRepository, 
+        talentRepository: TalentRepository, 
+        authRepository: AuthRepository,
+        ) {
         this.orderRepository = orderRepository;
         this.talentRepository = talentRepository;
         this.authRepository = authRepository;
     }
 
-    static getInstance(orderRepository: OrderRepository, talentRepository: TalentRepository, authRepository: AuthRepository): OrderService {
+    static getInstance(
+        orderRepository: OrderRepository, 
+        talentRepository: TalentRepository, 
+        authRepository: AuthRepository,
+        ): OrderService {
         if (!this.instance) {
             this.instance = new OrderService(orderRepository, talentRepository, authRepository);
         }
@@ -70,9 +79,10 @@ export class OrderService {
             total_amount: totalHours * talent.price + FEE_PLATFORM,
           };
 
+        
+
           
         const order = await this.orderRepository.insertOrder(orderData, customer);
-        
         return order;
     }
 

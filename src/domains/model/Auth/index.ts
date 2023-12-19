@@ -1,6 +1,5 @@
 import { DataTypes, Model } from 'sequelize';
 import Database  from "../../../configs/Database";
-import { NotificationModel } from '../Notification';
 
 export class AuthModel extends Model {
     authId!: string;
@@ -17,6 +16,7 @@ export class AuthModel extends Model {
     status!: string;
     roles!: string;
     device_token!: string;
+    user_preferences!: string;
 }
 
 
@@ -86,6 +86,10 @@ AuthModel.init(
         type: DataTypes.STRING,
         allowNull: true,
       },
+      user_preferences: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      }
     },
     {
       modelName: 'Auth',

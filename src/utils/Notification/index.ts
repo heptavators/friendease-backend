@@ -1,42 +1,43 @@
-import * as admin from 'firebase-admin';
+import admin from 'firebase-admin';
 import * as serviceAccount from './key.json'
 
-const params = {
-  type: serviceAccount.type,
-  projectId: serviceAccount.project_id,
-  privateKeyId: serviceAccount.private_key_id,
-  privateKey: serviceAccount.private_key,
-  clientEmail: serviceAccount.client_email,
-  clientId: serviceAccount.client_id,
-  authUri: serviceAccount.auth_uri,
-  tokenUri: serviceAccount.token_uri,
-  authProviderX509CertUrl: serviceAccount.auth_provider_x509_cert_url,
-  clientC509CertUrl: serviceAccount.client_x509_cert_url
-}
    
 admin.initializeApp({
-  credential: admin.credential.cert(params),
-})
+  credential: admin.credential.cert(serviceAccount as admin.ServiceAccount),
+  databaseURL: "https://hexavator-default-rtdb.asia-southeast1.firebasedatabase.app"
+});
+
+console.log(admin)
 
 
-const deviceToken = "fy_lO84MQ06bbWwVpZ5CeS:APA91bHjrzlPCEe2UtYrAb6juUj4_7NaQY_5RCTcgjmhglYcWNJ6iDUz7WWZXPcq4rxZ_BKtHUHIs40o2eY1K-z96yZzcMFFg-1RsQ7xNGDG1Ivu4LzGVIrXkCRHXh2wXMwKgcEb_6IK";
+const deviceToken = "dmdRjaCiQLenliwPO5mJyD:APA91bHmyrbu35VqUKgzR0FselQzqD5_cO8f3kdxXQBHUrpilJjFHF5ogMNTFl_vNJ9DiXOoTY0QfCCdhLeeKcc8p2ha4uEq7VplzEJfINqbMK3jEQRW_87QCIHheh9PUdjQxS8JVkbJ";
 
-const payload: admin.messaging.MessagingPayload = {
-  notification: {
-    title: "FCM IS COOL !",
-    body: "Notification has been received",
-    content_available: "true",
-    image: "https://i.pinimg.com/564x/73/28/ce/7328ce6807d0620039de3fb1a8f855b7.jpg"
-  }
-};
+// const payload: admin.messaging.MessagingPayload = {
+//   notification: {
+//     title: "FCM IS COOL !",
+//     body: "Notification has been received",
+//     content_available: "true",
+//     image: "https://i.pinimg.com/564x/73/28/ce/7328ce6807d0620039de3fb1a8f855b7.jpg"
+//   }
+// };
 
 const options: admin.messaging.MessagingOptions = {
   priority: "high"
 };
 
 
-const SendNotification = async () => {
+const SendNotification = async (notification: any) => {
   try {
+    
+
+  const payload: admin.messaging.MessagingPayload = {
+    notification: {
+      title: notification.title,
+      body: notification.body,
+      content_available: "true",
+      image: "https://i.pinimg.com/564x/e8/a6/29/e8a6295025285f37aeb1a9ecbd9c642f.jpg"
+    }
+  };
 
     await admin.messaging().sendToDevice(deviceToken, payload, options);
     console.log('Notification sent successfully.');
