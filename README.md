@@ -21,6 +21,10 @@
 - uuid
 - jsonwebtoken
 - bcryptjs
+- firebase-admin
+- midtrans-client
+- multer
+- dotenv
 
 ## Architecture
 Domain -> Repository -> Service -> Controller -> Router
@@ -51,3 +55,12 @@ Running this project
 ```bash
 docker compose up -d
 ```
+
+if you want to stop this project
+```bash
+docker compose down
+```
+
+#
+
+**Note:** If you intend to initiate this project after pulling from the main branch, kindly remove the existing Docker image and build a new one using the `docker build` command. If not, you can simply run the project using the `docker compose up -d` command.
