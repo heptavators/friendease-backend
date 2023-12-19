@@ -7,6 +7,7 @@ import { LoginRequest } from '../../domains/web/Login/LoginRequest';
 import { ValidationException, Validator } from '../../helpers/Validator';
 import { BadRequestError } from "../../helpers/Error/BadRequestError";
 import { RegisterRequest } from "../../domains/web/Login/RegisterRequest";
+import { HandleErrorResponse } from "../../helpers/Error/HandleErrorResponse";
 
 export class AuthController {
     authService: AuthService
@@ -26,7 +27,7 @@ export class AuthController {
         return res.status(200).send(response);
 
       } catch (error: any) {
-        handleErrorResponse(res, error)
+        return HandleErrorResponse(res, error);
       } 
     }
 
@@ -39,7 +40,7 @@ export class AuthController {
         return res.status(200).send(response);
 
       } catch (error: any) {
-        handleErrorResponse(res, error)
+        return HandleErrorResponse(res, error);
       } 
     }
 
@@ -55,22 +56,9 @@ export class AuthController {
         return res.status(200).send(response);
 
       } catch (error) {
-        handleErrorResponse(res, error)
+        return HandleErrorResponse(res, error);
       }
     }
   
 
-  }
-
-
-  
-const handleErrorResponse = (res: Response, error: any) => {
-  if (error instanceof BadRequestError || error instanceof ValidationException) {
-    const response = ErrorFormatter(error.toResponseObject());
-    return res.status(error.status).send(response);
-  }
-
-  logger.error(error);
-  const response = ErrorFormatter(error);
-  return res.status(500).send(response);
-};
+}

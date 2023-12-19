@@ -3,9 +3,9 @@ import { Request, Response } from "express-serve-static-core";
 import { logger } from "../../helpers/Log";
 import ErrorFormatter from "../../helpers/Response/ErrorFormatter";
 import SuccessSingularFormatter from '../../helpers/Response/SuccessSingularFormatter';
-import { ValidationException, Validator } from '../../helpers/Validator';
-import { BadRequestError } from "../../helpers/Error/BadRequestError";
+import { Validator } from '../../helpers/Validator';
 import { CreateNotificationRequest } from "../../domains/web/Notification/CreateNotificationRequest";
+import { HandleErrorResponse } from "../../helpers/Error/HandleErrorResponse";
 
 export class NotificationController {
     notificationService: NotificationService
@@ -27,7 +27,7 @@ export class NotificationController {
 
   
         } catch (error: any) {
-          handleErrorResponse(res, error)
+          return HandleErrorResponse(res, error);
         } 
       }
       
@@ -42,7 +42,7 @@ export class NotificationController {
     
             return res.status(200).send(response);
       } catch (error) {
-        handleErrorResponse(res, error)
+        return HandleErrorResponse(res, error);
       }
     }
 
@@ -53,22 +53,9 @@ export class NotificationController {
     
             return res.status(200).send(response);
       } catch (error) {
-        handleErrorResponse(res, error)
+        return HandleErrorResponse(res, error);
       }
     }
     
     
     }
-
-  
-const handleErrorResponse = (res: Response, error: any) => {
-    if (error instanceof BadRequestError || error instanceof ValidationException) {
-      const response = ErrorFormatter(error.toResponseObject());
-      return res.status(error.status).send(response);
-    }
-  
-    logger.error(error);
-    const response = ErrorFormatter(error);
-    return res.status(500).send(response);
-  };
-  

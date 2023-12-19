@@ -9,7 +9,7 @@ import { HighlightSeeder } from './HighlightSeeder';
 import { TagSeeder } from './TagSeeder';
 import { OrderSeeder } from './OrderSeeder';
 import { ReviewSeeder } from './ReviewSeeder';
-
+import { TagTalentSeeder } from './TagTalentSeeder';
 
 
 export async function DatabaseSeeder(req: Request, res: Response) {
@@ -25,6 +25,7 @@ export async function DatabaseSeeder(req: Request, res: Response) {
     const tagSeeder = new TagSeeder();
     const orderSeeder = new OrderSeeder();
     const reviewSeeder = new ReviewSeeder();
+    const tagTalentSeeder = new TagTalentSeeder();
 
     await productSeeder.run();
     await locationSeeder.run();
@@ -35,6 +36,7 @@ export async function DatabaseSeeder(req: Request, res: Response) {
     await tagSeeder.run();
     await orderSeeder.run();
     await reviewSeeder.run();
+    await tagTalentSeeder.run();
 
     console.info("success seed database")
     return res.status(200).send({message: "Berhasil seed data"})

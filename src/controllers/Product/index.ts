@@ -1,14 +1,13 @@
 import { ProductService } from "../../services/Product";
 import { Request, Response } from "express-serve-static-core";
-import { BadRequestError } from "../../helpers/Error/BadRequestError";
 import ErrorFormatter from "../../helpers/Response/ErrorFormatter";
-import { logger } from "../../helpers/Log";
 import SuccessSingularFormatter from '../../helpers/Response/SuccessSingularFormatter';
 import { CreateProductRequest } from "../../domains/web/Product/CreateProductRequest";
-import { ValidationException, Validator } from '../../helpers/Validator';
+import { Validator } from '../../helpers/Validator';
 import SuccessPluralFormatter from "../../helpers/Response/SuccessPluralFormatter";
 import { DEFAULT_LIMIT } from "../../utils/Constant";
 import { EditProductRequest } from "../../domains/web/Product/EditProductRequest";
+import { HandleErrorResponse } from "../../helpers/Error/HandleErrorResponse";
 
 
 export class ProductController {
@@ -43,7 +42,7 @@ export class ProductController {
             }              
         } catch (error) {
             console.log(error)
-            return handleErrorResponse(res, error);
+            return HandleErrorResponse(res, error);
         }
     }
 
@@ -60,7 +59,7 @@ export class ProductController {
             }    
 ;
         } catch (error) {
-            return handleErrorResponse(res, error);
+            return HandleErrorResponse(res, error);
         }
     }
 
@@ -74,7 +73,7 @@ export class ProductController {
     
             return res.status(200).send(response);
         } catch (error) {
-            return handleErrorResponse(res, error);
+            return HandleErrorResponse(res, error);
         }
     }
     async EditProductController(req: Request, res: Response) {
@@ -96,7 +95,7 @@ export class ProductController {
             return res.status(200).send(response);
           }  
         } catch (error) {
-          return handleErrorResponse(res, error);
+            return HandleErrorResponse(res, error);
         }
       }
 
@@ -115,22 +114,10 @@ export class ProductController {
             }
 
         } catch (error) {
-            return handleErrorResponse(res, error);
+            return HandleErrorResponse(res, error);
         }
     }
 
 
 }
 
-
-const handleErrorResponse = (res: Response, error: any) => {
-    if (error instanceof BadRequestError || error instanceof ValidationException) {
-      const response = ErrorFormatter(error.toResponseObject());
-      return res.status(error.status).send(response);
-    }
-  
-    logger.error(error);
-    const response = ErrorFormatter(error);
-    return res.status(500).send(response);
-  };
-  

@@ -2,7 +2,9 @@
 import { ReviewRepository } from "../../repositories/Review";
 import { CreateReviewRequest } from "../../domains/web/Review";
 import { OrderRepository } from "src/repositories/Order";
-import { TalentRepository } from "src/repositories/Talent";
+import { TalentRepository } from "../../repositories/Talent";
+import { CustomException } from "../../helpers/Error/CustomException";
+import { BadRequestError } from "../../helpers/Error/BadRequestError";
 
 
 export class ReviewService {
@@ -25,15 +27,31 @@ export class ReviewService {
     }
 
     async createReviewService(createReviewRequest: CreateReviewRequest, orderId: string){
-        // const review = await this.reviewRepository.insertReview(createReviewRequest)
-        const findOrder = await this.orderRepository.getOrderById(orderId)
-        const order = findOrder.toJSON();
+        const findReview = await this.reviewRepository.findReviewByOrderId(orderId);
 
-        const sumOfRatings = await this.reviewRepository.getAverageReviewRatingByTalentId(order.talentId);
+        if (findReview > 0){
+            throw new BadRequestError([{ error: 'Review', message: 'Review already exists' }], 401);
+        }
+        else {
+            const findOrder = await this.orderRepository.getOrderById(orderId)
+            const order = findOrder.toJSON();
+    
+            const beforeInsert = await this.reviewRepository.countOrderRatingsByTalentId(order.talentId);
+            const sumBeforeReviewRating = await this.reviewRepository.sumOrderRatingsByTalentId(order.talentId);
+    
+    
+            const review = await this.reviewRepository.insertReview(createReviewRequest, orderId, order.customerId, order.talentId)
+    
+    
+            const afterInsert = await this.reviewRepository.countOrderRatingsByTalentId(order.talentId);
+            const sumReviewRating = await this.reviewRepository.sumOrderRatingsByTalentId(order.talentId);
+    
+    
+    
+            return review
+        }
 
-
-        console.log(sumOfRatings)
-        return order
+    
     }
 
     

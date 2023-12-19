@@ -5,6 +5,9 @@ import { logger } from "../../helpers/Log";
 import { CreateReviewRequest } from "../../domains/web/Review";
 import { ValidationException, Validator } from '../../helpers/Validator';
 import { ReviewService } from "../../services/Review";
+import { CustomException } from "../../helpers/Error/CustomException";
+import SuccessSingularFormatter from "../../helpers/Response/SuccessSingularFormatter";
+import { HandleErrorResponse } from "../../helpers/Error/HandleErrorResponse";
 
 
 export class ReviewController {
@@ -21,28 +24,16 @@ export class ReviewController {
             const data: CreateReviewRequest = req.body;
             const validatedData = Validator.validate(data, CreateReviewRequest.getSchema());
             
-            const result = await this.reviewService.createReviewService(validatedData, orderId)
-            
-            return res.status(200).send(result)
-        } catch (error) {
-            console.log(error)
-            return handleErrorResponse(res, error);
+            const result = await this.reviewService.createReviewService(validatedData, orderId);
+            const response = SuccessSingularFormatter('Berhasil Register Akun', result );
+
+            return res.status(200).send(response);
+            } catch (error) {
+            return HandleErrorResponse(res, error);
         }
     }
-
-
 
 }
 
 
-const handleErrorResponse = (res: Response, error: any) => {
-    if (error instanceof BadRequestError || error instanceof ValidationException) {
-      const response = ErrorFormatter(error.toResponseObject());
-      return res.status(error.status).send(response);
-    }
-  
-    logger.error(error);
-    const response = ErrorFormatter(error);
-    return res.status(500).send(response);
-  };
   

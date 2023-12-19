@@ -31,13 +31,11 @@ __export(Auth_exports, {
   AuthController: () => AuthController
 });
 module.exports = __toCommonJS(Auth_exports);
-var import_Log = require("../../helpers/Log");
-var import_ErrorFormatter = __toESM(require("../../helpers/Response/ErrorFormatter"));
 var import_SuccessSingularFormatter = __toESM(require("../../helpers/Response/SuccessSingularFormatter"));
 var import_LoginRequest = require("../../domains/web/Login/LoginRequest");
 var import_Validator = require("../../helpers/Validator");
-var import_BadRequestError = require("../../helpers/Error/BadRequestError");
 var import_RegisterRequest = require("../../domains/web/Login/RegisterRequest");
+var import_HandleErrorResponse = require("../../helpers/Error/HandleErrorResponse");
 class AuthController {
   authService;
   constructor(authService) {
@@ -51,7 +49,7 @@ class AuthController {
       const response = (0, import_SuccessSingularFormatter.default)("Berhasil Login", { token: result });
       return res.status(200).send(response);
     } catch (error) {
-      handleErrorResponse(res, error);
+      return (0, import_HandleErrorResponse.HandleErrorResponse)(res, error);
     }
   }
   async ProfileController(req, res) {
@@ -60,7 +58,7 @@ class AuthController {
       const response = (0, import_SuccessSingularFormatter.default)("Profile User", result);
       return res.status(200).send(response);
     } catch (error) {
-      handleErrorResponse(res, error);
+      return (0, import_HandleErrorResponse.HandleErrorResponse)(res, error);
     }
   }
   async RegisterController(req, res) {
@@ -71,19 +69,10 @@ class AuthController {
       const response = (0, import_SuccessSingularFormatter.default)("Berhasil Register Akun", result);
       return res.status(200).send(response);
     } catch (error) {
-      handleErrorResponse(res, error);
+      return (0, import_HandleErrorResponse.HandleErrorResponse)(res, error);
     }
   }
 }
-const handleErrorResponse = (res, error) => {
-  if (error instanceof import_BadRequestError.BadRequestError || error instanceof import_Validator.ValidationException) {
-    const response2 = (0, import_ErrorFormatter.default)(error.toResponseObject());
-    return res.status(error.status).send(response2);
-  }
-  import_Log.logger.error(error);
-  const response = (0, import_ErrorFormatter.default)(error);
-  return res.status(500).send(response);
-};
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
   AuthController

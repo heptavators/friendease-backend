@@ -8,6 +8,7 @@ import { CreateOrderRequest } from "../../domains/web/Order/CreateOrderRequest";
 import { ValidationException, Validator } from '../../helpers/Validator';
 import { DEFAULT_LIMIT } from "../../utils/Constant";
 import SuccessPluralFormatter from "../../helpers/Response/SuccessPluralFormatter";
+import { HandleErrorResponse } from "../../helpers/Error/HandleErrorResponse";
 
 
 export class OrderController {
@@ -37,7 +38,7 @@ export class OrderController {
               return res.status(404).send(response);
             }
         } catch (error) {
-            return handleErrorResponse(res, error);
+            return HandleErrorResponse(res, error);
         }
     }
 
@@ -57,7 +58,7 @@ export class OrderController {
     
             return res.status(200).send(response);
         } catch (error) {
-            return handleErrorResponse(res, error);
+            return HandleErrorResponse(res, error);
         }
     }
 
@@ -73,7 +74,7 @@ export class OrderController {
     
             return res.status(200).send(response);
         } catch (error) {
-            return handleErrorResponse(res, error);
+            return HandleErrorResponse(res, error);
         }
     }
 
@@ -87,21 +88,8 @@ export class OrderController {
     
             return res.status(200).send(response);
         } catch (error) {
-            return handleErrorResponse(res, error);
+            return HandleErrorResponse(res, error);
         }
     }
 
 }
-
-
-const handleErrorResponse = (res: Response, error: any) => {
-    if (error instanceof BadRequestError || error instanceof ValidationException) {
-      const response = ErrorFormatter(error.toResponseObject());
-      return res.status(error.status).send(response);
-    }
-  
-    logger.error(error);
-    const response = ErrorFormatter(error);
-    return res.status(500).send(response);
-  };
-  

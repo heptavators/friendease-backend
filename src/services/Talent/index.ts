@@ -90,10 +90,10 @@ export class TalentService {
         const options = this.buildQueryOptions(fullname, page);
         const total = this.buildQueryCount(fullname)
         const data = await this.talentRepository.getAllTalents(fullname)
-        // const count = await this.talentRepository.countTalent(this.buildQueryCount(name));
+        const count = await this.talentRepository.countTalent(options);
         return {
             data, 
-            // count
+            count
         }; 
     }
 
@@ -120,4 +120,3 @@ export class TalentService {
 
 
 }
-
