@@ -30,15 +30,15 @@ export class ReviewService {
         const findReview = await this.reviewRepository.findReviewByOrderId(orderId);
 
         if (findReview > 0){
-            throw new CustomException([{ error: 'Review', message: 'Review already exists' }], 401);
-            }else {
+            throw new BadRequestError([{ error: 'Review', message: 'Review already exists' }], 401);
+        }
+        else {
             const findOrder = await this.orderRepository.getOrderById(orderId)
             const order = findOrder.toJSON();
     
             const beforeInsert = await this.reviewRepository.countOrderRatingsByTalentId(order.talentId);
             const sumBeforeReviewRating = await this.reviewRepository.sumOrderRatingsByTalentId(order.talentId);
     
-            console.log("before insert review: " + sumBeforeReviewRating / beforeInsert);
     
             const review = await this.reviewRepository.insertReview(createReviewRequest, orderId, order.customerId, order.talentId)
     
@@ -46,12 +46,12 @@ export class ReviewService {
             const afterInsert = await this.reviewRepository.countOrderRatingsByTalentId(order.talentId);
             const sumReviewRating = await this.reviewRepository.sumOrderRatingsByTalentId(order.talentId);
     
-            console.log("rating after insert review: " + sumReviewRating / afterInsert);
     
     
             return review
-
         }
+
+    
     }
 
     

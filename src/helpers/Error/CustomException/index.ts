@@ -1,5 +1,3 @@
-import { Schema, ValidationErrorItem } from "joi";
-
 export class CustomException extends Error {
   errors: Array<{ error: string; message: string }>;
   status: number;
@@ -17,5 +15,4 @@ export class CustomException extends Error {
       errors: this.errors.map(({ error, message }) => ({ error, message })),
     };
   }
-
 }

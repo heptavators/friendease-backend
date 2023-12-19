@@ -8,8 +8,8 @@ import { CreateProductRequest } from "../../domains/web/Product/CreateProductReq
 import { ValidationException, Validator } from '../../helpers/Validator';
 import SuccessPluralFormatter from "../../helpers/Response/SuccessPluralFormatter";
 import { DEFAULT_LIMIT } from "../../utils/Constant";
-import { EditProductRequest } from "../../domains/web/Product/EditProductRequest";
 import { TalentService } from "src/services/Talent";
+import { HandleErrorResponse } from "../../helpers/Error/HandleErrorResponse";
 
 
 export class TalentController {
@@ -45,7 +45,7 @@ export class TalentController {
             }              
         } catch (error) {
             console.log(error)
-            return handleErrorResponse(res, error);
+            return HandleErrorResponse(res, error);
         }
     }
 
@@ -62,23 +62,10 @@ export class TalentController {
             }    
         } catch (error) {
             console.log(error)
-            return handleErrorResponse(res, error);
+            return HandleErrorResponse(res, error);
         }
     }
 
    
 
 }
-
-
-const handleErrorResponse = (res: Response, error: any) => {
-    if (error instanceof BadRequestError || error instanceof ValidationException) {
-      const response = ErrorFormatter(error.toResponseObject());
-      return res.status(error.status).send(response);
-    }
-  
-    logger.error(error);
-    const response = ErrorFormatter(error);
-    return res.status(500).send(response);
-  };
-  
