@@ -1,7 +1,7 @@
 import { HighlightRepository } from "../../repositories/Highlight";
 import { AuthRepository } from "../../repositories/Auth";
 import { TalentRepository } from "../../repositories/Talent";
-import { DEFAULT_LIMIT, RECSYS_URL } from "../../utils/Constant";
+import { DEFAULT_LIMIT, ITEMS_PER_PAGE, RECSYS_URL } from "../../utils/Constant";
 import { Op } from "sequelize";
 import { HighlightModel } from "../../domains/model/Highlight";
 import { AuthModel } from "../../domains/model/Auth";
@@ -52,7 +52,7 @@ export class TalentService {
             ],
             attributes: { exclude: ['authId', 'createdAt', 'updatedAt'] },
             order: [['createdAt', 'DESC']],
-            offset: page && page > 1 ? 10 * page - 10 : 0,
+            offset: page && page > 1 ? ITEMS_PER_PAGE * page - ITEMS_PER_PAGE : 0,
             limit: DEFAULT_LIMIT,
         };
     

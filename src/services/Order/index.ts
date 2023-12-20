@@ -1,6 +1,6 @@
 import { OrderRepository } from "../../repositories/Order";
 import { CreateOrderRequest } from '../../domains/web/Order/CreateOrderRequest';
-import { DEFAULT_LIMIT, FEE_PLATFORM } from "../../utils/Constant";
+import { DEFAULT_LIMIT, FEE_PLATFORM, ITEMS_PER_PAGE } from "../../utils/Constant";
 import { Op } from "sequelize";
 import Payment from "../../configs/Midtrans/Payment";
 import { TalentRepository } from "../../repositories/Talent";
@@ -38,7 +38,7 @@ export class OrderService {
     private buildQueryOptions(page: number) {
         const options: any = {
           order: [['createdAt', 'DESC']], 
-          offset: page && page > 1 ? 10 * page - 10 : 0,
+          offset: page && page > 1 ? ITEMS_PER_PAGE * page - ITEMS_PER_PAGE : 0,
           limit: DEFAULT_LIMIT,
         };
       
@@ -59,6 +59,11 @@ export class OrderService {
         const data = await this.orderRepository.GetAllOrderUser(options, authId);
         const count = await this.orderRepository.countOrder(total);
         return { data, count }; 
+    }
+
+    async getOrderByIdService(orderId: string){
+        const data = await this.orderRepository.getOrderById(orderId);
+        return data; 
     }
 
 

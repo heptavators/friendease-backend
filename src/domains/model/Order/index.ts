@@ -73,8 +73,8 @@ OrderModel.init(
     },
     order_status: {
         type: DataTypes.ENUM,
-        values: ['canceled', 'scheduled', 'success'],
-        defaultValue: "scheduled"
+        values: ['waiting payment','canceled', 'scheduled', 'success'],
+        defaultValue: "waiting payment"
     },
     payment_type: {
       type: DataTypes.STRING,
@@ -83,7 +83,7 @@ OrderModel.init(
     transaction_status: {
       type: DataTypes.ENUM,
       values: ['settlement', 'deny', 'pending', 'cancel', 'refund'],
-      defaultValue: 'pending'
+      defaultValue: "pending"
     },
     token:{
       type: DataTypes.STRING,

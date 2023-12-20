@@ -7,19 +7,8 @@ admin.initializeApp({
   databaseURL: "https://hexavator-default-rtdb.asia-southeast1.firebasedatabase.app"
 });
 
-console.log(admin)
-
 
 const deviceToken = "dmdRjaCiQLenliwPO5mJyD:APA91bHmyrbu35VqUKgzR0FselQzqD5_cO8f3kdxXQBHUrpilJjFHF5ogMNTFl_vNJ9DiXOoTY0QfCCdhLeeKcc8p2ha4uEq7VplzEJfINqbMK3jEQRW_87QCIHheh9PUdjQxS8JVkbJ";
-
-// const payload: admin.messaging.MessagingPayload = {
-//   notification: {
-//     title: "FCM IS COOL !",
-//     body: "Notification has been received",
-//     content_available: "true",
-//     image: "https://i.pinimg.com/564x/73/28/ce/7328ce6807d0620039de3fb1a8f855b7.jpg"
-//   }
-// };
 
 const options: admin.messaging.MessagingOptions = {
   priority: "high"

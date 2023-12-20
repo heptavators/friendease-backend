@@ -75,6 +75,23 @@ export class OrderController {
         }
     }
 
+    async GetByIdOrderController(req: Request, res: Response){
+        try {
+            const orderId = req.params.orderId as string;
+            const data = await this.orderService.getOrderByIdService(orderId);
+            if (data){
+                const response = SuccessSingularFormatter('Data Order', data);
+                return res.status(200).send(response)
+            }else {
+                const response = ErrorFormatter('Data Order Tidak Ditemukan');
+                return res.status(404).send(response);
+            }    
+
+        } catch (error) {
+            return HandleErrorResponse(res, error);
+        }
+    }
+
     async CreateTestOrderController(req: Request, res: Response){
         try {
             const talentId = req.params.talentId as string;
