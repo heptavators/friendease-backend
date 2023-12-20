@@ -74,10 +74,10 @@ export class TalentController {
 
     async GetTalentByIdController(req: Request, res: Response){
         try {
-            const id = req.params.id as string; 
-            const {talent, auth, highlight} = await this.talentService.getTalentByIdService(id);
+            const talentId = req.params.talentId as string; 
+            const talent = await this.talentService.getTalentByIdService(talentId);
             if (talent){
-                const response = SuccessSingularFormatter('Data Talent', {talent, auth, highlight});
+                const response = SuccessSingularFormatter('Data Talent', talent);
                 return res.status(200).send(response)
             }else {
                 const response = ErrorFormatter('Data Talent Tidak Ditemukan');

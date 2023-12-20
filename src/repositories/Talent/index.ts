@@ -6,6 +6,7 @@ import { Op } from "sequelize";
 import { DEFAULT_LIMIT } from "../../utils/Constant";
 import { TagModel } from "../../domains/model/Tag";
 import { TagTalent } from "../../domains/model/TagTalent";
+import { ReviewModel } from "../../domains/model/Review";
 
 
 export class TalentRepository{
@@ -76,11 +77,40 @@ export class TalentRepository{
                         attributes: {
                             exclude: ['email', 'bio', 'bod', 'gender', 'status', 'roles', 'device_token', 'password', 'createdAt', 'updatedAt', "locationId"],
                         },
-                    }
+                    },
+                    {
+                        model: TagModel,
+                        as: 'tags',
+                        attributes: {
+                            exclude: ["createdAt", "updatedAt", "TagTalent"],
+                        }
+                    },
+                    {
+                        model: HighlightModel,
+                        as: 'highlights',
+                        attributes: ["highlightId", "highlightURL"]
+                    },
+                    {
+                        model: ReviewModel,
+                        as: 'reviews',
+                        attributes: {
+                            exclude: ['orderId', 'talentId', 'createdAt', 'updatedAt'],
+                        },
+                        include: [
+                            {
+                                model: AuthModel,
+                                as: 'customer',
+                                attributes: ['authId', 'fullname', 'username', 'avatar'],
+                            },
+                        ],
+                        limit: 3,
+                        order: [['createdAt', 'DESC']],
+                    },
                 ],
                 attributes: {
-                    exclude: ['createdAt', 'updatedAt']
-                }
+                    exclude: ['createdAt', 'updatedAt', 'authId']
+                },
+                
             })
             return talent
         } catch (error) {

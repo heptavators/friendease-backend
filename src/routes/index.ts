@@ -5,6 +5,8 @@ import  TalentRouter  from './Talent';
 import OrderRouter from './Order';
 import ReviewRouter from './Review';
 import TagRouter from './Tag';
+import LocationRouter from './Location';
+
 
 
 const Router = [
@@ -14,7 +16,8 @@ const Router = [
     TalentRouter,
     OrderRouter,
     ReviewRouter,
-    TagRouter
+    TagRouter,
+    LocationRouter
 ]
 
 export default Router;

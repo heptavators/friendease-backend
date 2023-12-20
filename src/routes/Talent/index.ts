@@ -5,20 +5,22 @@ import { TalentRepository } from '../../repositories/Talent';
 import { TalentService } from '../../services/Talent';
 import { TalentController } from '../../controllers/Talent';
 import { AuthRepository } from '../../repositories/Auth';
+import { ReviewRepository } from '../../repositories/Review';
 import { HighlightRepository } from '../../repositories/Highlight';
 
 const TalentRouter = Router();
 
 const talentRepository = new TalentRepository();
-const authRepository = new AuthRepository()
-const highlightRepository = new HighlightRepository()
+const authRepository = new AuthRepository();
+const highlightRepository = new HighlightRepository();
+const reviewRepository = new ReviewRepository();
 
-const talentService = TalentService.getInstance(talentRepository, authRepository, highlightRepository);
+const talentService = TalentService.getInstance(talentRepository, authRepository, highlightRepository, reviewRepository);
 
 const talentController = new TalentController(talentService);
 
 TalentRouter.get("/talent", middlewareAuth,  async (req, res) => talentController.GetAllTalentController(req, res));
 TalentRouter.post("/talent-recommendation", middlewareAuth,  async (req, res) => talentController.GetRecomendationTalentController(req, res));
-TalentRouter.get("/talent/:id", middlewareAuth,  async (req, res) => talentController.GetTalentByIdController(req, res));
+TalentRouter.get("/talent/:talentId", middlewareAuth,  async (req, res) => talentController.GetTalentByIdController(req, res));
 
 export default TalentRouter

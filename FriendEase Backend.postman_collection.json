@@ -292,75 +292,42 @@
 			"name": "Notification",
 			"item": [
 				{
-					"name": "All Request",
-					"item": [
-						{
-							"name": "Get Notification",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{url}}/api/notification/user",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"api",
-										"notification",
-										"user"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Get Notification Copy",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{url}}/api/notification/test",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"api",
-										"notification",
-										"test"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Create Notification",
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"icon\": \"https://i.pinimg.com/736x/21/ac/0c/21ac0c84569003bc58102fb6a9a0883a.jpg\",\n    \"title\": \"Waduh! Status Pembayaran Kamu Gagal Nih!\",\n    \"body\": \"Pembayaran Anda sebesar RP. 400.000 sudah diterima, Talent akan segera melakukan follow up\"\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{url}}/api/notification/create",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"api",
-										"notification",
-										"create"
-									]
-								}
-							},
-							"response": []
+					"name": "Get Notification",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/notification/user",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"notification",
+								"user"
+							]
 						}
-					]
+					},
+					"response": []
+				},
+				{
+					"name": "[TESTING] Notification",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/notification/test",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"notification",
+								"test"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -380,6 +347,79 @@
 							"path": [
 								"api",
 								"talent"
+							],
+							"query": [
+								{
+									"key": "fullname",
+									"value": "q",
+									"disabled": true
+								},
+								{
+									"key": "page",
+									"value": "1",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Recommendation Talent",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/talent-recommendation",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"talent-recommendation"
+							],
+							"query": [
+								{
+									"key": "fullname",
+									"value": "q",
+									"disabled": true
+								},
+								{
+									"key": "page",
+									"value": "1",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Recommendation Talent Copy",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"cc317068-1297-4588-a58a-2ed09d8ccfe6\",\n    \"name\": \"Aoi Todo\",\n    \"gender\": \"L\",\n    \"birth_date\": \"12/06/2002\",\n    \"age\": 21,\n    \"location\": \"Jawa Timur, Surabaya\",\n    \"tags\": [\"Desain\", \"Fashion\", \"Kreatif\", \"Perfeksionis\", \"Ramah\"],\n    \"preferences\": \"Ingin memiliki teman yang bisa diajak kulineran dan staycation mengelilingi Indonesia\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://recsys.friendease.id/api/v1/talents",
+							"protocol": "https",
+							"host": [
+								"recsys",
+								"friendease",
+								"id"
+							],
+							"path": [
+								"api",
+								"v1",
+								"talents"
 							],
 							"query": [
 								{
@@ -432,15 +472,48 @@
 		},
 		{
 			"name": "Tag",
-			"item": []
+			"item": [
+				{
+					"name": "Get All Tag",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/tag?name=cosplay",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"tag"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "cosplay"
+								},
+								{
+									"key": "page",
+									"value": "10",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		},
 		{
 			"name": "Order",
 			"item": [
 				{
-					"name": "Create New Order + Midtrans",
+					"name": "Get Order Current User",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
-						"method": "POST",
+						"method": "GET",
 						"header": [],
 						"body": {
 							"mode": "raw",
@@ -452,27 +525,37 @@
 							}
 						},
 						"url": {
-							"raw": "{{url}}/api/order/dc8a0ff0-1d0e-414a-9f37-ebe70fae5fc4",
+							"raw": "{{url}}/api/order/user",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"api",
 								"order",
-								"dc8a0ff0-1d0e-414a-9f37-ebe70fae5fc4"
+								"user"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1",
+									"disabled": true
+								}
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Create New Order Test",
+					"name": "Get Order By Id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
-						"method": "POST",
+						"method": "GET",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \r\n    \"name\": \"Pergi ke event wibu\",\r\n    \"type\": \"offline\",\r\n    \"start_hour\": \"01:00 PM\",\r\n    \"end_hour\": \"03:00 PM\",\r\n    \"date\": \"2023-12-19T16:00:00.000Z\"\r\n}",
+							"raw": "{\r\n    \r\n    \"name\": \"Pergi ke event wibu\",\r\n    \"type\": \"offline\",\r\n    \"start_hour\": \"01:00 PM\",\r\n    \"end_hour\": \"03:00 PM\",\r\n    \"date\": \"2023-12-18T16:00:00.000Z\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -480,27 +563,34 @@
 							}
 						},
 						"url": {
-							"raw": "{{url}}/api/order-test/dc8a0ff0-1d0e-414a-9f37-ebe70fae5fc4",
+							"raw": "{{url}}/api/view-order/71e08a28-2ce1-4406-99b5-70925b4763d2",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"api",
-								"order-test",
-								"dc8a0ff0-1d0e-414a-9f37-ebe70fae5fc4"
+								"view-order",
+								"71e08a28-2ce1-4406-99b5-70925b4763d2"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1",
+									"disabled": true
+								}
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Create Midtrans Token Order By Id",
+					"name": "Create New Order + Midtrans",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"Pergi ke undangan\",\r\n    \"start_hour\": \"01:00 PM\",   \r\n    \"end_hour\": \"03:00 PM\",\r\n    \"date\": \"2023-12-13T16:00:00.000Z\"\r\n}",
+							"raw": "{\r\n    \"name\": \"Pergi ke event wibu\",\r\n    \"type\": \"offline\",\r\n    \"start_hour\": \"01:00 PM\",\r\n    \"end_hour\": \"03:00 PM\",\r\n    \"date\": \"2023-12-21T16:00:00.000Z\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -508,25 +598,20 @@
 							}
 						},
 						"url": {
-							"raw": "{{url}}/api/pay/order/e28a453e-7584-4749-8cd6-8706b3de1861",
+							"raw": "{{url}}/api/create-order/dc8a0ff0-1d0e-414a-9f37-ebe70fae5fc4",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"api",
-								"pay",
-								"order",
-								"e28a453e-7584-4749-8cd6-8706b3de1861"
+								"create-order",
+								"dc8a0ff0-1d0e-414a-9f37-ebe70fae5fc4"
 							]
 						}
 					},
 					"response": []
 				}
 			]
-		},
-		{
-			"name": "Highlight",
-			"item": []
 		},
 		{
 			"name": "Review",
@@ -537,13 +622,24 @@
 						"method": "POST",
 						"header": [],
 						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"review\": \"Talentnya sangat ramah, belum pernah senyaman ini mau curhat ke orang lain\",\r\n    \"rating\": 5\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "review",
+									"value": "Pengetahuan di musik talentnya sangat luas sekali",
+									"type": "text"
+								},
+								{
+									"key": "rating",
+									"value": "5",
+									"type": "text"
+								},
+								{
+									"key": "media",
+									"type": "file",
+									"src": "postman-cloud:///1ee9f0d7-c2ae-4040-a648-bc11237188c7"
 								}
-							}
+							]
 						},
 						"url": {
 							"raw": "{{url}}/api/review/71e08a28-2ce1-4406-99b5-70925b4763d2",
@@ -560,6 +656,45 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Location",
+			"item": [
+				{
+					"name": "Get All Location",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/location",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"location"
+							],
+							"query": [
+								{
+									"key": "fullname",
+									"value": "q",
+									"disabled": true
+								},
+								{
+									"key": "page",
+									"value": "1",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Highlight",
+			"item": []
 		}
 	],
 	"auth": {

@@ -1,0 +1,14 @@
+{
+    "type": "service_account",
+    "project_id": "hexavator",
+    "private_key_id": "aa97d8fc09e0695eae70b02dba56478a6bb2cd80",
+    "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCz7qbhLC94r0uU\nXyx3JtEputC+3vkfRznXbzCJTQp27yoFj9NzYyE1vW/6jwOIKIeR+MNQJQYbVQeD\nFvilMbbPJSoXrmEmSOnPABXUoOyJBKWdahOlpgYc25QObVUEJQglaCUA43QSMZX+\nJq7D6Dix3y+41U4aKiSG0X0P7YrsPd+Jat9v7m913kMUcsCDpyqZMHQTyOtDr8/K\naGNk+HMf2rW9GkmyESvFYorI4LnBOkwXvHd8fV2GMMeayfnVlxD3IXDw3kUulCOP\nX0MWDDTGwRnVMTTqTZdyB7KWSS7mEQsURtMl4kPqA1eHmjlpEQnezWle545gpAzv\n3lCB8ilbAgMBAAECggEAQjojHlofFvKehPwK58hX0F48mySC2Wpj9dGtMbwzj9cz\nxlxL3fqsrJUPdE/TYvhX/fhsG0GlX8YKP8vitRr5SIFLXvAGPgs0U8aaQmsA5OXa\n93elx6C2O0Tu1+iSFDZ1Kx+MDymo/VFW/fbK+LyusXmOnR+V4beFPkI5H/W03oLA\nBQ8Y8J22mKSyX3wgbrUkr5Mg2Xg/pqZ1ZLxi6vUZ3Lb2PKp5e6wEqvqC/HJtQHK4\nWPa0TfxyNZCoAcwcxC+af2C9+x8uFZ4WxuA178FBFzRQlT5FiyDBIcXd3CTsJ/c0\nLYe6y/mgKLwZf4d/IqIKqUasueFDaOwoUTvbaMV6MQKBgQD3Iwv3U4Lfb3wThMA9\nL/v2N7azzPXyvMGxwNpClV6okTGvXbjkvhidOILsd5kpsseariRctcEYWI4LL9mA\nQ1km04mMmQoEjKV0bnvF+ZGhQnp++24D8Gd3X1CtOYAjKqTBXMa9pbBooAYC4HKO\n8Z4D7F1o7vfjHSLCMr+1y1DRRQKBgQC6YpoavJoDIG9FZn5SDcG1w27WMjlJaF1G\nRKC/HgHfQQezk3s5YCmKolzDlEXz6a+Ukgnm5N4Z/ABdrwzupclbxQVWTcxi4cbR\ni7+LoTs1ltq33tj108ZeiLJQE2wC9OMV0BSS3H/sHfGs6YmdPeUIVN3toCkXYlQ3\nmZCpu/2qHwKBgQCIoga2maQsdc2KWQWTjpjl2o2XQITly/fml3HUCBMKbSOkCdP0\nGykumxS/OawjQqVaXlbaLt5v4F2/z5eXcySx85gDdIT2WPAMvByQKteZ6VAiLk33\nvYzmkXrgGn8+chAem3WBWj56yaYpJwAPCYRMNPy7zAqetPgHl9kn4B1xZQKBgHOl\nqqjcTVOTVHdjWQ3gq0j0slkFYLZDo1xuSK9NFyxHVVf/Mn4vRJdYluZjoePuI5uz\n4aD6cTT+P9vhOcz54S6n2N/r9d2E6bArXfZtXCesKpncFBK0DGmrt7gn1OUgvaZT\nLfDSEC2ZhtMbNN/z/6BjyDAhKF3yDP9SsYgftQ1RAoGAT8ZA39MgUSlB8A/rXf/e\n2/sibAw53pMdNl5nrXHPTKz/uNOi0uF7ynmnMhzPEFCLQT0N+Nc41AA9nRt7IXzn\nFYfJKAF+kdi8eysvhQvqMUhmnwRtIHfjx2CMe6AIO8Qqy8N81g0uHpVtTkdCAo9l\neIll0acRUOiswZggiO60Kfk=\n-----END PRIVATE KEY-----\n",
+    "client_email": "cloud-storage-friendease@hexavator.iam.gserviceaccount.com",
+    "client_id": "118053997180376214845",
+    "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+    "token_uri": "https://oauth2.googleapis.com/token",
+    "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+    "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/cloud-storage-friendease%40hexavator.iam.gserviceaccount.com",
+    "universe_domain": "googleapis.com"
+  }
+  

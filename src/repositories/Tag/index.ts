@@ -16,7 +16,7 @@ export class TagRepository{
 
 
 
-    async countTags(options: object): Promise<any>{
+    async countTag(options: object): Promise<any>{
         try {
             const data = await TagModel.count(options)
             return data

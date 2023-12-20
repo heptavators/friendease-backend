@@ -1,18 +1,18 @@
-import { TagRepository } from "../../repositories/Tag";
+import { LocationRepository } from "../../repositories/Location";
 import { DEFAULT_LIMIT, ITEMS_PER_PAGE } from "../../utils/Constant";
 import { Op } from "sequelize";
 
-export class TagService {
-    private tagRepository: TagRepository
-    private static instance: TagService
+export class LocationService {
+    private locationRepository: LocationRepository
+    private static instance: LocationService
 
-    private constructor(tagRepository: TagRepository) {
-        this.tagRepository = tagRepository;
+    private constructor(locationRepository: LocationRepository) {
+        this.locationRepository = locationRepository;
     }
 
-    static getInstance(tagRepository: TagRepository): TagService {
+    static getInstance(locationRepository: LocationRepository): LocationService {
         if (!this.instance) {
-            this.instance = new TagService(tagRepository);
+            this.instance = new LocationService(locationRepository);
         }
         return this.instance;
     }
@@ -54,11 +54,11 @@ export class TagService {
 
 
 
-    async getAllTagService(name: any, page: any){
+    async getAllLocationService(name: any, page: any){
         const options = this.buildQueryOptions(name, page);
         const total = this.buildQueryCount(name)
-        const data = await this.tagRepository.getAllTags(options);
-        const count = await this.tagRepository.countTag(total);
+        const data = await this.locationRepository.getAllLocations(options);
+        const count = await this.locationRepository.countLocation(total);
         return { data, count }; 
     }
 
