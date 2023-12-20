@@ -56,7 +56,6 @@ export class TalentRepository{
             }
     
             const talents = await TalentModel.findAll(queryOptions);
-            // Remove TagTalent property from each tag in the result
             const talentsWithoutTagTalent = talents.map((talent: any) => ({
                 ...talent.toJSON(),
                 tags: talent.tags.map((tag: any) => ({ ...tag.toJSON(), TagTalent: undefined })),

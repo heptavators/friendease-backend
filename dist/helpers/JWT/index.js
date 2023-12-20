@@ -43,7 +43,7 @@ function GenerateJwtToken(user) {
       iss: "FriendEase"
     },
     "process.env.SECRET_KEY",
-    { expiresIn: "1d" }
+    { expiresIn: "365d" }
   );
   return token;
 }

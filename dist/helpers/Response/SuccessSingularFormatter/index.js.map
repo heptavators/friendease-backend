@@ -1,7 +1,7 @@
 {
   "version": 3,
   "sources": ["../../../../src/helpers/Response/SuccessSingularFormatter/index.ts"],
-  "sourcesContent": ["export default function SuccessSingularFormatter(message: string, data: object){\r\n    const response: object = {\r\n      info: {\r\n        success: true,\r\n        meta: null,\r\n        message: message\r\n      },\r\n      data: data,\r\n    }\r\n  \r\n    return response\r\n  }"],
+  "sourcesContent": ["export default function SuccessSingularFormatter(message: string, data: object){\n    const response: object = {\n      info: {\n        success: true,\n        meta: null,\n        message: message\n      },\n      data: data,\n    }\n  \n    return response\n  }"],
   "mappings": ";;;;;;;;;;;;;;;;;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAe,SAAR,yBAA0C,SAAiB,MAAa;AAC3E,QAAM,WAAmB;AAAA,IACvB,MAAM;AAAA,MACJ,SAAS;AAAA,MACT,MAAM;AAAA,MACN;AAAA,IACF;AAAA,IACA;AAAA,EACF;AAEA,SAAO;AACT;",
   "names": []
 }

@@ -12,7 +12,7 @@ export function GenerateJwtToken(user: AuthModel): string {
       roles: user.roles,
       iss: "FriendEase" 
     }, 'process.env.SECRET_KEY', 
-    { expiresIn: '1d' }
+    { expiresIn: '365d' }
     );
     return token;
   }

@@ -6,8 +6,11 @@ import { v4 as uuidv4 } from 'uuid';
 export class NotificationRepository{
     async GetAllNotificationUser(authId: string): Promise<any>{
         try {
-            const notification = await NotificationModel.findAll({where: {authId}})
-            return notification
+            const notification = await NotificationModel.findAll({
+                where: {authId},                 
+                order: [['createdAt', 'DESC']],        
+            });
+            return notification;
         } catch (error) {
             throw new Error(`Cannot find data because : ${error}`)
         }

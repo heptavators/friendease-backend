@@ -183,108 +183,103 @@
 			"name": "Auth",
 			"item": [
 				{
-					"name": "All User",
-					"item": [
+					"name": "Login",
+					"event": [
 						{
-							"name": "Login",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"var res =  pm.response.json();\r",
-											"pm.environment.set('authToken', res.data.token);                                "
-										],
-										"type": "text/javascript"
-									}
-								},
-								{
-									"listen": "prerequest",
-									"script": {
-										"exec": [
-											"pm.environment.set(\"variable_key\", \"variable_value\");"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"email\": \"fariv.fariv12@gmail.com\",\r\n    \"password\": \"password123!\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{url}}/api/auth/login",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"api",
-										"auth",
-										"login"
-									]
-								}
-							},
-							"response": []
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var res =  pm.response.json();\r",
+									"pm.environment.set('authToken', res.data.token);                                "
+								],
+								"type": "text/javascript"
+							}
 						},
 						{
-							"name": "Get Profile",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{url}}/api/auth/profile",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"api",
-										"auth",
-										"profile"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Register",
-							"request": {
-								"auth": {
-									"type": "noauth"
-								},
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"email\": \"haradakumiko12@gmail.com\",\n    \"password\": \"password123!\"\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{url}}/api/auth/register",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"api",
-										"auth",
-										"register"
-									]
-								}
-							},
-							"response": []
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"variable_key\", \"variable_value\");"
+								],
+								"type": "text/javascript"
+							}
 						}
-					]
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"fariv.fariv12@gmail.com\",\r\n    \"password\": \"password123!\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/auth/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Profile",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/auth/profile",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"haradakumiko12@gmail.com\",\n    \"password\": \"password123!\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/auth/register",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -479,7 +474,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{url}}/api/tag?name=cosplay",
+							"raw": "{{url}}/api/tag?name=cosplay&page=1",
 							"host": [
 								"{{url}}"
 							],
@@ -494,8 +489,7 @@
 								},
 								{
 									"key": "page",
-									"value": "10",
-									"disabled": true
+									"value": "1"
 								}
 							]
 						}
@@ -650,6 +644,25 @@
 								"api",
 								"review",
 								"71e08a28-2ce1-4406-99b5-70925b4763d2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Review By TalentId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/review-talent/dc8a0ff0-1d0e-414a-9f37-ebe70fae5fc4",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"review-talent",
+								"dc8a0ff0-1d0e-414a-9f37-ebe70fae5fc4"
 							]
 						}
 					},
