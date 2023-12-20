@@ -1,7 +1,7 @@
 import { HighlightRepository } from "../../repositories/Highlight";
 import { AuthRepository } from "../../repositories/Auth";
 import { TalentRepository } from "../../repositories/Talent";
-import { DEFAULT_LIMIT } from "../../utils/Constant";
+import { DEFAULT_LIMIT, RECSYS_URL } from "../../utils/Constant";
 import { Op } from "sequelize";
 import { HighlightModel } from "../../domains/model/Highlight";
 import { AuthModel } from "../../domains/model/Auth";
@@ -99,22 +99,37 @@ export class TalentService {
     }
 
     async getRecomendationTalentService(){
-        const url = 'https://recsys.friendease.id/api/v1/talents'; 
-
-    const requestBody = {
-        "id": "cc317068-1297-4588-a58a-2ed09d8ccfe6",
-        "name": "Aoi Todo",
-        "gender": "L",
-        "birth_date": "12/06/2002",
-        "age": 21,
-        "location": "Jawa Timur, Surabaya",
-        "tags": ["Desain", "Fashion", "Kreatif", "Perfeksionis", "Ramah"],
-        "preferences": "Ingin memiliki teman yang bisa diajak kulineran dan staycation mengelilingi Indonesia"
-      };
-
-        const data = axios.post(url, requestBody);
-        console.log("this is data fetch " + data);
-        return data
+        const requestBody = {
+            "id": "cc317068-1297-4588-a58a-2ed09d8ccfe6",
+            "name": "Aoi Todo",
+            "gender": "L",
+            "birth_date": "12/06/2002",
+            "age": 21,
+            "location": "Jawa Timur, Surabaya",
+            "tags": ["Desain", "Fashion", "Kreatif", "Perfeksionis", "Ramah"],
+            "preferences": "Ingin memiliki teman yang bisa diajak kulineran dan staycation mengelilingi Indonesia"
+        };
+    
+        try {
+            const response = await axios.post(RECSYS_URL, requestBody);
+    
+            if (response.data && response.data.data && response.data.data.length > 0) {
+                const talentIds = response.data.data.map((talent: { id: any; }) => talent.id);
+                console.log("Talent IDs: ", talentIds);
+    
+                // Assuming you have a function findTalentById which queries talents by ID
+                const talents = await Promise.all(talentIds.map((id: string) => this.getTalentByIdService(id)));
+    
+                console.log("Talents: ", talents);
+                return talents;
+            } else {
+                console.error("No data found in the response");
+                return null;
+            }
+        } catch (error) {
+            console.error("Error fetching data: ", error);
+            throw error;
+        }
     }
 
     async getTalentByIdService(talentId: string){

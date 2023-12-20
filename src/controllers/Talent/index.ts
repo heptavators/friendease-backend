@@ -60,7 +60,7 @@ export class TalentController {
                 //     itemsPerPage: limit
                 // }
     
-                const response = SuccessPluralFormatter('Data Semua Talent', {}, data.data);
+                const response = SuccessPluralFormatter('Data Semua Talent', {}, data);
         
                 return res.status(200).send(response);
             } else {
