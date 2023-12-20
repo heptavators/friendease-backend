@@ -23,7 +23,8 @@ const orderController = new OrderController(orderService, notificationService);
 OrderRouter.use(MiddlewareAuth)
 
 OrderRouter.get("/order/user",  async (req, res) => orderController.GetOrderUserController(req, res));
-OrderRouter.post("/order/:talentId",  async (req, res) => orderController.CreateOrderController(req, res));
+OrderRouter.post("/create-order/:talentId",  async (req, res) => orderController.CreateOrderController(req, res));
+OrderRouter.get("/view-order/:orderId",  async (req, res) => orderController.GetByIdOrderController(req, res));
 
 OrderRouter.post("/order-test/:talentId",  async (req, res) => orderController.CreateTestOrderController(req, res));
 OrderRouter.post("/pay/order/:orderId", async (req, res) => orderController.PayOrderController(req, res));

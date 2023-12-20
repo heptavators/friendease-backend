@@ -6,7 +6,7 @@ import { Op, Sequelize, col, fn } from "sequelize";
 export class ReviewRepository{
     
     
-    async insertReview(createReviewRequest: CreateReviewRequest, orderId: any, customerId: any, talentId: string): Promise<any>  {
+    async insertReview(createReviewRequest: CreateReviewRequest, orderId: any, customerId: any, talentId: string, mediaURL: string, mediaFileName: string): Promise<any>  {
         try {
             const review = await ReviewModel.create({
                 reviewId: uuidv4(),
@@ -15,6 +15,8 @@ export class ReviewRepository{
                 talentId: talentId,
                 review: createReviewRequest.review,
                 rating: createReviewRequest.rating,
+                mediaURL: mediaURL,
+                mediaNameFile: mediaFileName
               });
           
               return review;
@@ -22,23 +24,23 @@ export class ReviewRepository{
             throw new Error(`Cannot insert data because : ${error}`)
         }
     }
-    async sumOrderRatingsByTalentId(talentId: string): Promise<any> {
+    async sumReviewRatingsByTalentId(talentId: string): Promise<any> {
       try {
         const result = await ReviewModel.aggregate('rating', 'SUM', {
           where: {
             talentId,
             rating: {
-              [Op.ne]: null, // Exclude null ratings
+              [Op.ne]: null, 
             },
           },
         });
   
-        return result || 0; // If result is null, default to 0
+        return result || 0; 
       } catch (error) {
         throw new Error(`Error calculating sum of order ratings: ${error}`);
       }
     }
-    async countOrderRatingsByTalentId(talentId: string): Promise<any> {
+    async countReviewByTalentId(talentId: string): Promise<any> {
       try {
           const result = await ReviewModel.count({where: {
             talentId: talentId
@@ -62,9 +64,6 @@ export class ReviewRepository{
 
     }
    }
-    
-    
+
 
 }
-
- 

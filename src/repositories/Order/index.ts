@@ -30,7 +30,7 @@ export class OrderRepository{
                 end_hour: createOrderRequest.end_hour,
                 total_hour: createOrderRequest.total_hour,
                 total_amount: createOrderRequest.total_amount,
-                order_status: 'scheduled',
+                order_status: 'waiting payment',
                 transaction_status: 'pending'
             }, { transaction });
 

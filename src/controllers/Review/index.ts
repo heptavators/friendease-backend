@@ -22,12 +22,22 @@ export class ReviewController {
         try {
             const orderId = req.params.orderId as string;
             const data: CreateReviewRequest = req.body;
+            const media = req.file
+
+            if(media != null){
+            if (!media.mimetype.startsWith('image')) {
+                throw new BadRequestError([{ error: 'Media', message: 'Only image files are allowed' }], 400);
+            }
             const validatedData = Validator.validate(data, CreateReviewRequest.getSchema());
             
-            const result = await this.reviewService.createReviewService(validatedData, orderId);
-            const response = SuccessSingularFormatter('Berhasil Register Akun', result );
+            const result = await this.reviewService.createReviewService(validatedData, orderId, media);
+            const response = SuccessSingularFormatter('Berhasil Menambahkan Review', result );
 
             return res.status(200).send(response);
+            }else{
+            throw new BadRequestError([{ error: 'Media', message: 'Media Not Found' }], 404);
+            }
+
             } catch (error) {
             return HandleErrorResponse(res, error);
         }

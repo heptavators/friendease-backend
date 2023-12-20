@@ -1,6 +1,6 @@
 import { ProductRepository } from "../../repositories/Product";
 import { CreateProductRequest } from '../../domains/web/Product/CreateProductRequest';
-import { DEFAULT_LIMIT } from "../../utils/Constant";
+import { DEFAULT_LIMIT, ITEMS_PER_PAGE } from "../../utils/Constant";
 import { EditProductRequest } from "../../domains/web/Product/EditProductRequest";
 import { Op } from "sequelize";
 
@@ -23,7 +23,7 @@ export class ProductService {
     private buildQueryOptions(name: string, page: number) {
         const options: any = {
           order: [['createdAt', 'DESC']], 
-          offset: page && page > 1 ? 10 * page - 10 : 0,
+          offset: page && page > 1 ? ITEMS_PER_PAGE * page - ITEMS_PER_PAGE : 0,
           limit: DEFAULT_LIMIT,
         };
       

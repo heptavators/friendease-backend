@@ -1,5 +1,7 @@
 import { DataTypes, Model } from 'sequelize';
 import Database  from "../../../configs/Database";
+import { TalentModel } from '../Talent';
+import { AuthModel } from '../Auth';
 
 
 export class ReviewModel extends Model {
@@ -58,3 +60,6 @@ ReviewModel.init(
   );
 
 
+TalentModel.hasMany(ReviewModel, { as: 'reviews', foreignKey: 'talentId' });
+ReviewModel.belongsTo(TalentModel, { foreignKey: 'talentId' }); 
+ReviewModel.belongsTo(AuthModel, { foreignKey: 'customerId', as: 'customer' });
