@@ -3,6 +3,8 @@ import { OrderModel } from "../../domains/model/Order";
 import { CreateOrderRequest } from '../../domains/web/Order/CreateOrderRequest';
 import { v4 as uuidv4 } from 'uuid';
 import { FEE_PLATFORM } from "../../utils/Constant";
+import { TalentModel } from "../../domains/model/Talent";
+import { AuthModel } from "../../domains/model/Auth";
 
 
 
@@ -86,7 +88,7 @@ export class OrderRepository{
 
     async countOrderTalentById(talentId: string): Promise<any>{
         try {
-            const order = await OrderModel.findAll({where: {
+            const order = await OrderModel.count({where: {
                 "talentId": talentId
             }})
             return order
@@ -100,9 +102,27 @@ export class OrderRepository{
             const data = await OrderModel.findAll({where: {
                 "customerId": customerId
             },  ...options,
-            })
+            include: [
+                {
+                    model: TalentModel,
+                    as: 'talent',
+                    attributes: {
+                        exclude: ['talentId'],
+                    },
+                    include: [
+                        {
+                            model: AuthModel,
+                            as: 'auth',
+                            attributes: {
+                                exclude: ['email', 'bio', 'bod', 'gender', 'status', 'roles', 'device_token', 'password', 'createdAt', 'updatedAt', "locationId", "phone_number", "user_preferences"],
+                            },
+                        },
+                    ]
+                },
+            ], 
+            });
 
-            return data
+            return data;
         } catch (error) {
             throw new Error(`Cannot find data because : ${error}`)
         }

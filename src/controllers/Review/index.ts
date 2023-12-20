@@ -43,6 +43,22 @@ export class ReviewController {
         }
     }
 
+    async ViewReviewTalentController(req: Request, res: Response){
+        try {
+            const talentId = req.params.talentId as string;
+            const data = await this.reviewService.getReviewTalentByIdService(talentId);
+            if (data){
+                const response = SuccessSingularFormatter('Data Review', data);
+                return res.status(200).send(response)
+            }else {
+                const response = ErrorFormatter('Data Review Tidak Ditemukan');
+                return res.status(404).send(response);
+            }    
+        } catch (error) {
+            return HandleErrorResponse(res, error);
+        }
+    }
+
 }
 
 

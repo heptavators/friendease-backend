@@ -25,5 +25,6 @@ const reviewService = ReviewService.getInstance(reviewRepository, orderRepositor
 const reviewController = new ReviewController(reviewService);
 
 ReviewRouter.post("/review/:orderId", middlewareAuth, upload.single('media'), async (req, res) => reviewController.CreateReviewController(req, res));
+ReviewRouter.get("/review-talent/:talentId", middlewareAuth, async (req, res) => reviewController.ViewReviewTalentController(req, res));
 
 export default ReviewRouter

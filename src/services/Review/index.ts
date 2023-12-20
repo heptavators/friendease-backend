@@ -29,10 +29,10 @@ export class ReviewService {
     async createReviewService(createReviewRequest: CreateReviewRequest, orderId: string, media: Express.Multer.File){
         const findReview = await this.reviewRepository.findReviewByOrderId(orderId);
 
-        // if (findReview > 0){
-        //     throw new BadRequestError([{ error: 'Review', message: 'Review already exists' }], 400);
-        // }
-        // else {
+        if (findReview > 0){
+            throw new BadRequestError([{ error: 'Review', message: 'Review already exists' }], 400);
+        }
+        else {
    
             const mimeType = media.mimetype;
             const extension = mime.extension(mimeType);
@@ -56,9 +56,12 @@ export class ReviewService {
     
     
             return review
-        // }
+        }    
+    }
 
-    
+    async getReviewTalentByIdService(talentId: string){
+        const data = await this.reviewRepository.getReviewTalentById(talentId);
+        return data; 
     }
 
     

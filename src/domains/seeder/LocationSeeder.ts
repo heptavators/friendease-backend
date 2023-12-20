@@ -7,517 +7,109 @@ import { LocationModel } from '../model/Location';
 export class LocationSeeder {
   async run(){
     const locations = [
-      {
-          locationId: "8b325c8c-7838-47b0-ba8c-2f3f1fbaa480",
-          province: "Aceh",
-          city: "Banda Aceh"
-      },
-      {
-          locationId: "e5004308-a42d-4d11-a07f-58a28589ef7a",
-          province: "Aceh",
-          city: "Langsa"
-      },
-      {
-          locationId: "8f061975-a6da-45b6-8bb9-9327d0791787",
-          province: "Aceh",
-          city: "Lhokseumawe"
-      },
-      {
-          locationId: "ce4b9172-b77d-4949-ac4c-aeac57a7a1c0",
-          province: "Aceh",
-          city: "Sabang"
-      },
-      {
-          locationId: "f2a9d053-809e-4432-af8a-9d9f6157e314",
-          province: "Aceh",
-          city: "Subulussalam"
-      },
-      {
-          locationId: "daecb333-d211-410c-91d3-79b38cf854e5",
-          province: "Sumatera Utara",
-          city: "Binjai"
-      },
-      {
-          locationId: "4bed718f-bc0e-47d4-8430-cc16e3231e58",
-          province: "Sumatera Utara",
-          city: "Gunungsitoli"
-      },
-      {
-          locationId: "f72d1cbd-2437-48b3-b474-c6c636fcffd1",
-          province: "Sumatera Utara",
-          city: "Medan"
-      },
-      {
-          locationId: "1e8009d4-3244-4058-b36d-aaa85be7b6b9",
-          province: "Sumatera Utara",
-          city: "Padangsidimpuan"
-      },
-      {
-          locationId: "c2cd2c5c-39e5-4dde-bba8-7dbf2a9c2902",
-          province: "Sumatera Utara",
-          city: "Pematangsiantar"
-      },
-      {
-          locationId: "2eeedf1d-e0f0-461f-8415-a687cf2c9f9f",
-          province: "Sumatera Utara",
-          city: "Sibolga"
-      },
-      {
-          locationId: "af267cd1-d82e-4604-9622-160d5a25c766",
-          province: "Sumatera Utara",
-          city: "Tanjungbalai"
-      },
-      {
-          locationId: "80e4ab3b-83a8-4525-8183-5eb03d9ff973",
-          province: "Sumatera Utara",
-          city: "Tebing Tinggi"
-      },
-      {
-          locationId: "92cc7160-cb78-41b7-b0d3-c33e913329e6",
-          province: "Sumatera Barat",
-          city: "Lima Puluh Kota"
-      },
-      {
-          locationId: "5eaa5b4c-7b43-444a-9c9b-b9c01430dda3",
-          province: "Sumatera Barat",
-          city: "Bukittinggi"
-      },
-      {
-          locationId: "01eee901-f2c4-43cf-9ead-b1518999e6a4",
-          province: "Sumatera Barat",
-          city: "Padang"
-      },
-      {
-          locationId: "b6e09e8a-52b2-421f-8d49-3652553cdffa",
-          province: "Sumatera Barat",
-          city: "Padang Panjang"
-      },
-      {
-          locationId: "125919c2-fe86-47fb-a854-7d452a959781",
-          province: "Sumatera Barat",
-          city: "Pariaman"
-      },
-      {
-          locationId: "52acd224-78eb-42e4-9010-d77c0a9a2b93",
-          province: "Sumatera Barat",
-          city: "Payakumbuh"
-      },
-      {
-          locationId: "6b7ba797-e75e-4122-acbd-ce45fdc2adcc",
-          province: "Sumatera Barat",
-          city: "Sawahlunto"
-      },
-      {
-          locationId: "aecbe0f2-f234-4b67-bc5e-88b79322f7f8",
-          province: "Sumatera Barat",
-          city: "Solok"
-      },
-      {
-          locationId: "38f47a5f-8829-456d-ac36-77b24e737960",
-          province: "Riau",
-          city: "Dumai"
-      },
-      {
-          locationId: "3ae4a102-b11d-4018-8584-77db9b39441b",
-          province: "Riau",
-          city: "Pekanbaru"
-      },
-      {
-          locationId: "9a822ab9-9081-4e20-8d2c-261d96687c4a",
-          province: "Jambi",
-          city: "Jambi"
-      },
-      {
-          locationId: "eb359379-2301-4518-bfe8-9ff2d52767fb",
-          province: "Jambi",
-          city: "Sungai Penuh"
-      },
-      {
-          locationId: "8263bb76-3d47-4f7d-a527-2beee7729646",
-          province: "Sumatera Selatan",
-          city: "Lubuk Linggau"
-      },
-      {
-          locationId: "7f3011dd-3159-4e11-95f3-82bbe6590161",
-          province: "Sumatera Selatan",
-          city: "Pagaralam"
-      },
-      {
-          locationId: "d3c5c81a-19b2-4afd-9015-43aa5b967d6c",
-          province: "Sumatera Selatan",
-          city: "Palembang"
-      },
-      {
-          locationId: "dfcd5670-4001-4195-b45b-8accf1256bc9",
-          province: "Sumatera Selatan",
-          city: "Prabumulih"
-      },
-      {
-          locationId: "98a9e73a-30e8-427b-8430-18b7fba4fada",
-          province: "Bengkulu",
-          city: "Bengkulu"
-      },
-      {
-          locationId: "2a27d9b8-7257-4a91-8c0d-1188af026dde",
-          province: "Lampung",
-          city: "Bandar Lampung"
-      },
-      {
-          locationId: "0e123080-7aa6-4a90-a17a-df0753014a47",
-          province: "Lampung",
-          city: "Metro"
-      },
-      {
-          locationId: "542448b7-5a38-4e2c-940b-64fcbd550a97",
-          province: "Kepulauan Riau",
-          city: "Pangkalpinang"
-      },
-      {
-          locationId: "5a9e730a-2dbf-4b30-855a-5c6af28bcd2b",
-          province: "Kepulauan Bangka Belitung",
-          city: "Batam"
-      },
-      {
-          locationId: "f50bae2f-46da-4f39-9a01-0934e8815d5b",
-          province: "Kepulauan Bangka Belitung",
-          city: "Tanjungpinang"
-      },
-      {
-          locationId: "f1e96bee-5f33-4863-b802-dec342de5c8a",
-          province: "DKI Jakarta",
-          city: "Administrasi Jakarta Barat"
-      },
-      {
-          locationId: "6dcffc95-bcf4-4f66-9757-2fa27b050f04",
-          province: "DKI Jakarta",
-          city: "Administrasi Jakarta Pusat"
-      },
-      {
-          locationId: "480c749c-c0bf-47c7-92aa-f2973b14ebe3",
-          province: "DKI Jakarta",
-          city: "Administrasi Jakarta Selatan"
-      },
-      {
-          locationId: "56c0537f-8eb1-4a7f-a80d-9a7829d28275",
-          province: "DKI Jakarta",
-          city: "Administrasi Jakarta Timur"
-      },
-      {
-          locationId: "e961053d-9942-413f-8acc-aaa3e5248b05",
-          province: "DKI Jakarta",
-          city: "Administrasi Jakarta Utara"
-      },
-      {
-          locationId: "c6598df6-f15f-45fc-8622-b34095c43510",
-          province: "Jawa Barat",
-          city: "Bandung"
-      },
-      {
-          locationId: "0bbfc0e6-001d-4465-9928-f9afae8a9516",
-          province: "Jawa Barat",
-          city: "Banjar"
-      },
-      {
-          locationId: "82ed6b55-bfa5-4ef8-b81b-045fd6b62734",
-          province: "Jawa Barat",
-          city: "Bekasi"
-      },
-      {
-          locationId: "eb6a2b18-2904-4a70-b0ed-98f29af52b64",
-          province: "Jawa Barat",
-          city: "Bogor"
-      },
-      {
-          locationId: "5fed18a0-d7a0-49df-abc3-d217533abea5",
-          province: "Jawa Barat",
-          city: "Cimahi"
-      },
-      {
-          locationId: "fffea0f3-4802-4fe2-8041-222a2b403266",
-          province: "Jawa Barat",
-          city: "Cirebon"
-      },
-      {
-          locationId: "9df72434-572c-4a91-a54e-91e7119aa166",
-          province: "Jawa Barat",
-          city: "Depok"
-      },
-      {
-          locationId: "aab553a1-b547-4669-9d50-cff2bc8b5792",
-          province: "Jawa Barat",
-          city: "Sukabumi"
-      },
-      {
-          locationId: "be5ec8ae-a526-47d0-b2ba-926a5c225a70",
-          province: "Jawa Barat",
-          city: "Tasikmalaya"
-      },
-      {
-          locationId: "d57e7bb4-8f35-40f0-aae9-421f84ace123",
-          province: "Jawa Tengah",
-          city: "Magelang"
-      },
-      {
-          locationId: "a58d6a9b-30fa-4517-bcdd-aecceb4e0634",
-          province: "Jawa Tengah",
-          city: "Pekalongan"
-      },
-      {
-          locationId: "15071248-3e79-45c7-9355-dd25e9089ee2",
-          province: "Jawa Tengah",
-          city: "Salatiga"
-      },
-      {
-          locationId: "517c2122-0133-4dde-bea0-975be0fbcf5b",
-          province: "Jawa Tengah",
-          city: "Semarang"
-      },
-      {
-          locationId: "6f32131a-cd30-4ec7-b8ef-2b0730273387",
-          province: "Jawa Tengah",
-          city: "Surakarta"
-      },
-      {
-          locationId: "b1f11737-f8af-4f27-9e92-cc318074c292",
-          province: "Jawa Tengah",
-          city: "Tegal"
-      },
-      {
-          locationId: "a06bdcc6-69a5-4aa7-92ae-3be04d1f11ea",
-          province: "DI Yogyakarta",
-          city: "Yogyakarta"
-      },
-      {
-          locationId: "d0cab1c6-ca40-45ec-9065-ad43fcf44ca3",
-          province: "Jawa Timur",
-          city: "Batu"
-      },
-      {
-          locationId: "58fcb3b5-a663-40b7-97d9-d5ce22bcda08",
-          province: "Jawa Timur",
-          city: "Blitar"
-      },
-      {
-          locationId: "f389c55f-a26e-4c31-934d-0085ecc35bf9",
-          province: "Jawa Timur",
-          city: "Kediri"
-      },
-      {
-          locationId: "61226cfa-1524-4a66-a824-712e808f816a",
-          province: "Jawa Timur",
-          city: "Madiun"
-      },
-      {
-          locationId: "b0a24b89-19f4-49e6-9b44-c63b770fa6e8",
-          province: "Jawa Timur",
-          city: "Malang"
-      },
-      {
-          locationId: "39007219-504d-4c46-94c4-1643532725db",
-          province: "Jawa Timur",
-          city: "Mojokerto"
-      },
-      {
-          locationId: "6cdd46e9-19e9-40b4-b8ac-33cd1777bc28",
-          province: "Jawa Timur",
-          city: "Pasuruan"
-      },
-      {
-          locationId: "50a6dbe2-304c-4c0b-a823-e893c7ccaeef",
-          province: "Jawa Timur",
-          city: "Probolinggo"
-      },
-      {
-          locationId: "a1778bea-da67-4ea2-b745-a47d14047e73",
-          province: "Jawa Timur",
-          city: "Surabaya"
-      },
-      {
-          locationId: "fc2e0860-a994-4dbc-be5a-e7338e6c0ebe",
-          province: "Banten",
-          city: "Cilegon"
-      },
-      {
-          locationId: "61fb7d67-ba48-4cbc-a787-1757ff199cb2",
-          province: "Banten",
-          city: "Serang"
-      },
-      {
-          locationId: "1dcb4319-82dd-48e0-b72a-25229f7ffecf",
-          province: "Banten",
-          city: "Tangerang"
-      },
-      {
-          locationId: "32549878-a73a-4199-9e39-9d5384a7136c",
-          province: "Banten",
-          city: "Tangerang Selatan"
-      },
-      {
-          locationId: "6bad71ab-cf01-4127-800c-15b5ac8a2787",
-          province: "Bali",
-          city: "Denpasar"
-      },
-      {
-          locationId: "f0c0ebb5-4ab1-4907-bf73-69b7ed2201fa",
-          province: "Nusa Tenggara Barat",
-          city: "Bima"
-      },
-      {
-          locationId: "d76001eb-366e-4f8a-adc4-9e9397e30b79",
-          province: "Nusa Tenggara Barat",
-          city: "Mataram"
-      },
-      {
-          locationId: "a2ae7049-e8b9-4b7f-b915-e089a6392c39",
-          province: "Nusa Tenggara Timur",
-          city: "Kupang"
-      },
-      {
-          locationId: "69775c88-e59a-4d76-9d22-5d1f1956f6f3",
-          province: "Kalimantan Barat",
-          city: "Pontianak"
-      },
-      {
-          locationId: "da065997-09c5-4154-8ef4-f8a15ea4b175",
-          province: "Kalimantan Barat",
-          city: "Singkawang"
-      },
-      {
-          locationId: "c60eeb59-c0a7-4a14-ac69-86761c307e62",
-          province: "Kalimantan Tengah",
-          city: "Kotawaringin Barat"
-      },
-      {
-          locationId: "33e31a90-9712-4ff2-a0cf-4341be2c1257",
-          province: "Kalimantan Tengah",
-          city: "Kotawaringin Timur"
-      },
-      {
-          locationId: "b0f780b6-116b-4473-9b70-561ca8bd7470",
-          province: "Kalimantan Tengah",
-          city: "Palangka Raya"
-      },
-      {
-          locationId: "ef7560b6-2599-4bba-949f-d4d1ed5da6bf",
-          province: "Kalimantan Selatan",
-          city: "Kotabaru"
-      },
-      {
-          locationId: "57c126a9-1e7c-4518-b60e-7bb0d4bf8dea",
-          province: "Kalimantan Selatan",
-          city: "Banjarbaru"
-      },
-      {
-          locationId: "0c89158d-0232-4723-88c0-3548ef534f97",
-          province: "Kalimantan Selatan",
-          city: "Banjarmasin"
-      },
-      {
-          locationId: "56e79c56-a69c-4f6b-9bda-79972b467369",
-          province: "Kalimantan Timur",
-          city: "Balikpapan"
-      },
-      {
-          locationId: "9c251e8e-2f42-4fee-aabc-7970922a90ed",
-          province: "Kalimantan Timur",
-          city: "Bontang"
-      },
-      {
-          locationId: "6b624b62-6c50-42da-a401-716f321a778c",
-          province: "Kalimantan Timur",
-          city: "Samarinda"
-      },
-      {
-          locationId: "0470336d-f9ab-454b-9b0c-0352c27efc07",
-          province: "Kalimantan Utara",
-          city: "Tarakan"
-      },
-      {
-          locationId: "825f0194-7850-4924-8f27-d54a5204695b",
-          province: "Sulawesi Utara",
-          city: "Bitung"
-      },
-      {
-          locationId: "ab10c1c7-0403-4137-b2f8-0d9f04566ac0",
-          province: "Sulawesi Utara",
-          city: "Kotamobagu"
-      },
-      {
-          locationId: "c34ce1cc-06d2-44ab-9f72-ddb35aba131e",
-          province: "Sulawesi Utara",
-          city: "Manado"
-      },
-      {
-          locationId: "49163208-d30a-4c12-b2a5-9f48e0894292",
-          province: "Sulawesi Utara",
-          city: "Tomohon"
-      },
-      {
-          locationId: "fc4c2fa2-3169-4ee4-be8d-5786b822cd85",
-          province: "Sulawesi Tengah",
-          city: "Palu"
-      },
-      {
-          locationId: "8e51d561-7755-4920-a016-99ec3fc26c26",
-          province: "Sulawesi Selatan",
-          city: "Makassar"
-      },
-      {
-          locationId: "0ecb96fa-2536-49df-9657-3ba330a38e5c",
-          province: "Sulawesi Selatan",
-          city: "Palopo"
-      },
-      {
-          locationId: "dfc73902-4d51-44de-9d79-e3fd499922e2",
-          province: "Sulawesi Selatan",
-          city: "Parepare"
-      },
-      {
-          locationId: "2a098c54-46a1-4fd8-b881-7d1c5dd74afc",
-          province: "Sulawesi Tenggara",
-          city: "Baubau"
-      },
-      {
-          locationId: "ef2b58c5-8377-421e-a70f-8bdd15ca2046",
-          province: "Sulawesi Tenggara",
-          city: "Kendari"
-      },
-      {
-          locationId: "7a80da83-daae-4c9b-bdbc-cbcb57e0442e",
-          province: "Gorontalo",
-          city: "Gorontalo"
-      },
-      {
-          locationId: "d2e0d4cc-3373-4ef6-a60a-1dc833d683d0",
-          province: "Maluku",
-          city: "Ambon"
-      },
-      {
-          locationId: "5f2b2815-707c-431f-aa63-65cbe9522cb7",
-          province: "Maluku",
-          city: "Tual"
-      },
-      {
-          locationId: "f290ab65-7c76-4b78-9d9d-570fa266b1cf",
-          province: "Maluku Utara",
-          city: "Ternate"
-      },
-      {
-          locationId: "e4c5f2d8-5deb-4742-ab54-08cd1a184af3",
-          province: "Maluku Utara",
-          city: "Tidore Kepulauan"
-      },
-      {
-          locationId: "57b353b0-e2f4-4c4d-9b60-6a55713ca5a9",
-          province: "Papua",
-          city: "Jayapura"
-      },
-      {
-          locationId: "114ab3d9-4c41-4973-8297-4b68f56e2956",
-          province: "Papua Barat Daya",
-          city: "Sorong"
-      }
-  ]
+        { locationId: "0a7ad9fe-f50e-4f3e-83cd-f82772c51520", province: 'Aceh', city: 'Banda Aceh' },
+        { locationId: "107354c2-fa87-40df-8e8e-3358e662a1ef", province: 'Aceh', city: 'Langsa' },
+        { locationId: "18346e39-acc0-4239-bc75-9a05090c753b", province: 'Aceh', city: 'Lhokseumawe' },
+        { locationId: "186f5a5c-a22d-49e2-a5d6-9b7f0dba541b", province: 'Aceh', city: 'Sabang' },
+        { locationId: "1a57d079-540f-4199-8847-ab6ee6e4913d", province: 'Aceh', city: 'Subulussalam' },
+        { locationId: "1b48ee2e-82d7-49b8-ad37-e945150c7d2f", province: 'Sumatera Utara', city: 'Binjai' },
+        { locationId: "1bc7694f-b5cd-44c7-9897-529fec5bef8a", province: 'Sumatera Utara', city: 'Gunungsitoli' },
+        { locationId: "223fea51-dcf1-460c-874e-8025b21bc2a2", province: 'Sumatera Utara', city: 'Medan' },
+        { locationId: "2b856b11-f462-4959-8421-2dfa6d4f566b", province: 'Sumatera Utara', city: 'Padangsidimpuan' },
+        { locationId: "2e855806-a032-47d2-9c01-0a7bd1ab44f9", province: 'Sumatera Utara', city: 'Pematangsiantar' },
+        { locationId: "2f1baf2e-2801-4a71-8a85-1600ed6b3cbf", province: 'Sumatera Utara', city: 'Sibolga' },
+        { locationId: "314100b5-aab7-407b-af2b-842907c56afc", province: 'Sumatera Utara', city: 'Tanjungbalai' },
+        { locationId: "34f77ff4-e78f-42f0-ad5b-4e5b57e07cd4", province: 'Sumatera Utara', city: 'Tebing Tinggi' },
+        { locationId: "386cdefb-8e63-4b6e-9720-794dbf90c39d", province: 'Sumatera Barat', city: 'Lima Puluh Kota' },
+        { locationId: "3afe00ab-1d3c-4297-a04a-99df9e3c84f0", province: 'Sumatera Barat', city: 'Bukittinggi' },
+        { locationId: "3d5a92ee-ed03-4aa8-8161-388ed1ab0e7f", province: 'Sumatera Barat', city: 'Padang' },
+        { locationId: "4129e977-efcb-419d-98d5-654bed8bb325", province: 'Sumatera Barat', city: 'Padang Panjang' },
+        { locationId: "44f4a050-4fdd-44e3-adf6-7240ac153ce9", province: 'Sumatera Barat', city: 'Pariaman' },
+        { locationId: "453e9047-e60e-4928-acf7-073e2a80b8b4", province: 'Sumatera Barat', city: 'Payakumbuh' },
+        { locationId: "48d8608a-bceb-4081-bcb5-29a2b5bc57a9", province: 'Sumatera Barat', city: 'Sawahlunto' },
+        { locationId: "49217141-e957-463e-8642-275a10ba986a", province: 'Sumatera Barat', city: 'Solok' },
+        { locationId: "4d77a7eb-f903-4a18-8f91-5adf69e71ce3", province: 'Riau', city: 'Dumai' },
+        { locationId: "500e31e3-6138-4942-896e-7404668fcad2", province: 'Riau', city: 'Pekanbaru' },
+        { locationId: "5773043a-268f-464a-bedd-a5a3ecf07b71", province: 'Jambi', city: 'Jambi' },
+        { locationId: "5a6a747a-73a9-4a47-84ed-022800622f44", province: 'Jambi', city: 'Sungai Penuh' },
+        { locationId: "625cfa3c-3a51-4a1f-81b5-12ded2e31e8e", province: 'Sumatera Selatan', city: 'Lubuk Linggau' },
+        { locationId: "630b07cc-0d73-4dbf-a19d-22b48b8603cd", province: 'Sumatera Selatan', city: 'Pagaralam' },
+        { locationId: "644c1263-ad92-4f54-b942-cc4d4bd54631", province: 'Sumatera Selatan', city: 'Palembang' },
+        { locationId: "655a4cba-ddb5-4661-b286-3e0c3060a990", province: 'Sumatera Selatan', city: 'Prabumulih' },
+        { locationId: "676987fd-abca-48e8-9156-53bd6dcd4b86", province: 'Bengkulu', city: 'Bengkulu' },
+        { locationId: "6bb58e5c-023a-40a0-b914-a9bfc48820cd", province: 'Lampung', city: 'Bandar Lampung' },
+        { locationId: "6c0ecaae-f2b0-428d-ad99-c67528a7dc23", province: 'Lampung', city: 'Metro' },
+        { locationId: "6d1a54cc-3bf9-4026-8bcf-8616df4bafc7", province: 'Kepulauan Riau', city: 'Pangkalpinang' },
+        { locationId: "7425e95c-18f9-4f8e-856b-0a1fa54777ba", province: 'Kepulauan Bangka Belitung', city: 'Batam' },
+        { locationId: "76e317d7-bdef-43c3-b693-7ead68f40c5c", province: 'Kepulauan Bangka Belitung', city: 'Tanjungpinang' },
+        { locationId: "7b7c9e87-0cd3-4b0e-87af-d9e2b0a3b1d1", province: 'DKI Jakarta', city: 'Administrasi Jakarta Pusat' },
+        { locationId: "7be1ac0b-fd8e-42d4-8c59-5883ebd953e0", province: 'DKI Jakarta', city: 'Administrasi Jakarta Selatan' },
+        { locationId: "81919d30-4c5b-420c-a5f1-3edef465976f", province: 'DKI Jakarta', city: 'Administrasi Jakarta Timur' },
+        { locationId: "81942a9a-98cd-4268-b652-766d34523372", province: 'DKI Jakarta', city: 'Administrasi Jakarta Utara' },
+        { locationId: "82ed406a-93cb-4994-b84f-eab36099fec8", province: 'Jawa Barat', city: 'Bandung' },
+        { locationId: "86456edc-d371-43c0-8bb5-8bbd0d1e9be8", province: 'Jawa Barat', city: 'Banjar' },
+        { locationId: "877af26c-91cd-4f5f-996e-16432205e1ba", province: 'Jawa Barat', city: 'Bekasi' },
+        { locationId: "894e412c-1100-45b4-b21b-d8ce52e2fa8f", province: 'Jawa Barat', city: 'Bogor' },
+        { locationId: "8c729a38-6d7f-4da0-8cdd-6071a6885adf", province: 'Jawa Barat', city: 'Cimahi' },
+        { locationId: "8d8a9bab-f778-4084-86eb-a828b39cd8eb", province: 'Jawa Barat', city: 'Cirebon' },
+        { locationId: "8ebc3fc1-2e08-4ef6-8061-ef4cd92e6650", province: 'Jawa Barat', city: 'Depok' },
+        { locationId: "8f160033-58d8-4794-9b1c-6c1399890b11", province: 'Jawa Barat', city: 'Sukabumi' },
+        { locationId: "94b5710e-3432-488a-9218-18ce0bab13f0", province: 'Jawa Barat', city: 'Tasikmalaya' },
+        { locationId: "987bbd10-61ce-467b-9e54-e782b5c1761c", province: 'Jawa Tengah', city: 'Magelang' },
+        { locationId: "9b9736b8-701b-4ed4-9e6b-0230e02bb853", province: 'Jawa Tengah', city: 'Pekalongan' },
+        { locationId: "a029dc1a-d1b9-418a-ae9c-13b2a1f2a026", province: 'Jawa Tengah', city: 'Salatiga' },
+        { locationId: "a579e449-a680-4aca-8260-d5522db9c219", province: 'Jawa Tengah', city: 'Semarang' },
+        { locationId: "a6a48f1c-2dba-4e1e-9336-6f4759f6f6d2", province: 'Jawa Tengah', city: 'Surakarta' },
+        { locationId: "a7cb3a6e-fb03-4b97-9b20-b3beb17ff236", province: 'Jawa Tengah', city: 'Tegal' },
+        { locationId: "ac27c64b-4346-4b91-bc4e-1fd9b68fed1a", province: 'DI Yogyakarta', city: 'Yogyakarta' },
+        { locationId: "ad09d048-3a7d-46a8-8460-76c02dbe9a39", province: 'Jawa Timur', city: 'Batu' },
+        { locationId: "ad754c6c-43e5-4d1e-8867-b1cfb5f51515", province: 'Jawa Timur', city: 'Blitar' },
+        { locationId: "afd915b5-8e34-47f4-a7f7-f203af961db7", province: 'Jawa Timur', city: 'Kediri' },
+        { locationId: "b369b86e-e849-4a8a-8ae3-b2210bf791b9", province: 'Jawa Timur', city: 'Madiun' },
+        { locationId: "b423d93e-a341-4453-a66c-4124bae2cd8b", province: 'Jawa Timur', city: 'Malang' },
+        { locationId: "b71df538-fd16-4491-87d6-efc55b2f11dd", province: 'Jawa Timur', city: 'Mojokerto' },
+        { locationId: "b721a887-5c6c-4265-a63b-9be1e0e40fe2", province: 'Jawa Timur', city: 'Pasuruan' },
+        { locationId: "b94748cb-3201-40c8-a3a2-45bf324ee702", province: 'Jawa Timur', city: 'Probolinggo' },
+        { locationId: "bcd6159e-e66f-492e-bcdc-e1d912161f7d", province: 'Jawa Timur', city: 'Surabaya' },
+        { locationId: "be378755-0168-4571-b2f1-cd58660e1efd", province: 'Banten', city: 'Cilegon' },
+        { locationId: "c05117a0-d741-4ab8-8b42-e3d73e9cadac", province: 'Banten', city: 'Serang' },
+        { locationId: "c0a4b46d-f5fe-4732-9b60-50649f68b87b", province: 'Banten', city: 'Tangerang' },
+        { locationId: "c3665946-e280-42a7-b87d-6f7018f8d11d", province: 'Banten', city: 'Tangerang Selatan' },
+        { locationId: "c6253689-c06f-45a8-b54f-0ffdc5bfb39b", province: 'Bali', city: 'Denpasar' },
+        { locationId: "c6cb8a45-b5b2-4eef-bd37-e07f3b167632", province: 'Nusa Tenggara Barat', city: 'Bima' },
+        { locationId: "ca2e1480-c141-41ec-a033-23aeb47523ad", province: 'Nusa Tenggara Barat', city: 'Mataram' },
+        { locationId: "ca5f6875-0e77-4bc6-9a34-50db68d1e517", province: 'Nusa Tenggara Timur', city: 'Kupang' },
+        { locationId: "cc048e34-415a-494e-8a3a-3094654874a4", province: 'Kalimantan Barat', city: 'Pontianak' },
+        { locationId: "ccb2a789-fc3e-41c7-aee8-bf3130932711", province: 'Kalimantan Barat', city: 'Singkawang' },
+        { locationId: "cec102e4-f9e6-4bdc-bdd7-11ad703c0842", province: 'Kalimantan Tengah', city: 'Kotawaringin Barat' },
+        { locationId: "cf960945-6a89-4a99-9ec8-ab454ab58eee", province: 'Kalimantan Tengah', city: 'Kotawaringin Timur' },
+        { locationId: "d0a30854-0e2e-4e7f-916e-88761a01744d", province: 'Kalimantan Tengah', city: 'Palangka Raya' },
+        { locationId: "d392613f-33eb-47ad-9658-d837aafdd23d", province: 'Kalimantan Selatan', city: 'Kotabaru' },
+        { locationId: "d47e7b92-6351-45e8-ae90-406ea6d0c034", province: 'Kalimantan Selatan', city: 'Banjarbaru' },
+        { locationId: "d555885e-c5b0-4638-883e-73c54ad6f28e", province: 'Kalimantan Selatan', city: 'Banjarmasin' },
+        { locationId: "d62abf30-cb6f-4690-aee9-a7dd9be70aeb", province: 'Kalimantan Timur', city: 'Balikpapan' },
+        { locationId: "d6e40a3f-c9a5-44b4-af2d-7ca219d524de", province: 'Kalimantan Timur', city: 'Bontang' },
+        { locationId: "d7655ceb-f460-46c9-8c47-9d078bf783e3", province: 'Kalimantan Timur', city: 'Samarinda' },
+        { locationId: "dc2385a0-a632-4e47-8ad2-cc8b6cee6699", province: 'Kalimantan Utara', city: 'Tarakan' },
+        { locationId: "ddd44b63-859c-48f0-aeb5-06882f786e8f", province: 'Sulawesi Utara', city: 'Bitung' },
+        { locationId: "deb2cb56-06c2-4a97-bb1d-5e63ae90d3fa", province: 'Sulawesi Utara', city: 'Kotamobagu' },
+        { locationId: "e638e516-6c0a-4550-81c6-a6f856963b51", province: 'Sulawesi Utara', city: 'Manado' },
+        { locationId: "e7ae6323-70dd-4066-8403-fb5be56f62c4", province: 'Sulawesi Utara', city: 'Tomohon' },
+        { locationId: "e9d5c595-f1a7-45b1-9318-f1b1f5a85aa9", province: 'Sulawesi Tengah', city: 'Palu' },
+        { locationId: "ed88209d-be59-4e5a-92fd-fb1a631694d4", province: 'Sulawesi Selatan', city: 'Makassar' },
+        { locationId: "ed9eabbf-bb0b-42b6-8ee2-ac9690413f77", province: 'Sulawesi Selatan', city: 'Palopo' },
+        { locationId: "eeb66684-7bbe-44d9-811c-29fe72620fcf", province: 'Sulawesi Selatan', city: 'Parepare' },
+        { locationId: "ef97c82d-399b-4ccb-be9a-03a2b9bbdd60", province: 'Sulawesi Tenggara', city: 'Baubau' },
+        { locationId: "efaf9a59-da67-465c-8028-726f4ab8fc8c", province: 'Sulawesi Tenggara', city: 'Kendari' },
+        { locationId: "f36884da-82c5-4923-b3da-359683fc3d8b", province: 'Gorontalo', city: 'Gorontalo' },
+        { locationId: "f598ce86-357f-48bf-ac64-1c4227c863b8", province: 'Maluku', city: 'Ambon' },
+        { locationId: "f5b43898-02e9-4fa5-bdbf-427fdc7db5a7", province: 'Maluku', city: 'Tual' },
+        { locationId: "f5bb245f-fd33-4f30-9ec1-48c252a44562", province: 'Maluku Utara', city: 'Ternate' },
+        { locationId: "f5e251ac-7019-4033-b3dc-110a9e04228c", province: 'Maluku Utara', city: 'Tidore Kepulauan' },
+        { locationId: "f90e22ba-ab76-44ae-833d-d39fe78ada17", province: 'Papua', city: 'Jayapura' },
+        { locationId: "ffe08440-5e14-4636-ae43-14b6c550c4ef", province: 'Papua Barat Daya', city: 'Sorong' },
+    ];
+
   await LocationModel.destroy({ where: {} })
   await LocationModel.bulkCreate(locations.map(location => ({...location })));
 

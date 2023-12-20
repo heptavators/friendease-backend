@@ -1,5 +1,5 @@
 import { HighlightRepository } from "../../repositories/Highlight";
-import { AuthRepository } from "../../repositories/Auth";
+import { OrderRepository } from "../../repositories/Order";
 import { TalentRepository } from "../../repositories/Talent";
 import { ReviewRepository } from "../../repositories/Review";
 import { DEFAULT_LIMIT, ITEMS_PER_PAGE, RECSYS_URL } from "../../utils/Constant";
@@ -12,21 +12,19 @@ import axios, { AxiosResponse } from 'axios';
 export class TalentService {
     private talentRepository: TalentRepository;
     private reviewRepository: ReviewRepository;
+    private orderRepository: OrderRepository;
 
-    private authRepository: AuthRepository;
-    private highlightRepository: HighlightRepository;
     private static instance: TalentService;
 
-    private constructor(talentRepository: TalentRepository, authRepository: AuthRepository, highlightRepository: HighlightRepository, reviewRepository: ReviewRepository) {
+    private constructor(talentRepository: TalentRepository, orderRepository: OrderRepository, reviewRepository: ReviewRepository) {
         this.talentRepository = talentRepository
-        this.authRepository = authRepository
-        this.highlightRepository = highlightRepository
+        this.orderRepository = orderRepository
         this.reviewRepository = reviewRepository
     }
 
-    static getInstance(talentRepository: TalentRepository, authRepository: AuthRepository, highlightRepository: HighlightRepository, reviewRepository: ReviewRepository ): TalentService {
+    static getInstance(talentRepository: TalentRepository, orderRepository: OrderRepository, reviewRepository: ReviewRepository ): TalentService {
         if (!this.instance) {
-            this.instance = new TalentService(talentRepository, authRepository, highlightRepository, reviewRepository);
+            this.instance = new TalentService(talentRepository, orderRepository, reviewRepository);
         }
         return this.instance;
     }
@@ -138,11 +136,10 @@ export class TalentService {
 
     async getTalentByIdService(talentId: string){
         const talent = await this.talentRepository.getTalentById(talentId);
-        const order = await this.reviewRepository.countReviewByTalentId(talentId);
-        console.log(order)
-        // const auth = await this.authRepository.getProfileById(talent.toJSON().authId);
-        // const highlight = await this.highlightRepository.GetHighlightUser(talent.toJSON().talentId)
-        return talent;
+        const totalReview = await this.reviewRepository.countReviewByTalentId(talentId);
+        const totalOrder = await this.orderRepository.countOrderTalentById(talentId);
+
+        return {talent, totalReview, totalOrder};
     }
 
 

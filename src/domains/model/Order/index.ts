@@ -1,5 +1,6 @@
 import { Model, DataTypes } from 'sequelize';
 import Database  from "../../../configs/Database";
+import { TalentModel } from '../Talent';
 
 export class OrderModel extends Model{
     orderId!: string;
@@ -104,3 +105,5 @@ OrderModel.init(
     sequelize: Database,
   }
 );
+
+OrderModel.belongsTo(TalentModel, { as: 'talent', foreignKey: 'talentId', onDelete: 'CASCADE' });
