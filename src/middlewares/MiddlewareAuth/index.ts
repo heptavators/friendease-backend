@@ -4,7 +4,7 @@ import type { JwtPayload } from "jsonwebtoken"
 
 export default function MiddlewareAuth(req: Request, res: Response, next: NextFunction) {
     const bearerHeader = req.headers['authorization'];
-    const signOptions = { maxAge: "1d" };
+    const signOptions = { maxAge: "365d" };
 
     if (bearerHeader) {
         try {
