@@ -6,12 +6,12 @@ resource "google_cloud_run_service" "backend-api" {
     spec {
       containers {
         image = "asia.gcr.io/hexavator/friendease-backend"
-        autoscaling {
-            # Min instances
-            min_instances = 1
-            max_instances = 3
-            }
       }
+      scaling  {
+            # Min instances
+            min_instance_count  = 1
+            max_instance_count  = 3
+        }
 
       container_concurrency = 10
       timeout_seconds       = 300
@@ -23,8 +23,6 @@ resource "google_cloud_run_service" "backend-api" {
     latest_revision = true
   }
 
-  min_instances = 1
-  max_instances = 10
 }
 
 resource "google_cloud_run_domain_mapping" "api_friendease_id" {
