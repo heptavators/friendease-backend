@@ -1,54 +1,37 @@
-name: 'Terraform For Cloud Infrastructure'
+# name: 'Terraform For Cloud Infrastructure'
 
-on:
-  push:
-    branches: [ "main" ]
-  pull_request:
+# on:
+#   push:
+#     branches: [ "main" ]
+#   pull_request:
 
-permissions:
-  contents: read
+# permissions:
+#   contents: read
 
-jobs:
-  terraform:
-    name: 'Terraform'
-    runs-on: ubuntu-latest
-    environment: production
+# jobs:
+#   deploy:
+#     name: 'Build and Deploy a Container'
+#     runs-on: ubuntu-latest
 
-    defaults:
-      run:
-        shell: bash
-        working-directory: ./terraform
+#     steps:
+#       - name: Checkout
+#         uses: actions/checkout@v3
 
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+#       - name: Authenticate with Google Cloud
+#         uses: google-github-actions/auth@v1
+#         with:
+#           credentials_json: "${{ secrets.GOOGLE_CREDENTIALS }}"
 
-      - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v1
+#       - name: Set up Cloud SDK
+#         uses: google-github-actions/setup-gcloud@v1
 
-      - name: Setup terraform variables
-        id: vars
-        run: |
-          cat > pipeline.auto.tfvars <<EOF 
-          region="${{ vars.GCP_REGION }}"
-          project="${{ vars.GCP_PROJECT_ID }}"
-          data-project="${{ vars.GCP_DATA_PROJECT }}"
-          EOF
+#       - name: Configure Docker with gcloud credentials
+#         run: gcloud auth configure-docker 
 
-
-      - name: Terraform Init
-        run: terraform init
-        env:
-          GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS  }}
-
-
-      - name: Terraform Plan
-        run: terraform plan -input=false
-        env:
-          GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS  }}
-
-      - name: Terraform Apply
-        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-        run: terraform apply -auto-approve -input=false
-        env:
-          GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS  }}
+#       - name: Deploy to Cloud Build
+#         run: |
+#           gcloud builds submit --config ./cloudbuild.yaml 
+      
+#       - name: Deploy to Cloud Run
+#         run: |
+#           gcloud run deploy ${{ env.SERVICE }} --project ${{ env.PROJECT_ID }} --region ${{ env.REGION }} --image ${{ env.IMAGE }} --port ${{ env.PORT }} --memory ${{ env.MEMORY }}
