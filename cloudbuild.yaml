@@ -1,23 +1,23 @@
 steps:
-  - name: asia.gcr.io/friendease-backend
+  - name: asia.gcr.io/hexavator/friendease-backend
     args:
       - "build"
       - "-t"
-      - "asia.gcr.io/friendease-backend:$COMMIT_SHA"
+      - "asia.gcr.io/hexavator/friendease-backend:$COMMIT_SHA"
       - "."
-  - name: asia.gcr.io/friendease-backend
+  - name: asia.gcr.io/hexavator/friendease-backend
     args:
       - "push"
-      - "gcr.io/$PROJECT_ID/friendease-backend:$COMMIT_SHA"
+      - "asia.gcr.io/hexavator/friendease-backend:$COMMIT_SHA"
   - name: "asia.gcr.io/cloud-builders/gcloud"
     args:
       - "run"
       - "deploy"
       - "friendease-backend"
-      - "--image=asia.gcr.io/palomade-backend:$COMMIT_SHA"
+      - "--image=asia.gcr.io/hexavator/friendease-backend:$COMMIT_SHA"
       - "--region=us-central1"
       - "--cpu=2"
       - "--memory=2048Mi"
       - "--allow-unauthenticated"
 images:
-  - "asia.gcr.io/friendease-backend:$COMMIT_SHA"
+  - "asia.gcr.io/hexavator/friendease-backend:$COMMIT_SHA"
