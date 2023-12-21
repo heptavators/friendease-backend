@@ -20,14 +20,10 @@ resource "google_cloud_run_v2_service" "backend-api" {
 
   }
 
-lifecycle {
-    prevent_destroy = true
+  traffic {
+    percent         = 100
+    latest_revision = true
   }
-
-#   traffic {
-#     percent         = 100
-#     latest_revision = true
-#   }
 
 }
 
