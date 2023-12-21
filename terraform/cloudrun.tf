@@ -19,10 +19,10 @@ resource "google_cloud_run_v2_service" "backend-api" {
 
   }
 
-    traffic {
-        percent         = 100
-        type            = "TRAFFIC_TARGET_ALLOCATION_TYPE_REVISION"
-    }
+    # traffic {
+    #     percent         = 100
+    #     type            = "TRAFFIC_TARGET_ALLOCATION_TYPE_REVISION"
+    # }
 
 
 
