@@ -35,11 +35,14 @@ resource "google_cloud_run_domain_mapping" "api_friendease_id" {
     security_policy  = "SECURE_ALWAYS"
 
     template {
-      spec {
         containers {
           image = "asia.gcr.io/hexavator/friendease-backend"
         }
-      }
+    scaling {
+      # Min instances
+      min_instance_count = 1
+      max_instance_count = 3
+    }
     }
 
     traffic {
