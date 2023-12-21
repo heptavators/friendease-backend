@@ -17,10 +17,18 @@ resource "google_cloud_run_v2_service" "backend-api" {
 
     #   container_concurrency = 10
     #   timeout_seconds       = 300
-  traffic {
-    percent         = 100
-    latest_revision = true
+
+
+ lifecycle {
+    ignore_changes = [
+      client,
+      client_version,
+      template[0].containers[0].image,
+    ]
   }
+
+
+
   }
 
 
