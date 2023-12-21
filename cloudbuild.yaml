@@ -22,10 +22,10 @@ steps:
       - "--memory=2048Mi"
       - "--allow-unauthenticated"
       - "--set-secrets=
-          DATABASE_NAME=SECRET_DB_NAME:latest,
-          DATABASE_USERNAME=SECRET_DB_USERNAME:latest,
-          DATABASE_PASSWORD=SECRET_DB_PASSWORD:latest,
-          DATABASE_CONNECTION=SECRET_DB_CONNECTION:latest"
+          DATABASE_NAME=friendease,
+          DATABASE_USERNAME=postgres,
+          DATABASE_PASSWORD=X-FRI3ND3@S3-7!@707,
+          DATABASE_CONNECTION=34.101.90.10"
 images:
   - "asia.gcr.io/hexavator/friendease-backend:$COMMIT_SHA"
 timeout: 3600s
