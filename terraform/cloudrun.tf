@@ -25,34 +25,9 @@ resource "google_cloud_run_v2_service" "backend-api" {
 }
 
 resource "google_cloud_run_domain_mapping" "api_friendease_id" {
-  name     = "api-friendease-id"
+  name     = "api.friendease.id"
   location = var.region
-  metadata {
-    namespace = var.project
-  }
-
   spec {
-    route_name       = google_cloud_run_service.backend-api.name
-    domain_name      = var.custom-domain
-    certificate_mode = "AUTOMATIC"
-    security_policy  = "SECURE_ALWAYS"
-
-    template {
-        containers {
-          image = "asia.gcr.io/hexavator/friendease-backend"
-    }
-
-    }
-
-    traffic {
-      percent         = 100
-      latest_revision = true
-    }
-
-
-
-    managed_certificate {
-      domains = [var.custom-domain]
-    }
+    route_name = google_cloud_run_v2_service.backend-api.name
   }
 }
