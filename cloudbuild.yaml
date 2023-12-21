@@ -10,7 +10,7 @@ steps:
   - name: gcr.io/cloud-builders/docker
     args:
       - "push"
-      - "gcr.io/hexavator/friendease-backend:$COMMIT_SHA"
+      - "asia.gcr.io/hexavator/friendease-backend:$COMMIT_SHA"
   - name: "gcr.io/cloud-builders/gcloud"
     args:
       - "run"
