@@ -30,9 +30,9 @@ jobs:
         id: vars
         run: |
           cat > pipeline.auto.tfvars <<EOF 
-          region=${{ vars.GCP_REGION }}
-          project=${{ vars.GCP_PROJECT_ID }}
-          data-project=${{ vars.GCP_DATA_PROJECT }}
+          region="${{ vars.GCP_REGION }}"
+          project="${{ vars.GCP_PROJECT_ID }}"
+          data-project="${{ vars.GCP_DATA_PROJECT }}"
           EOF
 
 
