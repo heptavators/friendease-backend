@@ -16,6 +16,12 @@ variable "region" {
     default = "asia-southeast2"
 }
 
+variable "custom-domain" {
+    type= string
+    description = "Domain for cloud run"
+    default = "api.friendease.id"
+}
+
 variable  "data-project" {
     type = string
     description = "Name of data pipeline project to use as resource prefix"
