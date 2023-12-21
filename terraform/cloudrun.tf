@@ -20,6 +20,7 @@ resource "google_cloud_run_v2_service" "backend-api" {
     traffic {
         percent         = 100
         latest_revision = true
+        revision_name = "issue14477-00001-68c"
     }
 
 
