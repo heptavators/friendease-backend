@@ -4,7 +4,7 @@ resource "google_cloud_run_v2_service" "backend-api" {
 
   template {
       containers {
-        image = "asia.gcr.io/hexavator/friendease-backend"
+        image = "asia.gcr.io/hexavator/friendease-backend@sha256:2379c7272c8061ee9f8c0aab7f5dcb646371019a6fbcd4ff8a9dcfbad7cc4451"
       }
       scaling  {
             # Min instances
