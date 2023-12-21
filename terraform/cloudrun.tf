@@ -28,13 +28,13 @@ resource "google_cloud_run_v2_service" "backend-api" {
 
 }
 
-resource "google_cloud_run_domain_mapping" "api_friendease_id" {
-  name     = "api.friendease.id"
-  location = var.region
-    metadata {
-    namespace = "${var.data-project}-api.friendease.id"
-  }
-  spec {
-    route_name = google_cloud_run_v2_service.backend-api.name
-  }
-}
+# resource "google_cloud_run_domain_mapping" "api_friendease_id" {
+#   name     = "api.friendease.id"
+#   location = var.region
+#     metadata {
+#     namespace = "${var.data-project}-api.friendease.id"
+#   }
+#   spec {
+#     route_name = google_cloud_run_v2_service.backend-api.name
+#   }
+# }
