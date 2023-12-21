@@ -14,7 +14,7 @@ services:
       - POSTGRES_DB=friendease
 
   friendease-apps:
-    image: haradakumiko/friendease-backend:latest
+    image: friendease-backend:latest
     container_name: friendease-backend
     restart: always
     ports:

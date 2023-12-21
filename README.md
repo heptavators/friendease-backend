@@ -43,7 +43,7 @@ cd friendease-backend
 
 Containerization this project using Docker
 ```bash
-docker build -t haradakumiko/friendease-backend --no-cache -f deploy/Dockerfile .
+docker build -t friendease-backend --no-cache -f deploy/Dockerfile .
 ```
 
 Open the deploy directory 
