@@ -38,16 +38,17 @@ resource "google_cloud_run_domain_mapping" "api_friendease_id" {
         containers {
           image = "asia.gcr.io/hexavator/friendease-backend"
         }
-    scaling {
-      # Min instances
-      min_instance_count = 1
-      max_instance_count = 3
-    }
     }
 
     traffic {
       percent         = 100
       latest_revision = true
+    }
+
+    scaling {
+      # Min instances
+      min_instance_count = 1
+      max_instance_count = 3
     }
 
     managed_certificate {
