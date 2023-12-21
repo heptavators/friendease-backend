@@ -7,6 +7,8 @@ resource "google_cloud_run_service" "backend-api" {
       containers {
         image = "asia.gcr.io/hexavator/friendease-backend"
       }
+      min_instances  = 1
+      max_instances  = 3
       container_concurrency = 10
       timeout_seconds       = 300
     }
@@ -38,11 +40,7 @@ resource "google_cloud_run_domain_mapping" "api_friendease_id" {
         containers {
           image = "asia.gcr.io/hexavator/friendease-backend"
     }
-    scaling_policy  {
-      # Min instances
-      min_instances  = 1
-      max_instances  = 3
-    }
+
     }
 
     traffic {
