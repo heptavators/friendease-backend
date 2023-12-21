@@ -49,9 +49,8 @@ export class AuthService {
     }
     
     async ChangeProfileService(editProfileRequest: EditProfileRequest, authId: string){
-        console.log(editProfileRequest.tags)
         // const user = await this.authRepository.changeProfile(editProfileRequest, authId);
-        const tags = await this.tagTalentRepository.testInsertOrder(editProfileRequest.tags)
+        const tags = await this.tagTalentRepository.InsertBulkTalent(editProfileRequest.tags, authId)
         const profile = await this.authRepository.getProfileById(authId);
         return profile;
     }

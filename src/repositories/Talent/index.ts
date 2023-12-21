@@ -5,7 +5,7 @@ import { HighlightModel } from "../../domains/model/Highlight";
 import { Op } from "sequelize";
 import { DEFAULT_LIMIT } from "../../utils/Constant";
 import { TagModel } from "../../domains/model/Tag";
-import { TagTalent } from "../../domains/model/TagTalent";
+import { TagTalent } from "../../domains/model/TagAuth";
 import { ReviewModel } from "../../domains/model/Review";
 
 
@@ -25,16 +25,16 @@ export class TalentRepository{
                                 attributes: ['locationId', 'province', 'city'],
                                 as: 'location'
                             },
+                            {
+                                model: TagModel,
+                                as: 'tags',
+                                attributes: {
+                                    exclude: ["createdAt", "updatedAt"],
+                                }
+                            },
                         ],
                         attributes: {
                             exclude: ['email', 'bio', 'bod', 'gender', 'status', 'roles', 'device_token', 'password', 'createdAt', 'updatedAt', "locationId"],
-                        }
-                    },
-                    {
-                        model: TagModel,
-                        as: 'tags',
-                        attributes: {
-                            exclude: ["createdAt", "updatedAt", "TagTalent"],
                         }
                     },
                     {
@@ -56,11 +56,11 @@ export class TalentRepository{
             }
     
             const talents = await TalentModel.findAll(queryOptions);
-            const talentsWithoutTagTalent = talents.map((talent: any) => ({
-                ...talent.toJSON(),
-                tags: talent.tags.map((tag: any) => ({ ...tag.toJSON(), TagTalent: undefined })),
-            }));
-            return talentsWithoutTagTalent;
+            // const talentsWithoutTagTalent = talents.map((talent: any) => ({
+            //     ...talent.toJSON(),
+            //     tags: auth.tags.map((tag: any) => ({ ...tag.toJSON(), TagTalent: undefined })),
+            // }));
+            return talents;
         } catch (error) {
             throw new Error(`Cannot find data because : ${error}`)
         }
@@ -76,13 +76,20 @@ export class TalentRepository{
                         attributes: {
                             exclude: ['email', 'bio', 'bod', 'gender', 'status', 'roles', 'device_token', 'password', 'createdAt', 'updatedAt', "locationId"],
                         },
-                    },
-                    {
-                        model: TagModel,
-                        as: 'tags',
-                        attributes: {
-                            exclude: ["createdAt", "updatedAt", "TagTalent"],
-                        }
+                        include: [
+                            {
+                                model: LocationModel,
+                                attributes: ['locationId', 'province', 'city'],
+                                as: 'location'
+                            },
+                            {
+                                model: TagModel,
+                                as: 'tags',
+                                attributes: {
+                                    exclude: ["createdAt", "updatedAt"],
+                                }
+                            },
+                        ]
                     },
                     {
                         model: HighlightModel,

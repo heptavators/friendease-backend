@@ -18,7 +18,7 @@ export class AuthRepository{
       async getProfileById(authId: string): Promise<any>{
         try {
             const data = await AuthModel.findByPk(authId, {
-                include: ['location'],
+                include: ['location', 'tags'],
                 attributes: { exclude: ['password', 'locationId', 'createdAt', 'updatedAt'] },
             });
             return data;
@@ -62,7 +62,6 @@ export class AuthRepository{
 
     async createUser(registerRequest : RegisterRequest): Promise<any>{
         try {
-            console.log("status")
             const newUser = await AuthModel.create({
                 authId: uuidv4(),
                 email: registerRequest.email,

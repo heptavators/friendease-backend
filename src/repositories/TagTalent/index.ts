@@ -1,17 +1,21 @@
-import { TagTalent } from "../../domains/model/TagTalent";
+import { TagAuth } from "../../domains/model/TagAuth";
+import { v4 as uuidv4 } from 'uuid';
 
 
 export class TagTalentRepository{
-    async testInsertOrder(createOrderRequest: any): Promise<any>{
+    async InsertBulkTalent(createOrderRequest: string[], authId: string): Promise<any>{
         try {
 
-            console.log(createOrderRequest)
+            const data = await TagAuth.bulkCreate(
+                createOrderRequest.map(tagId => ({
+                    tagAuthId: uuidv4(),
+                    tagId: tagId,
+                    authId: authId
+                    
+                }))
+            );
             
-            // const order = await TagTalent.create({
-
-            //   });
-
-            //   return order.toJSON();
+            return data
         } catch (error) {
             throw new Error(`Cannot insert data because : ${error}`)
         }

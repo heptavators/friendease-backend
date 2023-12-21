@@ -116,14 +116,15 @@ export class TalentService {
             const response = await axios.post(RECSYS_URL, requestBody);
     
             if (response.data && response.data.data && response.data.data.length > 0) {
-                const talentIds = response.data.data.map((talent: { id: any; }) => talent.id);
-                console.log("Talent IDs: ", talentIds);
+                // const talentIds = response.data.data.map((talent: { id: any; }) => talent.id);
+                // console.log("Talent IDs: ", talentIds);
     
-                // Assuming you have a function findTalentById which queries talents by ID
-                const talents = await Promise.all(talentIds.map((id: string) => this.getTalentByIdService(id)));
+                // // Assuming you have a function findTalentById which queries talents by ID
+                // const talents = await Promise.all(talentIds.map((id: string) => this.getTalentByIdService(id)));
     
-                console.log("Talents: ", talents);
-                return talents;
+                // console.log("Talents: ", talents);
+                // return talents;
+                return response;
             } else {
                 console.error("No data found in the response");
                 return null;

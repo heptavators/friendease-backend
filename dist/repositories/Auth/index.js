@@ -35,7 +35,7 @@ class AuthRepository {
   async getProfileById(authId) {
     try {
       const data = await import_Auth.AuthModel.findByPk(authId, {
-        include: ["location"],
+        include: ["location", "tags"],
         attributes: { exclude: ["password", "locationId", "createdAt", "updatedAt"] }
       });
       return data;
@@ -73,7 +73,6 @@ class AuthRepository {
   // }
   async createUser(registerRequest) {
     try {
-      console.log("status");
       const newUser = await import_Auth.AuthModel.create(
         {
           authId: (0, import_uuid.v4)(),
