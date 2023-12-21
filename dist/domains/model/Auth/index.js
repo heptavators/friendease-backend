@@ -112,11 +112,11 @@ AuthModel.init(
       defaultValue: "customer"
     },
     device_token: {
-      type: import_sequelize.DataTypes.STRING,
+      type: import_sequelize.DataTypes.TEXT,
       allowNull: true
     },
     user_preferences: {
-      type: import_sequelize.DataTypes.STRING,
+      type: import_sequelize.DataTypes.TEXT,
       allowNull: true
     }
   },

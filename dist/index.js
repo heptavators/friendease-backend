@@ -26,9 +26,12 @@ var import_routes = __toESM(require("./routes"));
 var import_Log = require("./helpers/Log");
 var import_Database = __toESM(require("./configs/Database"));
 var import_DatabaseSeeder = require("./domains/seeder/DatabaseSeeder");
-var import_connect_timeout = __toESM(require("connect-timeout"));
+var import_cors = __toESM(require("cors"));
 try {
   const app = (0, import_express.default)();
+  app.use((0, import_cors.default)({
+    origin: ["*"]
+  }));
   import_Database.default.sync({ force: true });
   const port = "3000";
   const checkAuthorization = (req, res, next) => {
@@ -38,18 +41,6 @@ try {
     }
     next();
   };
-  const payload = {
-    message: {
-      token: "token"
-    },
-    notification: {
-      title: "FCM IS COOL !",
-      body: "Notification has been received",
-      content_available: "true",
-      image: "https://i.ytimg.com/vi/iosNuIdQoy8/maxresdefault.jpg"
-    }
-  };
-  app.use((0, import_connect_timeout.default)("10s"));
   app.use(import_express.default.json());
   app.use(import_express.default.urlencoded({ extended: true }));
   app.get("/", (req, res) => {

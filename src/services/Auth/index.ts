@@ -1,21 +1,26 @@
 import { AuthRepository } from "../../repositories/Auth";
-import { LoginRequest } from '../../domains/web/Login/LoginRequest';
-import { RegisterRequest } from '../../domains/web/Login/RegisterRequest';
+import { LoginRequest } from '../../domains/web/Auth/LoginRequest';
+import { RegisterRequest } from '../../domains/web/Auth/RegisterRequest';
 import { BadRequestError } from "../../helpers/Error/BadRequestError";
 import { GenerateJwtToken } from "../../helpers/JWT";
 import bcryptjs from "bcryptjs";
+import { EditDeviceTokenRequest } from "../../domains/web/Auth/EditDeviceTokenRequest";
+import { EditProfileRequest } from "../../domains/web/Auth/EditProfileRequest";
+import { TagTalentRepository } from "../../repositories/TagTalent";
 
 export class AuthService {
     private authRepository: AuthRepository
+    private tagTalentRepository: TagTalentRepository;
     private static instance: AuthService
 
-    private constructor(authRepository: AuthRepository) {
+    private constructor(authRepository: AuthRepository, tagTalentRepository: TagTalentRepository) {
         this.authRepository = authRepository;
+        this.tagTalentRepository = tagTalentRepository;
     }
 
-    static getInstance(authRepository: AuthRepository): AuthService {
+    static getInstance(authRepository: AuthRepository, tagTalentRepository: TagTalentRepository): AuthService {
         if (!this.instance) {
-            this.instance = new AuthService(authRepository);
+            this.instance = new AuthService(authRepository, tagTalentRepository);
         }
         return this.instance;
     }
@@ -36,6 +41,19 @@ export class AuthService {
 
             const token = GenerateJwtToken(user);
             return token;
+    }
+
+    async ChangeDeviceTokenService(editDeviceTokenRequest: EditDeviceTokenRequest, authId: string) {
+        const user = await this.authRepository.changeDeviceToken(editDeviceTokenRequest, authId);
+        return user;
+    }
+    
+    async ChangeProfileService(editProfileRequest: EditProfileRequest, authId: string){
+        console.log(editProfileRequest.tags)
+        // const user = await this.authRepository.changeProfile(editProfileRequest, authId);
+        const tags = await this.tagTalentRepository.testInsertOrder(editProfileRequest.tags)
+        const profile = await this.authRepository.getProfileById(authId);
+        return profile;
     }
 
     async RegisterService(registerRequest: RegisterRequest) {

@@ -37,7 +37,7 @@ ReviewModel.init(
       allowNull: true,
   },
     review: {
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT,
         allowNull: true,
       },
     rating: {
@@ -45,11 +45,11 @@ ReviewModel.init(
         allowNull: true,
       },
     mediaURL: {
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT,
         allowNull: true,
       },
       mediaNameFile: {
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT,
         allowNull: true,
       },
     },

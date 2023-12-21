@@ -43,6 +43,26 @@ class AuthRepository {
       throw new Error(`Cannot find data because : ${error}`);
     }
   }
+  async changeDeviceToken(editDeviceTokenRequest, authId) {
+    try {
+      const [updatedRowsCount] = await import_Auth.AuthModel.update(editDeviceTokenRequest, {
+        where: { authId }
+      });
+      return updatedRowsCount > 0;
+    } catch (error) {
+      throw new Error(`Cannot change data because : ${error}`);
+    }
+  }
+  async changeProfile(editProfileRequest, authId) {
+    try {
+      const [updatedRowsCount] = await import_Auth.AuthModel.update(editProfileRequest, {
+        where: { authId }
+      });
+      return updatedRowsCount > 0;
+    } catch (error) {
+      throw new Error(`Cannot change data because : ${error}`);
+    }
+  }
   // async getNotificationById(id: string): Promise<any>{
   //     try {
   //         const data = await AuthModel.findByPk(id, {include: ["notifications"]})

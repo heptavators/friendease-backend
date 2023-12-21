@@ -1,6 +1,8 @@
-import { RegisterRequest } from "../../domains/web/Login/RegisterRequest";
+import { RegisterRequest } from "../../domains/web/Auth/RegisterRequest";
 import { AuthModel } from "../../domains/model/Auth";
 import { v4 as uuidv4 } from 'uuid';
+import { EditDeviceTokenRequest } from "../../domains/web/Auth/EditDeviceTokenRequest";
+import { EditProfileRequest } from "../../domains/web/Auth/EditProfileRequest";
 
 export class AuthRepository{
 
@@ -18,10 +20,34 @@ export class AuthRepository{
             const data = await AuthModel.findByPk(authId, {
                 include: ['location'],
                 attributes: { exclude: ['password', 'locationId', 'createdAt', 'updatedAt'] },
-            })
-            return data
+            });
+            return data;
         } catch (error) {
             throw new Error(`Cannot find data because : ${error}`)
+        }
+    }
+
+    async changeDeviceToken(editDeviceTokenRequest: EditDeviceTokenRequest, authId: string): Promise<any>{
+        try {
+            const [updatedRowsCount] = await AuthModel.update(editDeviceTokenRequest, {
+                where: {authId}
+            });
+            return updatedRowsCount > 0;
+        } catch (error) {
+            throw new Error(`Cannot change data because : ${error}`)
+
+        }
+    }
+
+    async changeProfile(editProfileRequest: EditProfileRequest ,authId: string): Promise<any>{ 
+        try {
+            const [updatedRowsCount] = await AuthModel.update(editProfileRequest, {
+                where: {authId}
+            });
+            return updatedRowsCount > 0;
+        } catch (error) {
+            throw new Error(`Cannot change data because : ${error}`)
+
         }
     }
 

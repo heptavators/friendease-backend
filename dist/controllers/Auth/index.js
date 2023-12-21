@@ -32,10 +32,12 @@ __export(Auth_exports, {
 });
 module.exports = __toCommonJS(Auth_exports);
 var import_SuccessSingularFormatter = __toESM(require("../../helpers/Response/SuccessSingularFormatter"));
-var import_LoginRequest = require("../../domains/web/Login/LoginRequest");
+var import_LoginRequest = require("../../domains/web/Auth/LoginRequest");
 var import_Validator = require("../../helpers/Validator");
-var import_RegisterRequest = require("../../domains/web/Login/RegisterRequest");
+var import_RegisterRequest = require("../../domains/web/Auth/RegisterRequest");
 var import_HandleErrorResponse = require("../../helpers/Error/HandleErrorResponse");
+var import_EditDeviceTokenRequest = require("../../domains/web/Auth/EditDeviceTokenRequest");
+var import_EditProfileRequest = require("../../domains/web/Auth/EditProfileRequest");
 class AuthController {
   authService;
   constructor(authService) {
@@ -56,6 +58,28 @@ class AuthController {
     try {
       const result = await this.authService.GetProfileService(req.authId);
       const response = (0, import_SuccessSingularFormatter.default)("Profile User", result);
+      return res.status(200).send(response);
+    } catch (error) {
+      return (0, import_HandleErrorResponse.HandleErrorResponse)(res, error);
+    }
+  }
+  async ChangeDeviceTokenController(req, res) {
+    try {
+      const data = req.body;
+      const validatedData = import_Validator.Validator.validate(data, import_EditDeviceTokenRequest.EditDeviceTokenRequest.getSchema());
+      const result = await this.authService.ChangeDeviceTokenService(validatedData, req.authId);
+      const response = (0, import_SuccessSingularFormatter.default)("Berhasil Ganti Device Token", result);
+      return res.status(200).send(response);
+    } catch (error) {
+      return (0, import_HandleErrorResponse.HandleErrorResponse)(res, error);
+    }
+  }
+  async ChangeProfileController(req, res) {
+    try {
+      const data = req.body;
+      const validatedData = import_Validator.Validator.validate(data, import_EditProfileRequest.EditProfileRequest.getSchema());
+      const result = await this.authService.ChangeProfileService(validatedData, req.authId);
+      const response = (0, import_SuccessSingularFormatter.default)("Berhasil Ganti Profile", result);
       return res.status(200).send(response);
     } catch (error) {
       return (0, import_HandleErrorResponse.HandleErrorResponse)(res, error);

@@ -5,9 +5,13 @@ import  Database  from './configs/Database';
 import { DatabaseSeeder } from './domains/seeder/DatabaseSeeder';
 import timeout from 'connect-timeout';
 import {SendNotification} from './utils/Notification';
+import cors  from "cors"
 
 try {
   const app = express();
+  app.use(cors({
+    origin: ['*']
+}));
   Database.sync({ force: true })
   const port = "3000";
 
@@ -20,20 +24,10 @@ const checkAuthorization = (req: express.Request, res: express.Response, next: e
   next();
 };
 
-const payload = { 
-  message: {
-    token: "token"
-  },
-  notification : {
-     title : "FCM IS COOL !",
-     body : "Notification has been received",
-     content_available : "true",
-     image:"https://i.ytimg.com/vi/iosNuIdQoy8/maxresdefault.jpg"
-  }
-}
 
 
-  app.use(timeout('10s'))
+
+  // app.use(timeout('10s'))
   app.use(express.json())
   app.use(express.urlencoded({extended: true}))
 

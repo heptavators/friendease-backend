@@ -36,13 +36,15 @@ var import_JWT = require("../../helpers/JWT");
 var import_bcryptjs = __toESM(require("bcryptjs"));
 class AuthService {
   authRepository;
+  tagTalentRepository;
   static instance;
-  constructor(authRepository) {
+  constructor(authRepository, tagTalentRepository) {
     this.authRepository = authRepository;
+    this.tagTalentRepository = tagTalentRepository;
   }
-  static getInstance(authRepository) {
+  static getInstance(authRepository, tagTalentRepository) {
     if (!this.instance) {
-      this.instance = new AuthService(authRepository);
+      this.instance = new AuthService(authRepository, tagTalentRepository);
     }
     return this.instance;
   }
@@ -58,6 +60,16 @@ class AuthService {
     }
     const token = (0, import_JWT.GenerateJwtToken)(user);
     return token;
+  }
+  async ChangeDeviceTokenService(editDeviceTokenRequest, authId) {
+    const user = await this.authRepository.changeDeviceToken(editDeviceTokenRequest, authId);
+    return user;
+  }
+  async ChangeProfileService(editProfileRequest, authId) {
+    console.log(editProfileRequest.tags);
+    const tags = await this.tagTalentRepository.testInsertOrder(editProfileRequest.tags);
+    const profile = await this.authRepository.getProfileById(authId);
+    return profile;
   }
   async RegisterService(registerRequest) {
     const existingUser = await this.authRepository.findEmail(registerRequest.email);

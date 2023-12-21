@@ -83,11 +83,11 @@ AuthModel.init(
         defaultValue: "customer"
     },
       device_token: {
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT,
         allowNull: true,
       },
       user_preferences: {
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT,
         allowNull: true,
       }
     },
