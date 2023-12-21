@@ -10,16 +10,22 @@ steps:
   - name: gcr.io/cloud-builders/docker
     args:
       - "push"
-      - "asia.gcr.io/hexavator/friendease-backend:$COMMIT_SHA"
+      - "gcr.io/hexavator/friendease-backend:$COMMIT_SHA"
   - name: "gcr.io/cloud-builders/gcloud"
     args:
       - "run"
       - "deploy"
       - "friendease-backend"
       - "--image=asia.gcr.io/hexavator/friendease-backend:$COMMIT_SHA"
-      - "--region=us-central1"
+      - "--region=asia-southeast1"
       - "--cpu=2"
       - "--memory=2048Mi"
       - "--allow-unauthenticated"
+      - "--set-secrets=
+          DATABASE_NAME=SECRET_DB_NAME:latest,
+          DATABASE_USERNAME=SECRET_DB_USERNAME:latest,
+          DATABASE_PASSWORD=SECRET_DB_PASSWORD:latest,
+          DATABASE_CONNECTION=SECRET_DB_CONNECTION:latest"
 images:
   - "asia.gcr.io/hexavator/friendease-backend:$COMMIT_SHA"
+timeout: 3600s
