@@ -21,7 +21,7 @@ steps:
       - "--cpu=2"
       - "--memory=2048Mi"
       - "--allow-unauthenticated"
-      - "--set-secrets=
+      - "--set-env-vars=
           DATABASE_NAME=friendease,
           DATABASE_USERNAME=postgres,
           DATABASE_PASSWORD=X-FRI3ND3@S3-7!@707,
