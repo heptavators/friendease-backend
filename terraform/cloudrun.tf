@@ -3,7 +3,6 @@ resource "google_cloud_run_v2_service" "backend-api" {
   location = var.region
 
   template {
-    spec {
       containers {
         image = "asia.gcr.io/hexavator/friendease-backend"
       }
@@ -13,9 +12,9 @@ resource "google_cloud_run_v2_service" "backend-api" {
             max_instance_count  = 3
         }
 
-      container_concurrency = 10
-      timeout_seconds       = 300
-    }
+    #   container_concurrency = 10
+    #   timeout_seconds       = 300
+
   }
 
 #   traffic {
