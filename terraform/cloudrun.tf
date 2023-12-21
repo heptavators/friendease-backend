@@ -6,9 +6,13 @@ resource "google_cloud_run_service" "backend-api" {
     spec {
       containers {
         image = "asia.gcr.io/hexavator/friendease-backend"
+        autoscaling {
+            # Min instances
+            min_instances = 1
+            max_instances = 3
+            }
       }
-      min_instances  = 1
-      max_instances  = 3
+
       container_concurrency = 10
       timeout_seconds       = 300
     }
