@@ -22,7 +22,7 @@ resource "google_cloud_run_v2_service" "backend-api" {
 
     traffic {
         percent         = 100
-        revision        = "issue14477-00001-68c"
+        type            = "TRAFFIC_TARGET_ALLOCATION_TYPE_REVISION"
     }
 
 
