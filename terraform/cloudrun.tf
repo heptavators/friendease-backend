@@ -20,6 +20,12 @@ resource "google_cloud_run_v2_service" "backend-api" {
 
   }
 
+lifecycle {
+    ignore_changes = [
+      template[0].scaling,
+    ]
+  }
+
 #   traffic {
 #     percent         = 100
 #     latest_revision = true
