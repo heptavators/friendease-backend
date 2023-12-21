@@ -1,4 +1,4 @@
-resource "google_cloud_run_service" "backend-api" {
+resource "google_cloud_run_v2_service" "backend-api" {
   name     = "backend-api"
   location = var.region
 
