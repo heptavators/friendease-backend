@@ -29,10 +29,10 @@ jobs:
       - name: Setup terraform variables
         id: vars
         run: |
-          cat > pipeline.auto.tfvars <<EOF
-          region="asia-southeast1" 
-          project="hexavator" 
-          data-project="friendease"
+          cat > pipeline.auto.tfvars <<EOF 
+          region="asia-southeast1" ${{ variables.GCP_REGION  }}
+          project="hexavator" ${{ variables.GCP_PROJECT_ID  }}
+          data-project="friendease" ${{ variables.GCP_DATA_PROJECT  }}
           EOF
 
 
