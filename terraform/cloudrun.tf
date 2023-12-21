@@ -21,9 +21,7 @@ resource "google_cloud_run_v2_service" "backend-api" {
   }
 
 lifecycle {
-    ignore_changes = [
-      template[0].scaling,
-    ]
+    prevent_destroy = true
   }
 
 #   traffic {
