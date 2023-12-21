@@ -10,7 +10,6 @@ resource "google_cloud_run_v2_service" "backend-api" {
         image = "asia.gcr.io/hexavator/friendease-backend@sha256:2379c7272c8061ee9f8c0aab7f5dcb646371019a6fbcd4ff8a9dcfbad7cc4451"
       }
     scaling  {
-            # Min instances
             min_instance_count  = 1
             max_instance_count  = 3
         }
@@ -23,7 +22,6 @@ resource "google_cloud_run_v2_service" "backend-api" {
     traffic {
         percent         = 100
         type            = "TRAFFIC_TARGET_ALLOCATION_TYPE_REVISION"
-        revision_name   = google_cloud_run_revision.backend-api.name
     }
 
 
