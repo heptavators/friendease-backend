@@ -280,6 +280,62 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Change Device Token",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"device_token\": \"AjvQGeIkr0m9NztmdDETZs7fGTmd2JockOEwTJGN8bACdkP73YutnTkM4lMJeLRC4y2FFl8O0mxCS9E6N19RaUNe4CivNSxo7Yw9yPERX2kweBfGjadxPAJ5kARf2vFYcvxXrKOkn2bK2UbwL64AkiZUwTOg0lReRxtDJFhSLpCtvBWEHPlShJerK5KTYCsCj7dzJNN0UF4KSRvdKT9fLANRXKSb84fyKGWQqNWrPlG1rvsVbuolDKeofQmIW5X3xfSupv3bt9hlbnCRfrVcrGxidIkxO9hzSurvnPc7UuX55NPRaAASCTW5YDHksBsM\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/auth/change-device-token",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"change-device-token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Change Profile",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"fullname\": \"Harada Kumiko\",\n    \"username\": \"haradakumiko\",\n    \"bod\": \"2002-12-09T16:00:00.000Z\",\n    \"locationId\": \"d62abf30-cb6f-4690-aee9-a7dd9be70aeb\",\n    \"gender\": \"male\",\n    \"user_preferences\": \"saya ingin cari teman yang bisa diajak ngoding dan bertukar ilmu\",\n    \"tags\": [\"8aff57d8-ec74-4e5f-b741-570115c05a6d\", \"76cc7aae-ebb2-4577-862d-75e34f8f3f24\"]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/auth/change-profile",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"change-profile"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -474,7 +530,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{url}}/api/tag?name=cosplay&page=1",
+							"raw": "{{url}}/api/tag",
 							"host": [
 								"{{url}}"
 							],
@@ -485,11 +541,13 @@
 							"query": [
 								{
 									"key": "name",
-									"value": "cosplay"
+									"value": "cosplay",
+									"disabled": true
 								},
 								{
 									"key": "page",
-									"value": "1"
+									"value": "1",
+									"disabled": true
 								}
 							]
 						}
@@ -690,7 +748,7 @@
 							"query": [
 								{
 									"key": "fullname",
-									"value": "q",
+									"value": "ba",
 									"disabled": true
 								},
 								{

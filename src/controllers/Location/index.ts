@@ -18,18 +18,17 @@ export class LocationController {
     async GetAllLocationController(req: Request, res: Response){
         try {
             const {name, page} = req.query as any
-            const limit = DEFAULT_LIMIT
+            // const limit = DEFAULT_LIMIT
             
             const {data, count} = await this.locationService.getAllLocationService(name, page)
             if (data.length != 0) {
                 const meta = {
                     currentPage: page || 1 ,
-                    totalPage: Math.ceil(count / limit),
+                    // totalPage: Math.ceil(count / limit),
                     totalItems: count,
-                    itemsPerPage: limit
+                    // itemsPerPage: limit
                 }
 
-                console.log(count / limit)
     
                 const response = SuccessPluralFormatter('Data Semua Lokasi', meta, data);
         

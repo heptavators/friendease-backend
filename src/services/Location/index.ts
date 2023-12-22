@@ -21,8 +21,6 @@ export class LocationService {
     private buildQueryOptions(name: string, page: number) {
         const options: any = {
           order: [['createdAt', 'DESC']], 
-          offset: page && page > 1 ? ITEMS_PER_PAGE * page - ITEMS_PER_PAGE : 0,
-          limit: DEFAULT_LIMIT,
         };
       
         if (name) {
