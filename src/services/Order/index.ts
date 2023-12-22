@@ -6,6 +6,7 @@ import Payment from "../../configs/Midtrans/Payment";
 import { TalentRepository } from "../../repositories/Talent";
 import { AuthRepository } from "../../repositories/Auth";
 import { NotificationRepository } from "../../repositories/Notification";
+import { BadRequestError } from "../../helpers/Error/BadRequestError";
 
 export class OrderService {
     private orderRepository: OrderRepository;
@@ -66,6 +67,42 @@ export class OrderService {
         return data; 
     }
 
+    async PaymentHandlingService(requestMidtrans: any){
+        const { transaction_status, order_id } = requestMidtrans;
+
+        if (transaction_status === 'settlement') {
+            const order_status = "scheduled"
+            return this.updateOrderStatus(order_id, order_status, transaction_status)
+        } else if (transaction_status === 'deny') {
+            const order_status = "canceled"
+            return this.updateOrderStatus(order_id, order_status, transaction_status)
+
+        } else if (transaction_status === 'cancel') {
+            const order_status = "canceled"
+            return this.updateOrderStatus(order_id, order_status, transaction_status)
+
+        } else if (transaction_status === 'refund') {
+            const order_status = "canceled"
+            return this.updateOrderStatus(order_id, order_status, transaction_status)
+
+        } else if (transaction_status === 'pending') {
+            const order_status = "waiting payment"
+           return this.updateOrderStatus(order_id, order_status, transaction_status)
+
+        } else {
+            throw new BadRequestError([{ error: 'transaction_status', message: 'Unsupported Transaction Status' }], 422);
+        }
+      }
+    
+
+
+    async updateOrderStatus(orderId: string, order_status: string, transaction_status: string){
+
+        const updateOrder = await this.orderRepository.changeStatusOrder(orderId, order_status, transaction_status);
+        const order = await this.orderRepository.getOrderById(orderId)
+        return order;
+
+    }
 
     async createOrderService(talentId: string, userId: string, createOrderRequest: CreateOrderRequest){
         const findTalent = await this.talentRepository.getTalentById(talentId);

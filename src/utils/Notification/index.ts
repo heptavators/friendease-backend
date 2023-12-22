@@ -1,5 +1,6 @@
 import admin from 'firebase-admin';
 import * as serviceAccount from './key.json'
+import { logger } from '../../helpers/Log';
 
    
 admin.initializeApp({
@@ -8,14 +9,14 @@ admin.initializeApp({
 });
 
 
-const deviceToken = "dmdRjaCiQLenliwPO5mJyD:APA91bHmyrbu35VqUKgzR0FselQzqD5_cO8f3kdxXQBHUrpilJjFHF5ogMNTFl_vNJ9DiXOoTY0QfCCdhLeeKcc8p2ha4uEq7VplzEJfINqbMK3jEQRW_87QCIHheh9PUdjQxS8JVkbJ";
+// const deviceToken = "dmdRjaCiQLenliwPO5mJyD:APA91bHmyrbu35VqUKgzR0FselQzqD5_cO8f3kdxXQBHUrpilJjFHF5ogMNTFl_vNJ9DiXOoTY0QfCCdhLeeKcc8p2ha4uEq7VplzEJfINqbMK3jEQRW_87QCIHheh9PUdjQxS8JVkbJ";
 
 const options: admin.messaging.MessagingOptions = {
   priority: "high"
 };
 
 
-const SendNotification = async (notification: any) => {
+const SendNotification = async (device_token: string, notification: any) => {
   try {
     
 
@@ -28,10 +29,9 @@ const SendNotification = async (notification: any) => {
     }
   };
 
-    await admin.messaging().sendToDevice(deviceToken, payload, options);
-    console.log('Notification sent successfully.');
+    await admin.messaging().sendToDevice(device_token, payload, options);
   } catch (error) {
-    console.error('Error sending notification:', error);
+    logger.error('Error sending notification:', error);
   }
 };
 

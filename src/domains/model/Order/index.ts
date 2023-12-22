@@ -83,7 +83,7 @@ OrderModel.init(
     },
     transaction_status: {
       type: DataTypes.ENUM,
-      values: ['settlement', 'deny', 'pending', 'cancel', 'refund'],
+      values: ['pending', 'settlement', 'deny', 'cancel', 'refund'],
       defaultValue: "pending"
     },
     token:{

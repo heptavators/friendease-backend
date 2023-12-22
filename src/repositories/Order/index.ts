@@ -139,6 +139,13 @@ export class OrderRepository{
         }
     }
 
+    async changeStatusOrder(orderId: string, order_status: string, transaction_status: string): Promise<any>{
+        const [updatedRowsCount] = await OrderModel.update({ order_status, transaction_status }, {
+            where: { orderId }
+        });
+        return updatedRowsCount > 0;
+    }
+
 
     async testInsertOrder(createOrderRequest: CreateOrderRequest): Promise<any>{
         try {
