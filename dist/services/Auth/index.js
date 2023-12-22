@@ -66,6 +66,7 @@ class AuthService {
     return user;
   }
   async ChangeProfileService(editProfileRequest, authId) {
+    const user = await this.authRepository.changeProfile(editProfileRequest, authId);
     const tags = await this.tagTalentRepository.InsertBulkTalent(editProfileRequest.tags, authId);
     const profile = await this.authRepository.getProfileById(authId);
     return profile;

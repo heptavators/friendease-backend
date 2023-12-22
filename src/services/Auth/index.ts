@@ -49,7 +49,7 @@ export class AuthService {
     }
     
     async ChangeProfileService(editProfileRequest: EditProfileRequest, authId: string){
-        // const user = await this.authRepository.changeProfile(editProfileRequest, authId);
+        const user = await this.authRepository.changeProfile(editProfileRequest, authId);
         const tags = await this.tagTalentRepository.InsertBulkTalent(editProfileRequest.tags, authId)
         const profile = await this.authRepository.getProfileById(authId);
         return profile;
